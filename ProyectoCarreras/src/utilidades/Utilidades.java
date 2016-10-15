@@ -31,6 +31,7 @@ public class Utilidades {
 	}
 	
 	
+	
 	// to generate error and infoboxes
 	public void createInfobox(String infoMessage, String title){
 		JOptionPane.showMessageDialog(null, infoMessage,title, JOptionPane.INFORMATION_MESSAGE);

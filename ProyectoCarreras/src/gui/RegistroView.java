@@ -33,7 +33,7 @@ public class RegistroView extends JDialog {
 	private JTextField registroDireccion;
 	private JTextField registroTelf;
 	private JTextField registroClub;
-	private final String[] USERTYPES = {"Normal", "Admin", "Organizacion"};
+	private final String[] USERTYPES = {"Normal", "Organizacion"};
 
 	
 
@@ -206,7 +206,7 @@ public class RegistroView extends JDialog {
 				util.createErrorbox("El campo telefono debe ser numerico y tener un maximo de 9 digitos.", "Formato telefono erroneo.");
 			}
 		}else{
-			System.err.println("todo mal");
+			util.createErrorbox("Te faltan campos por rellenar, por favor completa todos los campos.", "Faltan campos por rellenar.");
 		}
 	}
 }

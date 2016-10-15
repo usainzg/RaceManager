@@ -1,10 +1,11 @@
 package bbdd;
 
 import java.sql.Connection;
-import java.util.ArrayList;
-
+import java.sql.ResultSet;
 import clases.Carrera;
-import clases.Usuario;
+import clases.UsuarioAdmin;
+import clases.UsuarioEstandar;
+import clases.UsuarioOrganizador;
 
 public class ManagerMySql implements InterfazBD{
 	
@@ -17,13 +18,8 @@ public class ManagerMySql implements InterfazBD{
 	}
 
 	@Override
-	public ArrayList<Carrera> consultarCarreras() throws Exception {
+	public ResultSet consultarCarreras() throws Exception {
 		return mySql.consultarCarreras();
-	}
-
-	@Override
-	public ArrayList<Usuario> consultarUsuarios() throws Exception {
-		return mySql.consultarUsuarios();
 	}
 
 	@Override
@@ -32,18 +28,8 @@ public class ManagerMySql implements InterfazBD{
 	}
 
 	@Override
-	public int altaUsuario(Usuario u) throws Exception {
-		return mySql.altaUsuario(u);
-	}
-
-	@Override
 	public int deleteCarrera(Carrera c) throws Exception {
 		return mySql.deleteCarrera(c);
-	}
-
-	@Override
-	public int deleteUsuario(Usuario u) throws Exception {
-		return mySql.deleteUsuario(u);
 	}
 
 	@Override
@@ -52,8 +38,58 @@ public class ManagerMySql implements InterfazBD{
 	}
 
 	@Override
-	public int updateUsuario(Usuario u) throws Exception {
-		return mySql.updateUsuario(u);
+	public ResultSet consultarUsuariosEstandar() throws Exception {
+		return mySql.consultarUsuariosEstandar();
+	}
+
+	@Override
+	public ResultSet consultarUsuariosOrganizador() throws Exception {
+		return mySql.consultarUsuariosOrganizador();
+	}
+
+	@Override
+	public int altaOrganizador(UsuarioOrganizador uOrg) throws Exception {
+		return mySql.altaOrganizador(uOrg);
+	}
+
+	@Override
+	public int altaUsuarioNormal(UsuarioEstandar uStd) throws Exception {
+		return mySql.altaUsuarioNormal(uStd);
+	}
+
+	@Override
+	public int deleteUsuarioOrganizador(UsuarioOrganizador uOrg) throws Exception {
+		return mySql.deleteUsuarioOrganizador(uOrg);
+	}
+
+	@Override
+	public int deleteUsuarioNormal(UsuarioEstandar uStd) throws Exception {
+		return mySql.deleteUsuarioNormal(uStd);
+	}
+
+	@Override
+	public int updateUsuarioOrganizador(UsuarioOrganizador uOrg) throws Exception {
+		return mySql.updateUsuarioOrganizador(uOrg);
+	}
+
+	@Override
+	public int updateUsuarioNormal(UsuarioEstandar uStd) throws Exception {
+		return mySql.updateUsuarioNormal(uStd);
+	}
+
+	@Override
+	public boolean loginAdmin(UsuarioAdmin admin) throws Exception {
+		return mySql.loginAdmin(admin);
+	}
+
+	@Override
+	public boolean loginNormal(UsuarioEstandar uStd) throws Exception {
+		return mySql.loginNormal(uStd);
+	}
+
+	@Override
+	public boolean loginOrganizador(UsuarioOrganizador uOrg) throws Exception {
+		return mySql.loginOrganizador(uOrg);
 	}
 
 	

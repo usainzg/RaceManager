@@ -1,30 +1,27 @@
 package clases;
 
-import java.util.ArrayList;
 
 import interfaces.CreacionCarrera;
 import interfaces.ModificacionCarrera;
 
 public class UsuarioOrganizador extends Usuario implements CreacionCarrera, ModificacionCarrera {
+	private int id;
 	
-	private ArrayList<Carrera> carrerasPropias = new ArrayList<>();
-
 	public UsuarioOrganizador(String nombre, String apellidos, String direccion, String email, String pass, int telf, 
-			String club, ArrayList<Carrera> carrerasPropias){
+			String club, int id){
 		super(nombre, apellidos, direccion, email, pass, telf, club);
-		this.carrerasPropias = carrerasPropias;
+		this.id = id;
 	}
 	
-	
-	// getter and setter
-	public ArrayList<Carrera> getCarrerasPropias() {
-		return carrerasPropias;
+	// getters and setters
+	public int getId() {
+		return id;
 	}
 
-
-	public void setCarrerasPropias(ArrayList<Carrera> carrerasPropias) {
-		this.carrerasPropias = carrerasPropias;
+	public void setId(int id) {
+		this.id = id;
 	}
+
 
 
 	// TODO implement interfaces
