@@ -127,9 +127,9 @@ public class MySqlManager implements InterfazBD{
 		}
 		
 		try{
-			String sql = "INSERT INTO usuarioorganizador (id, nombre, apellidos, email, password, direccion, telefono, club) VALUES (" + uOrg.getId() + "," + 
-					uOrg.getNbUsuario() + "," + uOrg.getApellidosUsuario() + "," + uOrg.getEmailUsuario() + "," + uOrg.getPassUsuario() + "," + uOrg.getDirUsuario() +
-					"," + uOrg.getTelfUsuario() + "," + uOrg.getClubUsuario() + ")";
+			String sql = "INSERT INTO usuarioorganizador (nombre, apellidos, email, password, direccion, telefono, club) VALUES ('"+ 
+					uOrg.getNbUsuario() + "','" + uOrg.getApellidosUsuario() + "','" + uOrg.getEmailUsuario() + "','" + uOrg.getPassUsuario() + "','" + uOrg.getDirUsuario() +
+					"','" + uOrg.getTelfUsuario() + "','" + uOrg.getClubUsuario() + "')";
 			Statement sentencia = cn.createStatement();
 			return sentencia.executeUpdate(sql);
 		}catch(Exception e){
@@ -148,10 +148,11 @@ public class MySqlManager implements InterfazBD{
 		}
 		
 		try{
-			String sql = "INSERT INTO usuarioorganizador (nombre, apellidos, email, password, direccion, telefono, club) VALUES (" +
-					uStd.getNbUsuario() + "," + uStd.getApellidosUsuario() + "," + uStd.getEmailUsuario() + "," + uStd.getPassUsuario() + "," + uStd.getDirUsuario() +
-					"," + uStd.getTelfUsuario() + "," + uStd.getClubUsuario() + ")";
+			String sql = "INSERT INTO usuarionormal (nombre, apellidos, email, password, direccion, telefono, club) VALUES ('" +
+					uStd.getNbUsuario() + "','" + uStd.getApellidosUsuario() + "','" + uStd.getEmailUsuario() + "','" + uStd.getPassUsuario() + "','" + uStd.getDirUsuario() +
+					"','" + uStd.getTelfUsuario() + "','" + uStd.getClubUsuario() + "')";
 			Statement sentencia = cn.createStatement();
+			
 			return sentencia.executeUpdate(sql);
 		}catch(Exception e){
 			return -1;

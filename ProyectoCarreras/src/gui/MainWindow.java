@@ -178,7 +178,7 @@ public class MainWindow extends JFrame{
 					// usuario normal login
 				}else if(comboTipoUsuario.getSelectedItem().toString() == "Normal"){
 					loginSystem.loginNormal(txtEmail, txtPassword);
-					UsuarioNormalWindow userView = new UsuarioNormalWindow();
+					
 					
 					// organizador login
 				}else{
