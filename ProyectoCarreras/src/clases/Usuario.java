@@ -21,6 +21,8 @@ public abstract class Usuario {
 		this.clubUsuario = club;
 	}
 	
+	public Usuario(){}
+	
 	
 	// getters and setters
 	public String getNbUsuario() {

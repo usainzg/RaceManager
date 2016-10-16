@@ -1,7 +1,8 @@
 package bbdd;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
+import java.util.ArrayList;
+
 import clases.Carrera;
 import clases.UsuarioAdmin;
 import clases.UsuarioEstandar;
@@ -13,12 +14,11 @@ public class ManagerMySql implements InterfazBD{
 	
 	@Override
 	public Connection conectarBD() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return mySql.conectarBD();
 	}
 
 	@Override
-	public ResultSet consultarCarreras() throws Exception {
+	public ArrayList<Carrera> consultarCarreras() throws Exception {
 		return mySql.consultarCarreras();
 	}
 
@@ -38,12 +38,12 @@ public class ManagerMySql implements InterfazBD{
 	}
 
 	@Override
-	public ResultSet consultarUsuariosEstandar() throws Exception {
+	public ArrayList<UsuarioEstandar> consultarUsuariosEstandar() throws Exception {
 		return mySql.consultarUsuariosEstandar();
 	}
 
 	@Override
-	public ResultSet consultarUsuariosOrganizador() throws Exception {
+	public ArrayList<UsuarioOrganizador> consultarUsuariosOrganizador() throws Exception {
 		return mySql.consultarUsuariosOrganizador();
 	}
 
@@ -68,13 +68,13 @@ public class ManagerMySql implements InterfazBD{
 	}
 
 	@Override
-	public int updateUsuarioOrganizador(UsuarioOrganizador uOrg) throws Exception {
-		return mySql.updateUsuarioOrganizador(uOrg);
+	public int updateUsuarioOrganizador(UsuarioOrganizador uOrg, UsuarioOrganizador datos) throws Exception {
+		return mySql.updateUsuarioOrganizador(uOrg, datos);
 	}
 
 	@Override
-	public int updateUsuarioNormal(UsuarioEstandar uStd) throws Exception {
-		return mySql.updateUsuarioNormal(uStd);
+	public int updateUsuarioNormal(UsuarioEstandar uStd, UsuarioEstandar datos) throws Exception {
+		return mySql.updateUsuarioNormal(uStd, datos);
 	}
 
 	@Override
@@ -90,6 +90,16 @@ public class ManagerMySql implements InterfazBD{
 	@Override
 	public boolean loginOrganizador(UsuarioOrganizador uOrg) throws Exception {
 		return mySql.loginOrganizador(uOrg);
+	}
+
+	@Override
+	public ArrayList<UsuarioEstandar> consultarEmailNormal() throws Exception {
+		return mySql.consultarEmailNormal();
+	}
+
+	@Override
+	public ArrayList<UsuarioOrganizador> consultarEmailOrg() throws Exception {
+		return mySql.consultarEmailOrg();
 	}
 
 	

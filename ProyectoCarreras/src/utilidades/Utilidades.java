@@ -31,7 +31,6 @@ public class Utilidades {
 	}
 	
 	
-	
 	// to generate error and infoboxes
 	public void createInfobox(String infoMessage, String title){
 		JOptionPane.showMessageDialog(null, infoMessage,title, JOptionPane.INFORMATION_MESSAGE);
@@ -40,5 +39,6 @@ public class Utilidades {
 	public void createErrorbox(String errMessage, String title){
 		JOptionPane.showMessageDialog(null, errMessage,title, JOptionPane.ERROR_MESSAGE);
 	}
+	
 
 }

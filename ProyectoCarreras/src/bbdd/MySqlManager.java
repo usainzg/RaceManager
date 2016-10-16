@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import clases.Carrera;
 import clases.UsuarioAdmin;
@@ -26,7 +27,6 @@ public class MySqlManager implements InterfazBD{
 			Connection conexion = DriverManager.getConnection(URL_DB, "root", "");
 			return conexion;
 		}catch(ClassNotFoundException cnE){
-			System.out.println("hola");
 			cnE.printStackTrace();
 			return null;
 		}catch(SQLException e){
@@ -37,7 +37,7 @@ public class MySqlManager implements InterfazBD{
 	
 	// SELECT´s
 	@Override
-	public ResultSet consultarCarreras() throws Exception {
+	public ArrayList<Carrera> consultarCarreras() throws Exception {
 		Connection cn = conectarBD();
 		if(cn == null){
 			util.createErrorbox("No se ha podido establecer conexion con la base de datos.", "Error al conectar base de datos.");
@@ -45,7 +45,21 @@ public class MySqlManager implements InterfazBD{
 		try{
 			String sql = "SELECT * FROM carrera";
 			Statement sentencia = cn.createStatement();
-			return sentencia.executeQuery(sql);
+			ResultSet rs = sentencia.executeQuery(sql);
+			ArrayList<Carrera> arr = new ArrayList<Carrera>();
+			while(rs.next()){
+				Carrera c = new Carrera();
+				c.setNbCarrera(rs.getString("nombre"));
+				c.setOrgCarrera(null);
+				c.setDistanciaCarrera(rs.getInt("distancia"));
+				c.setDesnivelCarrera(rs.getInt("desnivel"));
+				c.setPrecioCarrera(rs.getInt("precio"));
+				c.setLugarCarrera(rs.getString("lugar"));
+				c.setFechaCarrera(rs.getDate("fecha"));
+				arr.add(c);
+			}
+			rs.close();
+			return arr;
 		}catch(Exception e){
 			e.printStackTrace();
 			return null;
@@ -56,7 +70,7 @@ public class MySqlManager implements InterfazBD{
 	}
 	
 	@Override
-	public ResultSet consultarUsuariosOrganizador() throws Exception {
+	public ArrayList<UsuarioOrganizador> consultarUsuariosOrganizador() throws Exception {
 		Connection cn = conectarBD();
 		if(cn == null){
 			util.createErrorbox("No se ha podido establecer conexion con la base de datos.", "Error al conectar base de datos.");
@@ -65,7 +79,21 @@ public class MySqlManager implements InterfazBD{
 		try{
 			String sql = "SELECT * FROM usuarioorganizador";
 			Statement sentencia = cn.createStatement();
-			return sentencia.executeQuery(sql);
+			ResultSet rs = sentencia.executeQuery(sql);
+			ArrayList<UsuarioOrganizador> arr = new ArrayList<UsuarioOrganizador>();
+			while(rs.next()){
+				UsuarioOrganizador uOrg = new UsuarioOrganizador();
+				uOrg.setNbUsuario(rs.getString("nombre"));
+				uOrg.setApellidosUsuario(rs.getString("apellidos"));
+				uOrg.setEmailUsuario(rs.getString("email"));
+				uOrg.setPassUsuario(rs.getString("password"));
+				uOrg.setDirUsuario(rs.getString("direccion"));
+				uOrg.setTelfUsuario(rs.getInt("telefono"));
+				uOrg.setClubUsuario(rs.getString("club"));
+				arr.add(uOrg);
+			}
+			rs.close();
+			return arr;
 		}catch(Exception e){
 			e.printStackTrace();
 			return null;
@@ -76,7 +104,7 @@ public class MySqlManager implements InterfazBD{
 	}
 	
 	@Override
-	public ResultSet consultarUsuariosEstandar() throws Exception {
+	public ArrayList<UsuarioEstandar> consultarUsuariosEstandar() throws Exception {
 		Connection cn = conectarBD();
 		if(cn == null){
 			util.createErrorbox("No se ha podido establecer conexion con la base de datos.", "Error al conectar base de datos.");
@@ -85,7 +113,21 @@ public class MySqlManager implements InterfazBD{
 		try{
 			String sql = "SELECT * FROM usuarionormal";
 			Statement sentencia = cn.createStatement();
-			return sentencia.executeQuery(sql);
+			ResultSet rs = sentencia.executeQuery(sql);
+			ArrayList<UsuarioEstandar> arr = new ArrayList<UsuarioEstandar>();
+			while(rs.next()){
+				UsuarioEstandar uStd = new UsuarioEstandar();
+				uStd.setNbUsuario(rs.getString("nombre"));
+				uStd.setApellidosUsuario(rs.getString("apellidos"));
+				uStd.setEmailUsuario(rs.getString("email"));
+				uStd.setPassUsuario(rs.getString("password"));
+				uStd.setDirUsuario(rs.getString("direccion"));
+				uStd.setTelfUsuario(rs.getInt("telefono"));
+				uStd.setClubUsuario(rs.getString("club"));
+				arr.add(uStd);
+			}
+			rs.close();
+			return arr;
 		}catch(Exception e){
 			e.printStackTrace();
 			return null;
@@ -190,7 +232,7 @@ public class MySqlManager implements InterfazBD{
 			util.createErrorbox("No se ha podido establecer conexion con la base de datos.", "Error al conectar base de datos.");
 		}
 		try{
-			String sql = "DELETE FROM usuarioorganizador WHERE email=" + uOrg.getEmailUsuario();
+			String sql = "DELETE FROM usuarioorganizador WHERE email='" + uOrg.getEmailUsuario() + "'";
 			Statement sentencia = cn.createStatement();
 			return sentencia.executeUpdate(sql);
 		}catch(Exception e){
@@ -208,7 +250,7 @@ public class MySqlManager implements InterfazBD{
 			util.createErrorbox("No se ha podido establecer conexion con la base de datos.", "Error al conectar base de datos.");
 		}
 		try{
-			String sql = "DELETE FROM usuarionormal WHERE email=" + uStd.getEmailUsuario();
+			String sql = "DELETE FROM usuarionormal WHERE email='" + uStd.getEmailUsuario() + "'";
 			Statement sentencia = cn.createStatement();
 			return sentencia.executeUpdate(sql);
 		}catch(Exception e){
@@ -232,21 +274,47 @@ public class MySqlManager implements InterfazBD{
 	}
 
 	@Override
-	public int updateUsuarioOrganizador(UsuarioOrganizador uOrg) throws Exception {
+	public int updateUsuarioOrganizador(UsuarioOrganizador uOrg, UsuarioOrganizador datos) throws Exception {
 		Connection cn = conectarBD();
 		if(cn == null){
 			return -1;
 		}
-		return 0;
+		try{
+			String sql = "UPDATE `usuarioorganizador` SET nombre='" + datos.getNbUsuario() + "',apellidos='" + datos.getApellidosUsuario() + "',direccion='" + datos.getDirUsuario() + 
+		"',password='" + datos.getPassUsuario() + "',telefono='" + datos.getTelfUsuario() + "',club='" + datos.getClubUsuario() + 
+		"' WHERE email='" + uOrg.getEmailUsuario() + "'";
+			
+			Statement sentencia = cn.createStatement();
+			
+			return sentencia.executeUpdate(sql);
+		}catch(Exception e){
+			return -1;
+		}finally{
+			if(cn != null)
+				cn.close();
+		}
 	}
 
 	@Override
-	public int updateUsuarioNormal(UsuarioEstandar uStd) throws Exception {
+	public int updateUsuarioNormal(UsuarioEstandar uStd, UsuarioEstandar datos) throws Exception {
 		Connection cn = conectarBD();
 		if(cn == null){
 			return -1;
 		}
-		return 0;
+
+		try{
+			String sql = "UPDATE `usuarionormal` SET nombre='" + datos.getNbUsuario() + "',apellidos='" + datos.getApellidosUsuario() + "',direccion='" + datos.getDirUsuario() + 
+		"',password='" + datos.getPassUsuario() + "',telefono='" + datos.getTelfUsuario() + "',club='" + datos.getClubUsuario() + 
+		"' WHERE email='" + datos.getEmailUsuario() + "'";
+			Statement sentencia = cn.createStatement();
+			
+			return sentencia.executeUpdate(sql);
+		}catch(Exception e){
+			return -1;
+		}finally{
+			if(cn != null)
+				cn.close();
+		}
 	}
 	// END OF UPDATE´s
 	
@@ -330,6 +398,76 @@ public class MySqlManager implements InterfazBD{
 		}
 	}
 	// END OF LOGIN
+
+	@Override
+	public ArrayList<UsuarioEstandar> consultarEmailNormal() throws Exception {
+		Connection cn = conectarBD();
+		if(cn == null){
+			return null;
+		}
+		
+		try{
+			String sql = "SELECT email FROM usuarionormal";
+			Statement sentencia = cn.createStatement();
+			ResultSet rs = sentencia.executeQuery(sql);
+			
+			ArrayList<UsuarioEstandar> arr = new ArrayList<UsuarioEstandar>();
+			while(rs.next()){
+				UsuarioEstandar uStd = new UsuarioEstandar();
+				uStd.setNbUsuario("");
+				uStd.setApellidosUsuario("");
+				uStd.setEmailUsuario(rs.getString("email"));
+				uStd.setPassUsuario("");
+				uStd.setDirUsuario("");
+				uStd.setTelfUsuario(0);
+				uStd.setClubUsuario("");
+				arr.add(uStd);
+			}
+			rs.close();
+			return arr;
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}finally{
+			if(cn != null)
+				cn.close();
+		}
+	}
+
+	@Override
+	public ArrayList<UsuarioOrganizador> consultarEmailOrg() throws Exception {
+		Connection cn = conectarBD();
+		if(cn == null){
+			return null;
+		}
+		
+		try{
+			String sql = "SELECT email FROM usuarioorganizador";
+			Statement sentencia = cn.createStatement();
+			ResultSet rs = sentencia.executeQuery(sql);
+			
+			ArrayList<UsuarioOrganizador> arr = new ArrayList<UsuarioOrganizador>();
+			while(rs.next()){
+				UsuarioOrganizador uOrg = new UsuarioOrganizador();
+				uOrg.setNbUsuario("");
+				uOrg.setApellidosUsuario("");
+				uOrg.setEmailUsuario(rs.getString("email"));
+				uOrg.setPassUsuario("");
+				uOrg.setDirUsuario("");
+				uOrg.setTelfUsuario(0);
+				uOrg.setClubUsuario("");
+				arr.add(uOrg);
+			}
+			rs.close();
+			return arr;
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}finally{
+			if(cn != null)
+				cn.close();
+		}
+	}
 
 	
 

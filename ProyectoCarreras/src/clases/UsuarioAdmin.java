@@ -10,6 +10,8 @@ public class UsuarioAdmin extends Usuario implements CreacionCarrera, Modificaci
 		super(nombre, apellidos, direccion, email, pass, telf, club);
 	}
 	
+	public UsuarioAdmin(){ }
+	
 	public int admitirUsuario(Usuario u){
 		
 		// TODO to admit user method

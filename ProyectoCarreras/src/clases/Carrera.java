@@ -23,6 +23,7 @@ public class Carrera {
 		this.fechaCarrera = fecha;
 		this.lugarCarrera = lugar;
 	}
+	public Carrera(){}
 
 	
 	// getters and setters

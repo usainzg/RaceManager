@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-10-2016 a las 20:01:03
+-- Tiempo de generación: 16-10-2016 a las 14:11:32
 -- Versión del servidor: 10.1.16-MariaDB
 -- Versión de PHP: 5.6.24
 
@@ -35,6 +35,13 @@ CREATE TABLE `carrera` (
   `fecha` date NOT NULL,
   `lugar` varchar(25) COLLATE utf8_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `carrera`
+--
+
+INSERT INTO `carrera` (`nombre`, `organizador`, `distancia`, `desnivel`, `precio`, `fecha`, `lugar`) VALUES
+('upo', 1, 21, 2100, 21, '2016-10-11', 'usansolo');
 
 -- --------------------------------------------------------
 
@@ -80,6 +87,8 @@ CREATE TABLE `usuarionormal` (
 --
 
 INSERT INTO `usuarionormal` (`nombre`, `apellidos`, `email`, `password`, `direccion`, `telefono`, `club`) VALUES
+('dasd', 'asdasd', 'asdasd@asd.com', 'Unai1808', 'uansdu', 123456789, 'asd'),
+('unai', 'saisnazs ', 'un@unan.com', 'Unai1234', 'uansdu', 123456789, 'ttb'),
 ('unai', 'sainz', 'unai@unai.com', 'Unai1808', 'unai', 123456789, 'unai');
 
 -- --------------------------------------------------------
@@ -104,7 +113,8 @@ CREATE TABLE `usuarioorganizador` (
 --
 
 INSERT INTO `usuarioorganizador` (`id`, `nombre`, `apellidos`, `email`, `password`, `direccion`, `telefono`, `club`) VALUES
-(1, 'org', 'org', 'org@org.com', 'Org1234', 'org', 123456789, 'org');
+(1, 'org', 'org', 'org@org.com', 'Org1234', 'org', 123456789, 'org'),
+(2, 'asier', 'la', 'la@la.com', 'Asier1234', 'asd', 123456789, 'asd');
 
 --
 -- Índices para tablas volcadas
@@ -144,7 +154,7 @@ ALTER TABLE `usuarioorganizador`
 -- AUTO_INCREMENT de la tabla `usuarioorganizador`
 --
 ALTER TABLE `usuarioorganizador`
-  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Restricciones para tablas volcadas
 --

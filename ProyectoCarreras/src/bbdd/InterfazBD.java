@@ -1,7 +1,7 @@
 package bbdd;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import clases.Carrera;
 import clases.UsuarioAdmin;
@@ -14,9 +14,13 @@ public abstract interface InterfazBD {
 	abstract Connection conectarBD() throws Exception;
 	
 	// selects
-	abstract ResultSet consultarCarreras() throws Exception;
-	abstract ResultSet consultarUsuariosEstandar() throws Exception;
-	abstract ResultSet consultarUsuariosOrganizador() throws Exception;
+	abstract ArrayList<Carrera> consultarCarreras() throws Exception;
+	abstract ArrayList<UsuarioEstandar> consultarUsuariosEstandar() throws Exception;
+	abstract ArrayList<UsuarioOrganizador> consultarUsuariosOrganizador() throws Exception;
+	
+	// selects para vista
+	abstract ArrayList<UsuarioEstandar> consultarEmailNormal() throws Exception;
+	abstract ArrayList<UsuarioOrganizador> consultarEmailOrg() throws Exception;
 	
 	//inserts
 	abstract int altaCarrera(Carrera c) throws Exception;
@@ -30,8 +34,8 @@ public abstract interface InterfazBD {
 	
 	// updates
 	abstract int updateCarrera(Carrera c) throws Exception;
-	abstract int updateUsuarioOrganizador(UsuarioOrganizador uOrg) throws Exception;
-	abstract int updateUsuarioNormal(UsuarioEstandar uStd) throws Exception;
+	abstract int updateUsuarioOrganizador(UsuarioOrganizador uOrg, UsuarioOrganizador datos) throws Exception;
+	abstract int updateUsuarioNormal(UsuarioEstandar uStd, UsuarioEstandar datos) throws Exception;
 	
 	// sistema login
 	abstract boolean loginAdmin(UsuarioAdmin admin) throws Exception;

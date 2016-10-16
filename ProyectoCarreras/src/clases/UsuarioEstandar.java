@@ -6,5 +6,7 @@ public class UsuarioEstandar extends Usuario {
 			String club){
 		super(nombre, apellidos, direccion, email, pass, telf, club);
 	}
+	
+	public UsuarioEstandar(){}
 
 }
