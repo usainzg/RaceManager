@@ -9,6 +9,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+
 import bbdd.MySqlManager;
 import clases.Carrera;
 
@@ -22,6 +23,7 @@ public class VisualizacionCarrerasWindow extends JFrame {
 	private JTable table;
 	private DefaultTableModel modelo;
 	private MySqlManager mySql = new MySqlManager();
+
 	/**
 	 * Create the frame.
 	 */
@@ -33,11 +35,11 @@ public class VisualizacionCarrerasWindow extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		
+
 		table = new JTable();
-		JScrollPane sp = new JScrollPane( table );
+		JScrollPane sp = new JScrollPane(table);
 		modelo = new DefaultTableModel();
-		
+
 		modelo.addColumn("NOMBRE");
 		modelo.addColumn("ORGANIZADOR");
 		modelo.addColumn("DISTANCIA");
@@ -45,14 +47,12 @@ public class VisualizacionCarrerasWindow extends JFrame {
 		modelo.addColumn("PRECIO");
 		modelo.addColumn("FECHA");
 		modelo.addColumn("LUGAR");
-		
-		
-		
+
 		ArrayList<Carrera> carreras;
 		try {
 			carreras = mySql.consultarCarreras();
-			
-			for(Carrera c: carreras){
+
+			for (Carrera c : carreras) {
 				Object[] fila = new Object[7];
 				fila[0] = c.getNbCarrera();
 				fila[1] = c.getOrgCarrera();
@@ -61,15 +61,15 @@ public class VisualizacionCarrerasWindow extends JFrame {
 				fila[4] = c.getPrecioCarrera();
 				fila[5] = c.getFechaCarrera();
 				fila[6] = c.getLugarCarrera();
-				
+
 				modelo.addRow(fila);
 			}
-			
+
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
 		table.setModel(modelo);
-		
+
 		contentPane.add(sp);
 	}
 

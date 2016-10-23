@@ -8,10 +8,10 @@ import clases.UsuarioAdmin;
 import clases.UsuarioEstandar;
 import clases.UsuarioOrganizador;
 
-public class ManagerMySql implements InterfazBD{
-	
+public class ManagerMySql implements InterfazBD {
+
 	MySqlManager mySql = new MySqlManager();
-	
+
 	@Override
 	public Connection conectarBD() throws Exception {
 		return mySql.conectarBD();
@@ -30,11 +30,6 @@ public class ManagerMySql implements InterfazBD{
 	@Override
 	public int deleteCarrera(Carrera c) throws Exception {
 		return mySql.deleteCarrera(c);
-	}
-
-	@Override
-	public int updateCarrera(Carrera c) throws Exception {
-		return mySql.updateCarrera(c);
 	}
 
 	@Override
@@ -102,6 +97,14 @@ public class ManagerMySql implements InterfazBD{
 		return mySql.consultarEmailOrg();
 	}
 
-	
+	@Override
+	public int updateCarreraAdmin(Carrera cViejo, Carrera c) throws Exception {
+		return mySql.updateCarreraAdmin(cViejo, c);
+	}
+
+	@Override
+	public int updateCarreraOrg(Carrera cViejo, Carrera c) throws Exception {
+		return mySql.updateCarreraOrg(cViejo, c);
+	}
 
 }

@@ -1,25 +1,22 @@
 package clases;
 
-
-import interfaces.CreacionCarrera;
-import interfaces.ModificacionCarrera;
-
-public class UsuarioOrganizador extends Usuario implements CreacionCarrera, ModificacionCarrera {
+public class UsuarioOrganizador extends Usuario {
 	private int id;
-	
-	public UsuarioOrganizador(String nombre, String apellidos, String direccion, String email, String pass, int telf, 
-			String club, int id){
+
+	public UsuarioOrganizador(String nombre, String apellidos, String direccion, String email, String pass, int telf,
+			String club, int id) {
 		super(nombre, apellidos, direccion, email, pass, telf, club);
 		this.id = id;
 	}
-	
-	public UsuarioOrganizador(){}
-	
-	public UsuarioOrganizador(String nombre, String apellidos, String direccion, String email, String pass, int telf, 
-			String club){
+
+	public UsuarioOrganizador() {
+	}
+
+	public UsuarioOrganizador(String nombre, String apellidos, String direccion, String email, String pass, int telf,
+			String club) {
 		super(nombre, apellidos, direccion, email, pass, telf, club);
 	}
-	
+
 	// getters and setters
 	public int getId() {
 		return id;
@@ -27,21 +24,6 @@ public class UsuarioOrganizador extends Usuario implements CreacionCarrera, Modi
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-
-
-	// TODO implement interfaces
-	@Override
-	public int modificarCarrera(Carrera c) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int crearCarrera(Carrera c) {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 }

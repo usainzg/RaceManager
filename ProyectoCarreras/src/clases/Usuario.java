@@ -1,7 +1,7 @@
 package clases;
 
 public abstract class Usuario {
-	
+
 	// Usuario class attributes
 	private String nbUsuario;
 	private String apellidosUsuario;
@@ -10,8 +10,9 @@ public abstract class Usuario {
 	private String passUsuario;
 	private int telfUsuario;
 	private String clubUsuario;
-	
-	public Usuario(String nombre, String apellidos, String direccion, String email, String pass, int telefono, String club){
+
+	public Usuario(String nombre, String apellidos, String direccion, String email, String pass, int telefono,
+			String club) {
 		this.nbUsuario = nombre;
 		this.apellidosUsuario = apellidos;
 		this.dirUsuario = direccion;
@@ -20,10 +21,10 @@ public abstract class Usuario {
 		this.telfUsuario = telefono;
 		this.clubUsuario = club;
 	}
-	
-	public Usuario(){}
-	
-	
+
+	public Usuario() {
+	}
+
 	// getters and setters
 	public String getNbUsuario() {
 		return nbUsuario;
@@ -80,6 +81,5 @@ public abstract class Usuario {
 	public void setClubUsuario(String clubUsuario) {
 		this.clubUsuario = clubUsuario;
 	}
-	
-	
+
 }

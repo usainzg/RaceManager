@@ -2,25 +2,23 @@ package vista;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import bbdd.MySqlManager;
 import clases.UsuarioEstandar;
 import clases.UsuarioOrganizador;
 import utilidades.Utilidades;
-
-import java.awt.Font;
-
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class RegistroWindow extends JDialog {
 
@@ -36,11 +34,9 @@ public class RegistroWindow extends JDialog {
 	private JTextField registroDireccion;
 	private JTextField registroTelf;
 	private JTextField registroClub;
-	private final String[] USERTYPES = {"Normal", "Organizacion"};
+	private final String[] USERTYPES = { "Normal", "Organizacion" };
 	private static final MySqlManager mySql = new MySqlManager();
 	private static final Utilidades util = new Utilidades();
-
-	
 
 	/**
 	 * Create the dialog.
@@ -52,7 +48,7 @@ public class RegistroWindow extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		
+
 		// labels
 		{
 			JLabel lblNewLabel = new JLabel("Nombre");
@@ -96,7 +92,7 @@ public class RegistroWindow extends JDialog {
 			lblClub.setBounds(10, 160, 46, 14);
 			contentPanel.add(lblClub);
 		}
-		
+
 		// textfields
 		{
 			registroNombre = new JTextField();
@@ -140,87 +136,94 @@ public class RegistroWindow extends JDialog {
 			contentPanel.add(registroClub);
 			registroClub.setColumns(10);
 		}
-		
-		
+
 		// combobox with user types
 		JComboBox<String> comboTipoUsuario = new JComboBox<String>();
 		comboTipoUsuario.setBounds(307, 158, 150, 20);
-		
+
 		// populate combobox with constant string array
 		comboTipoUsuario.setModel(new DefaultComboBoxModel<String>(USERTYPES));
 		contentPanel.add(comboTipoUsuario);
-		
+
 		// label for combobox
 		JLabel lblTipoUsuario = new JLabel("Tipo usuario");
 		lblTipoUsuario.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblTipoUsuario.setBounds(222, 161, 83, 14);
 		contentPanel.add(lblTipoUsuario);
-		
+
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okBtn = new JButton("Registrarse");
-				
+
 				// register event handler
 				okBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						boolean salidaForm = validarFormulario();
-						if(salidaForm == true){
-							
-							// NORMAL USER REGISTER 
-							if(comboTipoUsuario.getSelectedItem().toString().equals("Normal")){
-								UsuarioEstandar uToInsert = new UsuarioEstandar(registroNombre.getText(), registroApellidos.getText(), registroDireccion.getText(), registroEmail.getText(),
-										registroPassword.getText(), Integer.parseInt(registroTelf.getText()), registroClub.getText());
+						if (salidaForm == true) {
+
+							// NORMAL USER REGISTER
+							if (comboTipoUsuario.getSelectedItem().toString().equals("Normal")) {
+								UsuarioEstandar uToInsert = new UsuarioEstandar(registroNombre.getText(),
+										registroApellidos.getText(), registroDireccion.getText(),
+										registroEmail.getText(), registroPassword.getText(),
+										Integer.parseInt(registroTelf.getText()), registroClub.getText());
 								try {
 									int filas = mySql.altaUsuarioNormal(uToInsert);
-									util.createInfobox("Numero de filas introducidas: " + String.valueOf(filas), "Insercion correcta.");
+									util.createInfobox("Numero de filas introducidas: " + String.valueOf(filas),
+											"Insercion correcta.");
 								} catch (Exception e1) {
-									util.createErrorbox("No se han podido introducir los datos.", "Insercion incorrecta.");
+									util.createErrorbox("No se han podido introducir los datos.",
+											"Insercion incorrecta.");
 								}
-								
-								// ORGANIZACION USER REGISTER 
-							}else{
-								UsuarioOrganizador uOrg = new UsuarioOrganizador(registroNombre.getText(), registroApellidos.getText(), registroDireccion.getText(), registroEmail.getText(),
-										registroPassword.getText(), Integer.parseInt(registroTelf.getText()), registroClub.getText());
+
+								// ORGANIZACION USER REGISTER
+							} else {
+								UsuarioOrganizador uOrg = new UsuarioOrganizador(registroNombre.getText(),
+										registroApellidos.getText(), registroDireccion.getText(),
+										registroEmail.getText(), registroPassword.getText(),
+										Integer.parseInt(registroTelf.getText()), registroClub.getText());
 								try {
 									int filas = mySql.altaOrganizador(uOrg);
-									util.createInfobox("Numero de filas introducidas: " + String.valueOf(filas), "Insercion correcta.");
+									util.createInfobox("Numero de filas introducidas: " + String.valueOf(filas),
+											"Insercion correcta.");
 								} catch (Exception e1) {
-									util.createErrorbox("No se han podido introducir los datos.", "Insercion incorrecta.");
-								}								
+									util.createErrorbox("No se han podido introducir los datos.",
+											"Insercion incorrecta.");
+								}
 							}
 						}
-						
-							
+
 					}
 				});
 				okBtn.setFont(new Font("Tahoma", Font.BOLD, 11));
 				okBtn.setActionCommand("");
 				buttonPane.add(okBtn);
 				getRootPane().setDefaultButton(okBtn);
-				
-				
-			{
-				JButton btnLimpiar = new JButton("Limpiar");
-				btnLimpiar.addActionListener(new ActionListener() {
-					JTextField[] arrJ = { registroNombre, registroApellidos, registroClub, registroDireccion, registroEmail, registroPassword, registroTelf };
-					public void actionPerformed(ActionEvent arg0) {
-						for(JTextField j: arrJ){
-							j.setText("");
+
+				{
+					JButton btnLimpiar = new JButton("Limpiar");
+					btnLimpiar.addActionListener(new ActionListener() {
+						JTextField[] arrJ = { registroNombre, registroApellidos, registroClub, registroDireccion,
+								registroEmail, registroPassword, registroTelf };
+
+						public void actionPerformed(ActionEvent arg0) {
+							for (JTextField j : arrJ) {
+								j.setText("");
+							}
+
 						}
-						
-					}
-				});
-				btnLimpiar.setFont(new Font("Tahoma", Font.BOLD, 11));
-				buttonPane.add(btnLimpiar);
-			}
-				
+					});
+					btnLimpiar.setFont(new Font("Tahoma", Font.BOLD, 11));
+					buttonPane.add(btnLimpiar);
+				}
+
 			}
 			{
 				JButton cancelBtn = new JButton("Cancel");
-				
+
 				// cancel event handler
 				cancelBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -233,31 +236,37 @@ public class RegistroWindow extends JDialog {
 			}
 		}
 	}
-	
-	private boolean validarFormulario(){
+
+	private boolean validarFormulario() {
 		Utilidades util = new Utilidades();
-		if(!registroNombre.getText().equals("") && !registroApellidos.getText().equals("") && !registroEmail.getText().equals("") && !registroPassword.getText().equals("") && 
-				!registroDireccion.getText().equals("") && !registroTelf.getText().equals("") && !registroClub.getText().equals("")){
-			
+		if (!registroNombre.getText().equals("") && !registroApellidos.getText().equals("")
+				&& !registroEmail.getText().equals("") && !registroPassword.getText().equals("")
+				&& !registroDireccion.getText().equals("") && !registroTelf.getText().equals("")
+				&& !registroClub.getText().equals("")) {
+
 			// validate email
-			if(!util.validarEmail(registroEmail.getText())){
+			if (!util.validarEmail(registroEmail.getText())) {
 				util.createErrorbox("Introduce una direccion de email valida.", "Formato email erroneo.");
 				registroEmail.setText("");
 			}
-			
+
 			// validate pass
-			if(!util.validarPassword(registroPassword.getText())){
-				util.createErrorbox("La contraseña debe tener al menos 6 caracteres de longitud y algun letra mayuscula.", "Formato contraseña erroneo.");
+			if (!util.validarPassword(registroPassword.getText())) {
+				util.createErrorbox(
+						"La contraseña debe tener al menos 6 caracteres de longitud y algun letra mayuscula.",
+						"Formato contraseña erroneo.");
 				registroPassword.setText("");
 			}
-			
+
 			// validate telf
-			if(!util.validarTelefono(registroTelf.getText())){
-				util.createErrorbox("El campo telefono debe ser numerico y tener un maximo de 9 digitos.", "Formato telefono erroneo.");
+			if (!util.validarTelefono(registroTelf.getText())) {
+				util.createErrorbox("El campo telefono debe ser numerico y tener un maximo de 9 digitos.",
+						"Formato telefono erroneo.");
 			}
 			return true;
-		}else{
-			util.createErrorbox("Te faltan campos por rellenar, por favor completa todos los campos.", "Faltan campos por rellenar.");
+		} else {
+			util.createErrorbox("Te faltan campos por rellenar, por favor completa todos los campos.",
+					"Faltan campos por rellenar.");
 			return false;
 		}
 	}

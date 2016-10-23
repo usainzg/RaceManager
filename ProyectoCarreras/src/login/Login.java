@@ -11,57 +11,67 @@ import utilidades.Utilidades;
 public class Login {
 	private MySqlManager mySql = new MySqlManager();
 	private Utilidades util = new Utilidades();
-	
-	public Login(){ } 
-	
+
+	public Login() {
+	}
+
 	// ADMIN LOGIN
-	public void loginAdmin(JTextField email, JTextField pass){
-		
+	public boolean loginAdmin(JTextField email, JTextField pass) {
+
 		UsuarioAdmin uAdmin = new UsuarioAdmin("", "", "", email.getText(), pass.getText(), 0, "");
 		try {
 			boolean resLogin = mySql.loginAdmin(uAdmin);
-			if(resLogin == true)
-				// TODO
+			if (resLogin == true){
 				util.createInfobox("logeado!", "Login realizado con existo");
-			else
-				// TODO
-				util.createInfobox("no logea bien", "mal");
+				return true;
+			}else{
+				util.createInfobox("Datos incorrectos", "No logeado");
+				return false;
+			}
+				
 		} catch (Exception e1) {
 			e1.printStackTrace();
+			return false;
 		}
 	}
-	
+
 	// NORMAL LOGIN
-	public void loginNormal(JTextField email, JTextField pass){
+	public boolean loginNormal(JTextField email, JTextField pass) {
 		UsuarioEstandar uStd = new UsuarioEstandar("", "", "", email.getText(), pass.getText(), 0, "");
 		try {
 			boolean resLogin = mySql.loginNormal(uStd);
-			if(resLogin == true)
-				// TODO
+			if (resLogin == true){
 				util.createInfobox("logeado!", "Login realizado con existo");
-			else
-				// TODO
-				util.createInfobox("no logea bien", "mal");
+				return true;
+			}else{
+				util.createInfobox("Datos incorrectos", "No logeado");
+				return false;
+			}
+				
 		} catch (Exception e1) {
 			e1.printStackTrace();
+			return false;
 		}
 	}
-	
+
 	// ORGANIZADOR LOGIN
-	public void loginOrganizador(JTextField email, JTextField pass){
+	public boolean loginOrganizador(JTextField email, JTextField pass) {
 		UsuarioOrganizador uOrg = new UsuarioOrganizador("", "", "", email.getText(), pass.getText(), 0, "", 0);
 		try {
 			boolean resLogin = mySql.loginOrganizador(uOrg);
-			if(resLogin == true)
-				// TODO
+			if (resLogin == true){
 				util.createInfobox("logeado!", "Login realizado con existo");
-			else
-				// TODO
-				util.createInfobox("no logea bien", "mal");
+				return true;
+			}else{
+				util.createInfobox("Datos incorrectos", "No logeado");
+				return false;
+			}
+				
 		} catch (Exception e1) {
 			e1.printStackTrace();
+			return false;
 		}
-		
+
 	}
 
 }

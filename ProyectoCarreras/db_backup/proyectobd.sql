@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-10-2016 a las 14:11:32
+-- Tiempo de generación: 17-10-2016 a las 17:17:47
 -- Versión del servidor: 10.1.16-MariaDB
 -- Versión de PHP: 5.6.24
 
@@ -41,7 +41,10 @@ CREATE TABLE `carrera` (
 --
 
 INSERT INTO `carrera` (`nombre`, `organizador`, `distancia`, `desnivel`, `precio`, `fecha`, `lugar`) VALUES
-('upo', 1, 21, 2100, 21, '2016-10-11', 'usansolo');
+('Apuko Igoera', 1, 21, 2111, 21, '2005-10-02', 'Usan'),
+('Gorbeia Suzien', 3, 34, 2500, 34, '2016-10-11', 'Zeanuri'),
+('Upo Igoera', 2, 12, 1222, 23, '2016-10-04', 'Usansolo'),
+('Vuelta al Aneto', 4, 58, 5600, 80, '2016-10-04', 'Benasque');
 
 -- --------------------------------------------------------
 
@@ -87,9 +90,10 @@ CREATE TABLE `usuarionormal` (
 --
 
 INSERT INTO `usuarionormal` (`nombre`, `apellidos`, `email`, `password`, `direccion`, `telefono`, `club`) VALUES
-('dasd', 'asdasd', 'asdasd@asd.com', 'Unai1808', 'uansdu', 123456789, 'asd'),
+('aitor', 'barrena', 'aitor@aitor.com', 'Aitor1234', 'igorre', 946006265, 'Araiamendi'),
+('asier', 'arrese', 'arres@arres.com', 'Arres1234', 'galdakao', 956008668, 'ttb'),
 ('unai', 'saisnazs ', 'un@unan.com', 'Unai1234', 'uansdu', 123456789, 'ttb'),
-('unai', 'sainz', 'unai@unai.com', 'Unai1808', 'unai', 123456789, 'unai');
+('unai', 'sainz', 'unaisa@unai.com', 'Unai1808', 'unai', 123456789, 'unai');
 
 -- --------------------------------------------------------
 
@@ -113,8 +117,10 @@ CREATE TABLE `usuarioorganizador` (
 --
 
 INSERT INTO `usuarioorganizador` (`id`, `nombre`, `apellidos`, `email`, `password`, `direccion`, `telefono`, `club`) VALUES
-(1, 'org', 'org', 'org@org.com', 'Org1234', 'org', 123456789, 'org'),
-(2, 'asier', 'la', 'la@la.com', 'Asier1234', 'asd', 123456789, 'asd');
+(1, 'unai', 'sainz', 'unai@unai.com', 'Unai1234', 'unaisainz', 123456789, 'ttb'),
+(2, 'sendoa', 'santiago', 'sen@sen.com', 'Sen1234', 'barakaldo', 956006565, 'TTB'),
+(3, 'Hanot', 'Echevarria', 'hanot@hanot.com', 'Hanot1234', 'Galdakao', 946002958, 'TTB'),
+(4, 'David', 'Martin', 'david@david.com', 'David1234', 'Sestao', 946002965, 'TTB');
 
 --
 -- Índices para tablas volcadas
@@ -154,7 +160,7 @@ ALTER TABLE `usuarioorganizador`
 -- AUTO_INCREMENT de la tabla `usuarioorganizador`
 --
 ALTER TABLE `usuarioorganizador`
-  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- Restricciones para tablas volcadas
 --

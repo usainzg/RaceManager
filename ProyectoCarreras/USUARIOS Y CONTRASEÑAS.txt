@@ -1,0 +1,12 @@
+ADMIN:
+	Email: admin@admin.com	
+	Pass: Admin1234
+NORMAL:
+	Email: un@unan.com 	
+	Pass: Unai1234
+ORGANIZADOR:
+	Email: unai@unai.com 	
+	Pass: Unai1234
+
+
+Base de datos en --> db_backup/proyectobd.sql

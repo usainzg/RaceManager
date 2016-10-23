@@ -1,20 +1,18 @@
 package clases;
 
-import java.util.Date;
-
 public class Carrera {
-	
+
 	// Carrera class params
 	private String nbCarrera;
 	private UsuarioOrganizador orgCarrera;
 	private int distanciaCarrera;
 	private int desnivelCarrera;
 	private int precioCarrera;
-	private Date fechaCarrera;
+	private String fechaCarrera;
 	private String lugarCarrera;
-	
-	public Carrera(String nombre, UsuarioOrganizador organizador, int distancia, int desnivel, int precio, 
-			Date fecha, String lugar){
+
+	public Carrera(String nombre, UsuarioOrganizador organizador, int distancia, int desnivel, int precio, String fecha,
+			String lugar) {
 		this.nbCarrera = nombre;
 		this.orgCarrera = organizador;
 		this.distanciaCarrera = distancia;
@@ -23,9 +21,10 @@ public class Carrera {
 		this.fechaCarrera = fecha;
 		this.lugarCarrera = lugar;
 	}
-	public Carrera(){}
 
-	
+	public Carrera() {
+	}
+
 	// getters and setters
 	public String getNbCarrera() {
 		return nbCarrera;
@@ -67,11 +66,11 @@ public class Carrera {
 		this.precioCarrera = precioCarrera;
 	}
 
-	public Date getFechaCarrera() {
+	public String getFechaCarrera() {
 		return fechaCarrera;
 	}
 
-	public void setFechaCarrera(Date fechaCarrera) {
+	public void setFechaCarrera(String fechaCarrera) {
 		this.fechaCarrera = fechaCarrera;
 	}
 
@@ -82,8 +81,5 @@ public class Carrera {
 	public void setLugarCarrera(String lugarCarrera) {
 		this.lugarCarrera = lugarCarrera;
 	}
-	
-	
-	
 
 }
