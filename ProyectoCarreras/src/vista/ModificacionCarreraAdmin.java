@@ -120,7 +120,7 @@ public class ModificacionCarreraAdmin extends JFrame {
 
 			@Override
 			public void focusGained(FocusEvent e) {
-				txtEj.setText("");
+				util.resetJTextField(txtEj);
 
 			}
 
@@ -128,7 +128,7 @@ public class ModificacionCarreraAdmin extends JFrame {
 			public void focusLost(FocusEvent e) {
 				if (!util.isValidDate(txtEj)) {
 					util.createInfobox(
-							"Vuelva a introducir la fecha en el siguiente formato: 0000-00-00 / años-meses-dias",
+							"Vuelva a introducir la fecha en el siguiente formato: 0000-00-00 / aÃ±os-meses-dias",
 							"Formato fecha erroneo");
 				}
 			}
@@ -198,10 +198,7 @@ public class ModificacionCarreraAdmin extends JFrame {
 
 		btnLimpiar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				txtDesnivel.setText("");
-				txtDistancia.setText("");
-				txtLugar.setText("");
-				txtEj.setText("");
+				util.resetJTextField(txtDesnivel, txtDistancia, txtLugar, txtEj);
 			}
 		});
 

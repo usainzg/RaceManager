@@ -16,7 +16,6 @@ public class UsuarioOrganizador extends Usuario {
 			String club) {
 		super(nombre, apellidos, direccion, email, pass, telf, club);
 	}
-	
 
 	// getters and setters
 	public int getId() {

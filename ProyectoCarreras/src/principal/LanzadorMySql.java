@@ -12,7 +12,6 @@ public class LanzadorMySql {
 
 		main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		main.setVisible(true);
-		
 
 	}
 

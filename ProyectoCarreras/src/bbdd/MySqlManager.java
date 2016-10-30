@@ -14,8 +14,8 @@ import clases.UsuarioOrganizador;
 import utilidades.Utilidades;
 
 public class MySqlManager implements InterfazBD {
-
-	private static final String URL_DB = "jdbc:mysql://localhost/proyectobd";
+	private final String MYSQL_DRIVER = "com.mysql.jdbc.Driver";
+	private final String URL_DB = "jdbc:mysql://localhost/proyectobd";
 	private final Utilidades util = new Utilidades();
 
 	public MySqlManager() {
@@ -24,8 +24,9 @@ public class MySqlManager implements InterfazBD {
 	@Override
 	public Connection conectarBD() throws Exception {
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection conexion = DriverManager.getConnection(URL_DB, "root", "");
+			Class.forName(MYSQL_DRIVER != null ? MYSQL_DRIVER : "com.mysql.jdbc.Diver");
+			Connection conexion = DriverManager
+					.getConnection(URL_DB != null ? URL_DB : "jdbc:mysql://localhost/proyectobd", "admin", "Admin1234");
 			return conexion;
 		} catch (ClassNotFoundException cnE) {
 			cnE.printStackTrace();
@@ -36,7 +37,7 @@ public class MySqlManager implements InterfazBD {
 		}
 	}
 
-	// SELECT�s
+	// SELECTs
 	@Override
 	public ArrayList<Carrera> consultarCarreras() throws Exception {
 		Connection cn = conectarBD();
@@ -53,16 +54,8 @@ public class MySqlManager implements InterfazBD {
 			while (rs.next()) {
 				Carrera c = new Carrera();
 				c.setNbCarrera(rs.getString("nombre"));
-				c.setOrgCarrera(new UsuarioOrganizador(
-						rs.getString("nbOrg"),
-						null,
-						null,
-						null,
-						null,
-						0,
-						null,
-						rs.getInt("idOrg")
-						));
+				c.setOrgCarrera(new UsuarioOrganizador(rs.getString("nbOrg"), null, null, null, null, 0, null,
+						rs.getInt("idOrg")));
 				c.setDistanciaCarrera(rs.getInt("distancia"));
 				c.setDesnivelCarrera(rs.getInt("desnivel"));
 				c.setPrecioCarrera(rs.getInt("precio"));

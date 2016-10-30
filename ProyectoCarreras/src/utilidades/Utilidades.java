@@ -9,10 +9,8 @@ import javax.swing.JTextField;
 public class Utilidades {
 
 	// valid patterns
-	private static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile(
-					"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", 
-					Pattern.CASE_INSENSITIVE
-					);
+	private static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern
+			.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 	private static final Pattern VALID_PASS_REGEX = Pattern.compile("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]))");
 	private static final Pattern VALID_TELF_REGEX = Pattern.compile("\\d{9}");
 	private static final Pattern VALID_DATE_REGEX = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
@@ -35,11 +33,12 @@ public class Utilidades {
 		return matcher.find();
 	}
 
+	// method to validate date
 	public boolean isValidDate(JTextField fecha) {
 		Matcher matcher = VALID_DATE_REGEX.matcher(fecha.getText());
 		return matcher.find();
 	}
-
+	
 	// to generate error and infoboxes
 	public void createInfobox(String infoMessage, String title) {
 		JOptionPane.showMessageDialog(null, infoMessage, title, JOptionPane.INFORMATION_MESSAGE);
@@ -47,6 +46,11 @@ public class Utilidades {
 
 	public void createErrorbox(String errMessage, String title) {
 		JOptionPane.showMessageDialog(null, errMessage, title, JOptionPane.ERROR_MESSAGE);
+	}
+	
+	// utilities for swing objects
+	public void resetJTextField(JTextField...fields){
+		for(JTextField f: fields) f.setText("");
 	}
 
 }

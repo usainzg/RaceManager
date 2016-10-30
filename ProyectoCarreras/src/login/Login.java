@@ -27,7 +27,7 @@ public class Login {
 		try {
 			boolean resLogin = mySql.loginAdmin(uAdmin);
 			if (resLogin == true) {
-				util.createInfobox("logeado!", "Login realizado con existo");
+				util.createInfobox("Logeado!", "Login realizado con existo");
 				return true;
 			} else {
 				util.createInfobox("Datos incorrectos", "No logeado");
@@ -46,7 +46,7 @@ public class Login {
 		try {
 			boolean resLogin = mySql.loginNormal(uStd);
 			if (resLogin == true) {
-				util.createInfobox("logeado!", "Login realizado con existo");
+				util.createInfobox("Logeado!", "Login realizado con existo");
 				return true;
 			} else {
 				util.createInfobox("Datos incorrectos", "No logeado");
@@ -65,7 +65,7 @@ public class Login {
 		try {
 			boolean resLogin = mySql.loginOrganizador(uOrg);
 			if (resLogin == true) {
-				util.createInfobox("logeado!", "Login realizado con existo");
+				util.createInfobox("Logeado!", "Login realizado con existo");
 				return true;
 			} else {
 				util.createInfobox("Datos incorrectos", "No logeado");
@@ -78,25 +78,24 @@ public class Login {
 		}
 
 	}
-	
+
 	// VALIDACION DE LOGIN
-	public void validacionLogin(JComboBox<String> comboTipoUsuario, JTextField txtEmail, JTextField txtPassword) throws Exception {
-		
+	public void validacionLogin(JComboBox<String> comboTipoUsuario, JTextField txtEmail, JTextField txtPassword)
+			throws Exception {
+
 		if (!txtEmail.getText().equals("") && !txtPassword.getText().equals("")) {
 
 			// validate email
 			if (!util.isValidEmail(txtEmail.getText())) {
 				util.createErrorbox("Introduce una direccion de email valida.", "Formato email erroneo.");
-				txtEmail.setText("");
-				txtPassword.setText("");
+				util.resetJTextField(txtEmail, txtPassword);
 
 				// validate password
 			} else if (!util.isValidPassword(txtPassword.getText())) {
 				util.createErrorbox(
-						"La contraseña debe tener al menos 6 caracteres de longitud y algun letra mayuscula.",
-						"Formato contraseña erroneo.");
-				txtEmail.setText("");
-				txtPassword.setText("");
+						"La contraseÃ±a debe tener al menos 6 caracteres de longitud y algun letra mayuscula.",
+						"Formato contraseÃ±a erroneo.");
+				util.resetJTextField(txtEmail, txtPassword);
 			} else {
 
 				// admin login

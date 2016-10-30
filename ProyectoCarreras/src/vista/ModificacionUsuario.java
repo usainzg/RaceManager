@@ -232,18 +232,12 @@ public class ModificacionUsuario extends JFrame {
 
 		btnLimpiar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				txtNombre.setText("");
-				txtApellidos.setText("");
-				txtDir.setText("");
-				txtPass.setText("");
-				txtTelf.setText("");
-				txtClub.setText("");
-
+				util.resetJTextField(txtNombre, txtApellidos, txtDir, txtPass, txtTelf, txtClub);
 			}
 		});
 	}
 
+	// TODO refactor
 	public boolean validarEntrada() {
 
 		if (!txtNombre.getText().equals("") && !txtApellidos.getText().equals("") && !txtPass.getText().equals("")
@@ -252,8 +246,8 @@ public class ModificacionUsuario extends JFrame {
 			// validate pass
 			if (!util.isValidPassword(txtPass.getText())) {
 				util.createErrorbox(
-						"La contraseña debe tener al menos 6 caracteres de longitud y algun letra mayuscula.",
-						"Formato contraseña erroneo.");
+						"La contraseÃ±a debe tener al menos 6 caracteres de longitud y algun letra mayuscula.",
+						"Formato contraseÃ±a erroneo.");
 				txtPass.setText("");
 				return false;
 			}

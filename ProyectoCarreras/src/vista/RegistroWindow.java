@@ -211,7 +211,7 @@ public class RegistroWindow extends JDialog {
 
 						public void actionPerformed(ActionEvent arg0) {
 							for (JTextField j : arrJ) {
-								j.setText("");
+								util.resetJTextField(j);
 							}
 
 						}
@@ -237,7 +237,7 @@ public class RegistroWindow extends JDialog {
 		}
 	}
 
-	// TODO refactor 
+	// TODO refactor
 	private boolean validarFormulario() {
 		Utilidades util = new Utilidades();
 		if (!registroNombre.getText().equals("") && !registroApellidos.getText().equals("")
@@ -255,8 +255,8 @@ public class RegistroWindow extends JDialog {
 			// validate pass
 			if (!util.isValidPassword(registroPassword.getText())) {
 				util.createErrorbox(
-						"La contraseña debe tener al menos 6 caracteres de longitud y algun letra mayuscula.",
-						"Formato contraseña erroneo.");
+						"La contraseï¿½a debe tener al menos 6 caracteres de longitud y algun letra mayuscula.",
+						"Formato contraseï¿½a erroneo.");
 				registroPassword.setText("");
 				return false;
 			}

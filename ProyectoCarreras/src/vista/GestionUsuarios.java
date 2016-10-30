@@ -51,9 +51,11 @@ public class GestionUsuarios extends JFrame {
 
 		btnBorrarUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
 				BorradoUsuario borr = new BorradoUsuario();
 				borr.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				borr.setVisible(true);
+				
 			}
 		});
 

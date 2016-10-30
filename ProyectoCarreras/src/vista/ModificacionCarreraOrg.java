@@ -136,7 +136,7 @@ public class ModificacionCarreraOrg extends JFrame {
 
 			@Override
 			public void focusGained(FocusEvent e) {
-				txtFecha.setText("");
+				util.resetJTextField(txtFecha);
 
 			}
 
@@ -144,7 +144,7 @@ public class ModificacionCarreraOrg extends JFrame {
 			public void focusLost(FocusEvent e) {
 				if (!util.isValidDate(txtFecha)) {
 					util.createInfobox(
-							"Vuelva a introducir la fecha en el siguiente formato: 0000-00-00 / años-meses-dias",
+							"Vuelva a introducir la fecha en el siguiente formato: 0000-00-00 / aï¿½os-meses-dias",
 							"Formato fecha erroneo");
 				}
 			}
@@ -194,10 +194,7 @@ public class ModificacionCarreraOrg extends JFrame {
 
 		btnLimpiar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				txtDesnivel.setText("");
-				txtDistancia.setText("");
-				txtLugar.setText("");
-				txtFecha.setText("");
+				util.resetJTextField(txtDesnivel, txtDistancia, txtLugar, txtFecha);
 			}
 		});
 
