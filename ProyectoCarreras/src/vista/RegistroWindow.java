@@ -237,6 +237,7 @@ public class RegistroWindow extends JDialog {
 		}
 	}
 
+	// TODO refactor 
 	private boolean validarFormulario() {
 		Utilidades util = new Utilidades();
 		if (!registroNombre.getText().equals("") && !registroApellidos.getText().equals("")
@@ -248,6 +249,7 @@ public class RegistroWindow extends JDialog {
 			if (!util.isValidEmail(registroEmail.getText())) {
 				util.createErrorbox("Introduce una direccion de email valida.", "Formato email erroneo.");
 				registroEmail.setText("");
+				return false;
 			}
 
 			// validate pass
@@ -256,12 +258,14 @@ public class RegistroWindow extends JDialog {
 						"La contraseña debe tener al menos 6 caracteres de longitud y algun letra mayuscula.",
 						"Formato contraseña erroneo.");
 				registroPassword.setText("");
+				return false;
 			}
 
 			// validate telf
 			if (!util.isValidPhone(registroTelf.getText())) {
 				util.createErrorbox("El campo telefono debe ser numerico y tener un maximo de 9 digitos.",
 						"Formato telefono erroneo.");
+				return false;
 			}
 			return true;
 		} else {

@@ -37,35 +37,30 @@ public class ModificacionUsuario extends JFrame {
 	 */
 	public ModificacionUsuario() {
 		setTitle("Modificacion Usuarios");
-		setBounds(100, 100, 525, 524);
+		setBounds(100, 100, 625, 420);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 
 		JLabel lblTipoUsuarioA = new JLabel("Tipo usuario a modificar: ");
 		lblTipoUsuarioA.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblTipoUsuarioA.setBounds(22, 39, 162, 14);
+		lblTipoUsuarioA.setBounds(77, 50, 162, 14);
 		getContentPane().add(lblTipoUsuarioA);
 
 		JComboBox<String> comboBox = new JComboBox<String>();
-
-		comboBox.addItem("Normal");
-		comboBox.addItem("Organizador");
-		comboBox.setSelectedItem("Normal");
-
-		comboBox.setBounds(32, 66, 142, 20);
+		comboBox.setBounds(87, 77, 142, 20);
 		getContentPane().add(comboBox);
 
 		JLabel lblNombre = new JLabel("Nombre: ");
-		lblNombre.setBounds(32, 151, 46, 14);
+		lblNombre.setBounds(32, 151, 61, 14);
 		getContentPane().add(lblNombre);
 
 		JLabel lblEmailUsuarioA = new JLabel("Email usuario a modificar: ");
 		lblEmailUsuarioA.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblEmailUsuarioA.setBounds(245, 39, 177, 14);
+		lblEmailUsuarioA.setBounds(300, 50, 177, 14);
 		getContentPane().add(lblEmailUsuarioA);
 
 		JComboBox<Object> comboBox_1 = new JComboBox<>();
-		comboBox_1.setBounds(255, 66, 214, 20);
+		comboBox_1.setBounds(310, 77, 214, 20);
 		getContentPane().add(comboBox_1);
 
 		JLabel lblNuevosDatos = new JLabel("Nuevos datos:");
@@ -74,64 +69,64 @@ public class ModificacionUsuario extends JFrame {
 		getContentPane().add(lblNuevosDatos);
 
 		txtNombre = new JTextField();
-		txtNombre.setBounds(106, 148, 142, 20);
+		txtNombre.setBounds(128, 148, 142, 20);
 		getContentPane().add(txtNombre);
 		txtNombre.setColumns(10);
 
 		txtDir = new JTextField();
-		txtDir.setBounds(106, 186, 142, 20);
+		txtDir.setBounds(404, 148, 142, 20);
 		getContentPane().add(txtDir);
 		txtDir.setColumns(10);
 
 		JLabel lblDireccion = new JLabel("Direccion:");
-		lblDireccion.setBounds(32, 189, 60, 14);
+		lblDireccion.setBounds(310, 151, 84, 14);
 		getContentPane().add(lblDireccion);
 
 		JLabel lblConstrasea = new JLabel("Contrase\u00F1a: ");
-		lblConstrasea.setBounds(32, 233, 80, 14);
+		lblConstrasea.setBounds(32, 190, 91, 14);
 		getContentPane().add(lblConstrasea);
 
 		JLabel lblTelefono = new JLabel("Telefono:");
-		lblTelefono.setBounds(32, 268, 60, 14);
+		lblTelefono.setBounds(310, 190, 84, 14);
 		getContentPane().add(lblTelefono);
 
 		JLabel lblClub = new JLabel("Club:");
-		lblClub.setBounds(32, 304, 46, 14);
+		lblClub.setBounds(32, 234, 46, 14);
 		getContentPane().add(lblClub);
 
 		txtPass = new JTextField();
-		txtPass.setBounds(106, 230, 142, 20);
+		txtPass.setBounds(128, 187, 142, 20);
 		getContentPane().add(txtPass);
 		txtPass.setColumns(10);
 
 		txtTelf = new JTextField();
-		txtTelf.setBounds(106, 265, 142, 20);
+		txtTelf.setBounds(404, 187, 142, 20);
 		getContentPane().add(txtTelf);
 		txtTelf.setColumns(10);
 
 		txtClub = new JTextField();
-		txtClub.setBounds(106, 301, 142, 20);
+		txtClub.setBounds(128, 231, 142, 20);
 		getContentPane().add(txtClub);
 		txtClub.setColumns(10);
 
 		JButton btnModificar = new JButton("Modificar");
 
 		btnModificar.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnModificar.setBounds(74, 431, 89, 23);
+		btnModificar.setBounds(162, 294, 89, 23);
 		getContentPane().add(btnModificar);
 
 		JButton btnLimpiar = new JButton("Limpiar");
 
 		btnLimpiar.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnLimpiar.setBounds(192, 431, 89, 23);
+		btnLimpiar.setBounds(334, 294, 89, 23);
 		getContentPane().add(btnLimpiar);
 
 		JLabel lblApellidos = new JLabel("Apellidos:");
-		lblApellidos.setBounds(32, 353, 46, 14);
+		lblApellidos.setBounds(310, 234, 70, 14);
 		getContentPane().add(lblApellidos);
 
 		txtApellidos = new JTextField();
-		txtApellidos.setBounds(108, 350, 140, 20);
+		txtApellidos.setBounds(404, 231, 140, 20);
 		getContentPane().add(txtApellidos);
 		txtApellidos.setColumns(10);
 
@@ -260,12 +255,14 @@ public class ModificacionUsuario extends JFrame {
 						"La contraseña debe tener al menos 6 caracteres de longitud y algun letra mayuscula.",
 						"Formato contraseña erroneo.");
 				txtPass.setText("");
+				return false;
 			}
 
 			// validate telf
 			if (!util.isValidPhone(txtTelf.getText())) {
 				util.createErrorbox("El campo telefono debe ser numerico y tener un maximo de 9 digitos.",
 						"Formato telefono erroneo.");
+				return false;
 			}
 			return true;
 		} else {
