@@ -126,7 +126,7 @@ public class ModificacionCarreraAdmin extends JFrame {
 
 			@Override
 			public void focusLost(FocusEvent e) {
-				if (!util.validarFecha(txtEj)) {
+				if (!util.isValidDate(txtEj)) {
 					util.createInfobox(
 							"Vuelva a introducir la fecha en el siguiente formato: 0000-00-00 / años-meses-dias",
 							"Formato fecha erroneo");
@@ -157,7 +157,7 @@ public class ModificacionCarreraAdmin extends JFrame {
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				if (util.validarFecha(txtEj)) {
+				if (util.isValidDate(txtEj)) {
 					try {
 
 						Carrera c = new Carrera(comboBox.getSelectedItem().toString(), null, 0, 0, 0, "", "");

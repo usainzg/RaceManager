@@ -255,7 +255,7 @@ public class ModificacionUsuario extends JFrame {
 				&& !txtDir.getText().equals("") && !txtTelf.getText().equals("") && !txtClub.getText().equals("")) {
 
 			// validate pass
-			if (!util.validarPassword(txtPass.getText())) {
+			if (!util.isValidPassword(txtPass.getText())) {
 				util.createErrorbox(
 						"La contraseña debe tener al menos 6 caracteres de longitud y algun letra mayuscula.",
 						"Formato contraseña erroneo.");
@@ -263,7 +263,7 @@ public class ModificacionUsuario extends JFrame {
 			}
 
 			// validate telf
-			if (!util.validarTelefono(txtTelf.getText())) {
+			if (!util.isValidPhone(txtTelf.getText())) {
 				util.createErrorbox("El campo telefono debe ser numerico y tener un maximo de 9 digitos.",
 						"Formato telefono erroneo.");
 			}

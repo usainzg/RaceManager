@@ -7,14 +7,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import bbdd.MySqlManager;
 import clases.Carrera;
-import org.eclipse.wb.swing.FocusTraversalOnArray;
-import java.awt.Component;
-import javax.swing.ScrollPaneConstants;
 
 public class VisualizacionCarrerasWindow extends JFrame {
 
@@ -40,6 +38,8 @@ public class VisualizacionCarrerasWindow extends JFrame {
 		setContentPane(contentPane);
 
 		table = new JTable();
+		table.setEnabled(false);
+		table.setRowSelectionAllowed(false);
 		JScrollPane sp = new JScrollPane(table);
 		sp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		modelo = new DefaultTableModel();
@@ -75,7 +75,6 @@ public class VisualizacionCarrerasWindow extends JFrame {
 		table.setModel(modelo);
 
 		contentPane.add(sp);
-		sp.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{table}));
 		table.setAutoCreateRowSorter(true);
 	}
 

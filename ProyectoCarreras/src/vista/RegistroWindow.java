@@ -251,7 +251,7 @@ public class RegistroWindow extends JDialog {
 			}
 
 			// validate pass
-			if (!util.validarPassword(registroPassword.getText())) {
+			if (!util.isValidPassword(registroPassword.getText())) {
 				util.createErrorbox(
 						"La contraseña debe tener al menos 6 caracteres de longitud y algun letra mayuscula.",
 						"Formato contraseña erroneo.");
@@ -259,7 +259,7 @@ public class RegistroWindow extends JDialog {
 			}
 
 			// validate telf
-			if (!util.validarTelefono(registroTelf.getText())) {
+			if (!util.isValidPhone(registroTelf.getText())) {
 				util.createErrorbox("El campo telefono debe ser numerico y tener un maximo de 9 digitos.",
 						"Formato telefono erroneo.");
 			}

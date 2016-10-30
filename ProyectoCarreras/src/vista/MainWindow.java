@@ -35,70 +35,70 @@ public class MainWindow extends JFrame {
 	 */
 	public MainWindow() {
 
-		setBounds(500, 300, 500, 358);
+		setBounds(500, 300, 667, 473);
 		setTitle("Proyecto Unai");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Bienvenido al sistema");
-		lblNewLabel.setBounds(129, 11, 219, 38);
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 19));
+		lblNewLabel.setBounds(185, 26, 255, 38);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 23));
 		getContentPane().add(lblNewLabel);
 
-		JLabel lblEntrar = new JLabel("Entrar");
-		lblEntrar.setBounds(211, 49, 46, 20);
-		lblEntrar.setFont(new Font("Tahoma", Font.BOLD, 13));
+		JLabel lblEntrar = new JLabel("Iniciar sesion: ");
+		lblEntrar.setBounds(93, 101, 125, 20);
+		lblEntrar.setFont(new Font("Tahoma", Font.BOLD, 14));
 		getContentPane().add(lblEntrar);
 
 		JLabel label = new JLabel("");
-		label.setBounds(46, 67, 46, 14);
+		label.setBounds(66, 117, 46, 14);
 		getContentPane().add(label);
 
 		txtEmail = new JTextField();
-		txtEmail.setBounds(129, 89, 86, 20);
+		txtEmail.setBounds(135, 140, 149, 20);
 		getContentPane().add(txtEmail);
 		txtEmail.setColumns(10);
 
 		JLabel lblNewLabel_1 = new JLabel("Email");
-		lblNewLabel_1.setBounds(73, 92, 46, 14);
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_1.setBounds(93, 142, 46, 14);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		getContentPane().add(lblNewLabel_1);
 
 		txtPassword = new JTextField();
-		txtPassword.setBounds(322, 89, 86, 20);
+		txtPassword.setBounds(402, 140, 144, 20);
 		getContentPane().add(txtPassword);
 		txtPassword.setColumns(10);
 
 		JLabel lblContrasea = new JLabel("Contrase\u00F1a");
-		lblContrasea.setBounds(245, 92, 67, 14);
-		lblContrasea.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblContrasea.setBounds(326, 142, 67, 14);
+		lblContrasea.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		getContentPane().add(lblContrasea);
 
 		JButton btnAcceder = new JButton("Acceder");
-		btnAcceder.setBounds(191, 165, 89, 23);
+		btnAcceder.setBounds(361, 187, 89, 23);
 
-		btnAcceder.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnAcceder.setFont(new Font("Tahoma", Font.BOLD, 13));
 		getContentPane().add(btnAcceder);
 
 		JLabel lblEnCasoDe = new JLabel("En caso de no estar registrado y que desee hacerlo: ");
-		lblEnCasoDe.setBounds(95, 217, 302, 14);
-		lblEnCasoDe.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblEnCasoDe.setBounds(149, 262, 369, 20);
+		lblEnCasoDe.setFont(new Font("Tahoma", Font.BOLD, 14));
 		getContentPane().add(lblEnCasoDe);
 
 		JButton btnRegistrarse = new JButton("Registrarse");
-		btnRegistrarse.setBounds(180, 249, 111, 23);
+		btnRegistrarse.setBounds(262, 312, 111, 23);
 
 		btnRegistrarse.setFont(new Font("Tahoma", Font.BOLD, 11));
 		getContentPane().add(btnRegistrarse);
 
 		JComboBox<String> comboTipoUsuario = new JComboBox<String>();
-		comboTipoUsuario.setBounds(245, 120, 91, 20);
+		comboTipoUsuario.setBounds(176, 189, 91, 20);
 		comboTipoUsuario.setModel(new DefaultComboBoxModel<String>(USERTYPES));
 		getContentPane().add(comboTipoUsuario);
 
 		JLabel lblTipoUsuario = new JLabel("Tipo Usuario");
-		lblTipoUsuario.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblTipoUsuario.setBounds(152, 123, 81, 14);
+		lblTipoUsuario.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblTipoUsuario.setBounds(93, 191, 81, 14);
 		getContentPane().add(lblTipoUsuario);
 
 		JMenuBar menuBar = new JMenuBar();
@@ -123,7 +123,7 @@ public class MainWindow extends JFrame {
 		btnAcceder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					validacionLogin(comboTipoUsuario);
+					loginSystem.validacionLogin(comboTipoUsuario, txtEmail, txtPassword);
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
@@ -133,56 +133,4 @@ public class MainWindow extends JFrame {
 		// end action listeners
 	}
 
-	public void validacionLogin(JComboBox<String> comboTipoUsuario) throws Exception {
-		if (!txtEmail.getText().equals("") && !txtPassword.getText().equals("")) {
-
-			// validate email
-			if (!util.validarEmail(txtEmail.getText())) {
-				util.createErrorbox("Introduce una direccion de email valida.", "Formato email erroneo.");
-				txtEmail.setText("");
-				txtPassword.setText("");
-
-				// validate password
-			} else if (!util.validarPassword(txtPassword.getText())) {
-				util.createErrorbox(
-						"La contraseña debe tener al menos 6 caracteres de longitud y algun letra mayuscula.",
-						"Formato contraseña erroneo.");
-				txtEmail.setText("");
-				txtPassword.setText("");
-			} else {
-
-				// admin login
-				if (comboTipoUsuario.getSelectedItem().toString() == "Admin") {
-					if (loginSystem.loginAdmin(txtEmail, txtPassword)) {
-						MenuAdmin menuAdmin = new MenuAdmin();
-						menuAdmin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-						menuAdmin.setVisible(true);
-					}
-
-					// usuario normal login
-				} else if (comboTipoUsuario.getSelectedItem().toString() == "Normal") {
-					if (loginSystem.loginNormal(txtEmail, txtPassword)) {
-						VisualizacionCarrerasWindow viCarr = new VisualizacionCarrerasWindow();
-						viCarr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-						viCarr.setVisible(true);
-					}
-
-					// organizador login
-				} else {
-					if (loginSystem.loginOrganizador(txtEmail, txtPassword)) {
-						MenuOrg menuOrg = new MenuOrg();
-						menuOrg.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-						menuOrg.setVisible(true);
-					}
-				}
-			}
-
-			// comprueba cuando hay campos vacios
-		} else {
-			util.createErrorbox("Te faltan campos por rellenar, por favor completa todos los campos.",
-					"Faltan campos por rellenar.");
-			txtEmail.requestFocus();
-		}
-
-	}
 }

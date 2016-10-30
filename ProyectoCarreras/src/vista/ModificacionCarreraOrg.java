@@ -142,7 +142,7 @@ public class ModificacionCarreraOrg extends JFrame {
 
 			@Override
 			public void focusLost(FocusEvent e) {
-				if (!util.validarFecha(txtFecha)) {
+				if (!util.isValidDate(txtFecha)) {
 					util.createInfobox(
 							"Vuelva a introducir la fecha en el siguiente formato: 0000-00-00 / años-meses-dias",
 							"Formato fecha erroneo");
@@ -153,7 +153,7 @@ public class ModificacionCarreraOrg extends JFrame {
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				if (util.validarFecha(txtFecha)) {
+				if (util.isValidDate(txtFecha)) {
 					try {
 
 						Carrera c = new Carrera(comboBox.getSelectedItem().toString(), null, 0, 0, 0, "", "");

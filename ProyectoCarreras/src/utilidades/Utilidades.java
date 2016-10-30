@@ -22,18 +22,18 @@ public class Utilidades {
 	}
 
 	// method to validate password
-	public boolean validarPassword(String pass) {
+	public boolean isValidPassword(String pass) {
 		Matcher matcher = VALID_PASS_REGEX.matcher(pass);
 		return matcher.find();
 	}
 
 	// method to valida phonenumber
-	public boolean validarTelefono(String numero) {
+	public boolean isValidPhone(String numero) {
 		Matcher matcher = VALID_TELF_REGEX.matcher(numero);
 		return matcher.find();
 	}
 
-	public boolean validarFecha(JTextField fecha) {
+	public boolean isValidDate(JTextField fecha) {
 		Matcher matcher = VALID_DATE_REGEX.matcher(fecha.getText());
 		return matcher.find();
 	}
