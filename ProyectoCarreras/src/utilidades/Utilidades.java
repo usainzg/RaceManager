@@ -9,8 +9,10 @@ import javax.swing.JTextField;
 public class Utilidades {
 
 	// valid patterns
-	private static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern
-			.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+	private static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile(
+					"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", 
+					Pattern.CASE_INSENSITIVE
+					);
 	private static final Pattern VALID_PASS_REGEX = Pattern.compile("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]))");
 	private static final Pattern VALID_TELF_REGEX = Pattern.compile("\\d{9}");
 	private static final Pattern VALID_DATE_REGEX = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");

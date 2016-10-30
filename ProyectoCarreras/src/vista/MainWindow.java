@@ -16,7 +16,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JTextField;
 
 import login.Login;
-import utilidades.Utilidades;
 
 public class MainWindow extends JFrame {
 
@@ -27,7 +26,6 @@ public class MainWindow extends JFrame {
 	private JTextField txtEmail;
 	private JTextField txtPassword;
 	private final String[] USERTYPES = { "Normal", "Admin", "Organizador" };
-	private final Utilidades util = new Utilidades();
 	private Login loginSystem = new Login();
 
 	/**
