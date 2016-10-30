@@ -85,7 +85,7 @@ public class Login {
 		if (!txtEmail.getText().equals("") && !txtPassword.getText().equals("")) {
 
 			// validate email
-			if (!util.validarEmail(txtEmail.getText())) {
+			if (!util.isValidEmail(txtEmail.getText())) {
 				util.createErrorbox("Introduce una direccion de email valida.", "Formato email erroneo.");
 				txtEmail.setText("");
 				txtPassword.setText("");

@@ -16,7 +16,7 @@ public class Utilidades {
 	private static final Pattern VALID_DATE_REGEX = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
 
 	// method to validate email address in forms
-	public boolean validarEmail(String emailStr) {
+	public boolean isValidEmail(String emailStr) {
 		Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
 		return matcher.find();
 	}

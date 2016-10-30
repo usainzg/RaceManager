@@ -245,7 +245,7 @@ public class RegistroWindow extends JDialog {
 				&& !registroClub.getText().equals("")) {
 
 			// validate email
-			if (!util.validarEmail(registroEmail.getText())) {
+			if (!util.isValidEmail(registroEmail.getText())) {
 				util.createErrorbox("Introduce una direccion de email valida.", "Formato email erroneo.");
 				registroEmail.setText("");
 			}
