@@ -21,14 +21,14 @@ public class Login {
 		UsuarioAdmin uAdmin = new UsuarioAdmin("", "", "", email.getText(), pass.getText(), 0, "");
 		try {
 			boolean resLogin = mySql.loginAdmin(uAdmin);
-			if (resLogin == true){
+			if (resLogin == true) {
 				util.createInfobox("logeado!", "Login realizado con existo");
 				return true;
-			}else{
+			} else {
 				util.createInfobox("Datos incorrectos", "No logeado");
 				return false;
 			}
-				
+
 		} catch (Exception e1) {
 			e1.printStackTrace();
 			return false;
@@ -40,14 +40,14 @@ public class Login {
 		UsuarioEstandar uStd = new UsuarioEstandar("", "", "", email.getText(), pass.getText(), 0, "");
 		try {
 			boolean resLogin = mySql.loginNormal(uStd);
-			if (resLogin == true){
+			if (resLogin == true) {
 				util.createInfobox("logeado!", "Login realizado con existo");
 				return true;
-			}else{
+			} else {
 				util.createInfobox("Datos incorrectos", "No logeado");
 				return false;
 			}
-				
+
 		} catch (Exception e1) {
 			e1.printStackTrace();
 			return false;
@@ -59,14 +59,14 @@ public class Login {
 		UsuarioOrganizador uOrg = new UsuarioOrganizador("", "", "", email.getText(), pass.getText(), 0, "", 0);
 		try {
 			boolean resLogin = mySql.loginOrganizador(uOrg);
-			if (resLogin == true){
+			if (resLogin == true) {
 				util.createInfobox("logeado!", "Login realizado con existo");
 				return true;
-			}else{
+			} else {
 				util.createInfobox("Datos incorrectos", "No logeado");
 				return false;
 			}
-				
+
 		} catch (Exception e1) {
 			e1.printStackTrace();
 			return false;

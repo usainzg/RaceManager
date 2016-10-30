@@ -69,7 +69,7 @@ public class MenuAdmin extends JFrame {
 
 		btnGestioncarreras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				GestionCarrerasAdmin gesCarr = new GestionCarrerasAdmin();
 				gesCarr.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				gesCarr.setVisible(true);

@@ -153,25 +153,23 @@ public class MainWindow extends JFrame {
 
 				// admin login
 				if (comboTipoUsuario.getSelectedItem().toString() == "Admin") {
-					if(loginSystem.loginAdmin(txtEmail, txtPassword)){
+					if (loginSystem.loginAdmin(txtEmail, txtPassword)) {
 						MenuAdmin menuAdmin = new MenuAdmin();
 						menuAdmin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 						menuAdmin.setVisible(true);
 					}
-					
-					
+
 					// usuario normal login
 				} else if (comboTipoUsuario.getSelectedItem().toString() == "Normal") {
-					if(loginSystem.loginNormal(txtEmail, txtPassword)){
+					if (loginSystem.loginNormal(txtEmail, txtPassword)) {
 						VisualizacionCarrerasWindow viCarr = new VisualizacionCarrerasWindow();
 						viCarr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 						viCarr.setVisible(true);
 					}
-					
 
 					// organizador login
 				} else {
-					if(loginSystem.loginOrganizador(txtEmail, txtPassword)){
+					if (loginSystem.loginOrganizador(txtEmail, txtPassword)) {
 						MenuOrg menuOrg = new MenuOrg();
 						menuOrg.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 						menuOrg.setVisible(true);

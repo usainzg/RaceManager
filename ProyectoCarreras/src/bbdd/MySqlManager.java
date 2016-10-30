@@ -45,14 +45,24 @@ public class MySqlManager implements InterfazBD {
 					"Error al conectar base de datos.");
 		}
 		try {
-			String sql = "SELECT * FROM carrera";
+			String sql = "SELECT c.*, org.nombre AS nbOrg, org.id AS idOrg FROM carrera c "
+					+ "INNER JOIN usuarioorganizador org ON c.organizador = org.id";
 			Statement sentencia = cn.createStatement();
 			ResultSet rs = sentencia.executeQuery(sql);
 			ArrayList<Carrera> arr = new ArrayList<Carrera>();
 			while (rs.next()) {
 				Carrera c = new Carrera();
 				c.setNbCarrera(rs.getString("nombre"));
-				c.setOrgCarrera(null);
+				c.setOrgCarrera(new UsuarioOrganizador(
+						rs.getString("nbOrg"),
+						null,
+						null,
+						null,
+						null,
+						0,
+						null,
+						rs.getInt("idOrg")
+						));
 				c.setDistanciaCarrera(rs.getInt("distancia"));
 				c.setDesnivelCarrera(rs.getInt("desnivel"));
 				c.setPrecioCarrera(rs.getInt("precio"));
@@ -354,7 +364,7 @@ public class MySqlManager implements InterfazBD {
 			return false;
 		}
 		try {
-			// select for check if exits in DB
+			// select for check if exists in DB
 			String sql = "SELECT * FROM usuarioadmin WHERE email='" + admin.getEmailUsuario() + "' && password='"
 					+ admin.getPassUsuario() + "'";
 			Statement sentencia = cn.createStatement();
@@ -381,7 +391,7 @@ public class MySqlManager implements InterfazBD {
 			return false;
 		}
 		try {
-			// select for check if exits in DB
+			// select for check if exists in DB
 			String sql = "SELECT * FROM usuarionormal WHERE email='" + uStd.getEmailUsuario() + "' && password='"
 					+ uStd.getPassUsuario() + "'";
 			Statement sentencia = cn.createStatement();
@@ -408,7 +418,7 @@ public class MySqlManager implements InterfazBD {
 			return false;
 		}
 		try {
-			// select for check if exits in DB
+			// select for check if exists in DB
 			String sql = "SELECT * FROM usuarioorganizador WHERE email='" + uOrg.getEmailUsuario() + "' && password='"
 					+ uOrg.getPassUsuario() + "'";
 			Statement sentencia = cn.createStatement();

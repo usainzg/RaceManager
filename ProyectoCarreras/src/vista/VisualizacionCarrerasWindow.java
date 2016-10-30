@@ -12,6 +12,9 @@ import javax.swing.table.DefaultTableModel;
 
 import bbdd.MySqlManager;
 import clases.Carrera;
+import org.eclipse.wb.swing.FocusTraversalOnArray;
+import java.awt.Component;
+import javax.swing.ScrollPaneConstants;
 
 public class VisualizacionCarrerasWindow extends JFrame {
 
@@ -38,6 +41,7 @@ public class VisualizacionCarrerasWindow extends JFrame {
 
 		table = new JTable();
 		JScrollPane sp = new JScrollPane(table);
+		sp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		modelo = new DefaultTableModel();
 
 		modelo.addColumn("NOMBRE");
@@ -55,7 +59,7 @@ public class VisualizacionCarrerasWindow extends JFrame {
 			for (Carrera c : carreras) {
 				Object[] fila = new Object[7];
 				fila[0] = c.getNbCarrera();
-				fila[1] = c.getOrgCarrera();
+				fila[1] = c.getOrgCarrera().getNbUsuario();
 				fila[2] = c.getDistanciaCarrera();
 				fila[3] = c.getDesnivelCarrera();
 				fila[4] = c.getPrecioCarrera();
@@ -71,6 +75,8 @@ public class VisualizacionCarrerasWindow extends JFrame {
 		table.setModel(modelo);
 
 		contentPane.add(sp);
+		sp.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{table}));
+		table.setAutoCreateRowSorter(true);
 	}
 
 }

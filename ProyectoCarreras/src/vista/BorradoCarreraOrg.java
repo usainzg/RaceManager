@@ -42,6 +42,8 @@ public class BorradoCarreraOrg extends JFrame {
 
 		btnBorrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+
+				// TODO
 			}
 		});
 
