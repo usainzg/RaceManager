@@ -12,7 +12,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import bbdd.MySqlManager;
+import bbdd.ManagerBd;
 import clases.UsuarioEstandar;
 import clases.UsuarioOrganizador;
 import utilidades.Utilidades;
@@ -20,7 +20,8 @@ import utilidades.Utilidades;
 public class BorradoUsuario extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private MySqlManager mySql = new MySqlManager();
+	// TODO change null
+	private ManagerBd mySql = new ManagerBd(null);
 	private Utilidades util = new Utilidades();
 
 	/**

@@ -4,7 +4,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
-import bbdd.MySqlManager;
+import bbdd.ManagerBd;
 import clases.UsuarioAdmin;
 import clases.UsuarioEstandar;
 import clases.UsuarioOrganizador;
@@ -14,7 +14,8 @@ import vista.MenuOrg;
 import vista.VisualizacionCarrerasWindow;
 
 public class Login {
-	private MySqlManager mySql = new MySqlManager();
+	// TODO change null
+	private ManagerBd mySql = new ManagerBd(null);
 	private Utilidades util = new Utilidades();
 
 	public Login() {

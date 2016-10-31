@@ -13,7 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import bbdd.MySqlManager;
+import bbdd.ManagerBd;
 import clases.UsuarioEstandar;
 import clases.UsuarioOrganizador;
 import utilidades.Utilidades;
@@ -28,9 +28,12 @@ public class ModificacionUsuario extends JFrame {
 	private JTextField txtPass;
 	private JTextField txtTelf;
 	private JTextField txtClub;
-	private MySqlManager mySql = new MySqlManager();
+	
 	private JTextField txtApellidos;
 	private Utilidades util = new Utilidades();
+	
+	// TODO change null
+	private ManagerBd mySql = new ManagerBd(null);
 
 	/**
 	 * Create the frame.

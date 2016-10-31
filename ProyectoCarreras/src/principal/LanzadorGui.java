@@ -4,7 +4,7 @@ import javax.swing.JFrame;
 
 import vista.MainWindow;
 
-public class LanzadorMySql {
+public class LanzadorGui {
 
 	public static void main(String[] args) {
 

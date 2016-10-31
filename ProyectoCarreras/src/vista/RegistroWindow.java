@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import bbdd.MySqlManager;
+import bbdd.ManagerBd;
 import clases.UsuarioEstandar;
 import clases.UsuarioOrganizador;
 import utilidades.Utilidades;
@@ -35,8 +35,9 @@ public class RegistroWindow extends JDialog {
 	private JTextField registroTelf;
 	private JTextField registroClub;
 	private final String[] USERTYPES = { "Normal", "Organizacion" };
-	private static final MySqlManager mySql = new MySqlManager();
-	private static final Utilidades util = new Utilidades();
+	// TODO change null
+	private final ManagerBd mySql = new ManagerBd(null);
+	private final Utilidades util = new Utilidades();
 
 	/**
 	 * Create the dialog.

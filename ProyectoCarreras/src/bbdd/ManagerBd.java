@@ -8,10 +8,20 @@ import clases.UsuarioAdmin;
 import clases.UsuarioEstandar;
 import clases.UsuarioOrganizador;
 
-public class ManagerMySql implements InterfazBD {
+public class ManagerBd implements InterfazBD {
+	
+	Object bd;
+	
+	
+	// TODO implement method for BD change
+	public ManagerBd(Object bd){
+		if(bd.getClass() == MySqlManager.class) {
+			bd = (MySqlManager) bd;
+		}
+	}
 
 	MySqlManager mySql = new MySqlManager();
-
+	
 	@Override
 	public Connection conectarBD() throws Exception {
 		return mySql.conectarBD();
@@ -106,5 +116,6 @@ public class ManagerMySql implements InterfazBD {
 	public int updateCarreraOrg(Carrera cViejo, Carrera c) throws Exception {
 		return mySql.updateCarreraOrg(cViejo, c);
 	}
+
 
 }

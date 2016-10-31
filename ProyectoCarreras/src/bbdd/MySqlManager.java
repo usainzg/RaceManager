@@ -26,13 +26,14 @@ public class MySqlManager implements InterfazBD {
 		try {
 			Class.forName(MYSQL_DRIVER != null ? MYSQL_DRIVER : "com.mysql.jdbc.Diver");
 			Connection conexion = DriverManager
-					.getConnection(URL_DB != null ? URL_DB : "jdbc:mysql://localhost/proyectobd", "admin", "Admin1234");
+					.getConnection(URL_DB != null ? URL_DB : "jdbc:mysql://localhost/proyectobd", "administrador", "Admin1234");
 			return conexion;
 		} catch (ClassNotFoundException cnE) {
 			cnE.printStackTrace();
 			return null;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			util.createErrorbox("No se ha podido establecer conexion con la BD", "Error conexion BD");
 			return null;
 		}
 	}

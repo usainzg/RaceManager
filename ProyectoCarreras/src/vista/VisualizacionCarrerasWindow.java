@@ -11,7 +11,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import bbdd.MySqlManager;
+import bbdd.ManagerBd;
 import clases.Carrera;
 
 public class VisualizacionCarrerasWindow extends JFrame {
@@ -23,7 +23,7 @@ public class VisualizacionCarrerasWindow extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 	private DefaultTableModel modelo;
-	private MySqlManager mySql = new MySqlManager();
+	private final ManagerBd mySql = new ManagerBd(null);
 
 	/**
 	 * Create the frame.

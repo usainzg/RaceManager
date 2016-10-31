@@ -17,7 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import bbdd.MySqlManager;
+import bbdd.ManagerBd;
 import clases.Carrera;
 import utilidades.Utilidades;
 
@@ -33,7 +33,7 @@ public class ModificacionCarreraAdmin extends JFrame {
 	private JTextField txtLugar;
 
 	private Utilidades util = new Utilidades();
-	private MySqlManager mySql = new MySqlManager();
+	private ManagerBd mySql = new ManagerBd(null);
 	private JTextField txtEj;
 
 	/**
