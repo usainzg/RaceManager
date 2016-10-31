@@ -13,9 +13,9 @@ public class Main extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		
-	}
+	}*/
 
 	public Main() {
 		setBounds(100, 100, 446, 274);

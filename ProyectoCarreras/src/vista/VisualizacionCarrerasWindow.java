@@ -23,7 +23,7 @@ public class VisualizacionCarrerasWindow extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 	private DefaultTableModel modelo;
-	private final ManagerBd mySql = new ManagerBd(null);
+	private final ManagerBd mySql = new ManagerBd();
 
 	/**
 	 * Create the frame.

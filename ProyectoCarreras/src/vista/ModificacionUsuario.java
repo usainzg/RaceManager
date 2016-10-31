@@ -33,7 +33,7 @@ public class ModificacionUsuario extends JFrame {
 	private Utilidades util = new Utilidades();
 	
 	// TODO change null
-	private ManagerBd mySql = new ManagerBd(null);
+	private ManagerBd mySql = new ManagerBd();
 
 	/**
 	 * Create the frame.

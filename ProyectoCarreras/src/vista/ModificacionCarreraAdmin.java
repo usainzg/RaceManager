@@ -33,7 +33,7 @@ public class ModificacionCarreraAdmin extends JFrame {
 	private JTextField txtLugar;
 
 	private Utilidades util = new Utilidades();
-	private ManagerBd mySql = new ManagerBd(null);
+	private ManagerBd mySql = new ManagerBd();
 	private JTextField txtEj;
 
 	/**

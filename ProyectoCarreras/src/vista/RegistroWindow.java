@@ -36,7 +36,7 @@ public class RegistroWindow extends JDialog {
 	private JTextField registroClub;
 	private final String[] USERTYPES = { "Normal", "Organizacion" };
 	// TODO change null
-	private final ManagerBd mySql = new ManagerBd(null);
+	private final ManagerBd mySql = new ManagerBd();
 	private final Utilidades util = new Utilidades();
 
 	/**

@@ -20,7 +20,7 @@ public class BorradoCarreraAdmin extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	// TODO change null
-	private ManagerBd mySql = new ManagerBd(null);
+	private ManagerBd mySql = new ManagerBd();
 	private Utilidades util = new Utilidades();
 
 	/**

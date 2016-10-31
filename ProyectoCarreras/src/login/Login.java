@@ -15,7 +15,7 @@ import vista.VisualizacionCarrerasWindow;
 
 public class Login {
 	// TODO change null
-	private ManagerBd mySql = new ManagerBd(null);
+	private ManagerBd mySql = new ManagerBd();
 	private Utilidades util = new Utilidades();
 
 	public Login() {

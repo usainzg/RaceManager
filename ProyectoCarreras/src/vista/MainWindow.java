@@ -16,6 +16,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JTextField;
 
 import login.Login;
+import javax.swing.JPasswordField;
 
 public class MainWindow extends JFrame {
 
@@ -24,9 +25,9 @@ public class MainWindow extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JTextField txtEmail;
-	private JTextField txtPassword;
 	private final String[] USERTYPES = { "Normal", "Admin", "Organizador" };
 	private Login loginSystem = new Login();
+	private JPasswordField txtPassword;
 
 	/**
 	 * Create the application.
@@ -62,11 +63,6 @@ public class MainWindow extends JFrame {
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		getContentPane().add(lblNewLabel_1);
 
-		txtPassword = new JTextField();
-		txtPassword.setBounds(402, 140, 144, 20);
-		getContentPane().add(txtPassword);
-		txtPassword.setColumns(10);
-
 		JLabel lblContrasea = new JLabel("Contrase\u00F1a");
 		lblContrasea.setBounds(326, 142, 67, 14);
 		lblContrasea.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -98,6 +94,10 @@ public class MainWindow extends JFrame {
 		lblTipoUsuario.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblTipoUsuario.setBounds(93, 191, 81, 14);
 		getContentPane().add(lblTipoUsuario);
+		
+		txtPassword = new JPasswordField();
+		txtPassword.setBounds(403, 140, 149, 20);
+		getContentPane().add(txtPassword);
 
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -130,5 +130,4 @@ public class MainWindow extends JFrame {
 		});
 		// end action listeners
 	}
-
 }

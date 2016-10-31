@@ -14,10 +14,10 @@ public class ManagerBd implements InterfazBD {
 	
 	
 	// TODO implement method for BD change
-	public ManagerBd(Object bd){
-		if(bd.getClass() == MySqlManager.class) {
+	public ManagerBd(){
+		/*if(bd.getClass() == MySqlManager.class) {
 			bd = (MySqlManager) bd;
-		}
+		}*/
 	}
 
 	MySqlManager mySql = new MySqlManager();
