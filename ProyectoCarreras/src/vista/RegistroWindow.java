@@ -36,13 +36,15 @@ public class RegistroWindow extends JDialog {
 	private JTextField registroClub;
 	private final String[] USERTYPES = { "Normal", "Organizacion" };
 	// TODO change null
-	private final ManagerBd mySql = new ManagerBd();
+	private ManagerBd dbm = null;
 	private final Utilidades util = new Utilidades();
 
 	/**
 	 * Create the dialog.
 	 */
-	public RegistroWindow() {
+	public RegistroWindow(ManagerBd dbm) {
+		this.dbm = dbm;
+		
 		setTitle("Registro");
 		setBounds(100, 100, 492, 292);
 		getContentPane().setLayout(new BorderLayout());
@@ -172,8 +174,11 @@ public class RegistroWindow extends JDialog {
 										registroEmail.getText(), registroPassword.getText(),
 										Integer.parseInt(registroTelf.getText()), registroClub.getText());
 								try {
-									int filas = mySql.altaUsuarioNormal(uToInsert);
-									util.createInfobox("Numero de filas introducidas: " + String.valueOf(filas),
+									
+									int filas = dbm.altaUsuarioNormal(uToInsert);
+									System.out.println("introducidas: " + filas);
+									
+									util.createInfobox("El usuario ha sido introducido correctamente en la base de datos.",
 											"Insercion correcta.");
 								} catch (Exception e1) {
 									util.createErrorbox("No se han podido introducir los datos.",
@@ -187,8 +192,11 @@ public class RegistroWindow extends JDialog {
 										registroEmail.getText(), registroPassword.getText(),
 										Integer.parseInt(registroTelf.getText()), registroClub.getText());
 								try {
-									int filas = mySql.altaOrganizador(uOrg);
-									util.createInfobox("Numero de filas introducidas: " + String.valueOf(filas),
+									
+									int filas = dbm.altaOrganizador(uOrg);
+									System.out.println("introducidas: " + filas);
+									
+									util.createInfobox("El usuario ha sido introducido correctamente en la base de datos.",
 											"Insercion correcta.");
 								} catch (Exception e1) {
 									util.createErrorbox("No se han podido introducir los datos.",

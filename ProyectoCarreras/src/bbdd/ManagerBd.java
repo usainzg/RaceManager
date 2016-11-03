@@ -10,7 +10,7 @@ import clases.UsuarioOrganizador;
 
 public class ManagerBd implements InterfazBD {
 	
-	private ManagerBd dbm = null;
+	private MainDBManager dbm = null;
 	private final String MYSQL = "mysql";
 	private final String HIBERNATE = "hibernate";
 	
@@ -18,7 +18,7 @@ public class ManagerBd implements InterfazBD {
 	public void setDb(final String db){
 		switch(db){
 		case MYSQL:
-			dbm = 
+			dbm = new MySqlManager();
 			break;
 		case HIBERNATE:
 			
@@ -27,7 +27,6 @@ public class ManagerBd implements InterfazBD {
 			break;
 		}
 	}
-	
 	
 	@Override
 	public Connection conectarBD() throws Exception {

@@ -13,7 +13,7 @@ import clases.UsuarioEstandar;
 import clases.UsuarioOrganizador;
 import utilidades.Utilidades;
 
-public class MySqlManager implements InterfazBD {
+public class MySqlManager extends MainDBManager{
 	
 	private final String MYSQL_DRIVER = "com.mysql.jdbc.Driver";
 	private final String URL_DB = "jdbc:mysql://localhost/proyectobd";
@@ -24,7 +24,7 @@ public class MySqlManager implements InterfazBD {
 		try {
 			Class.forName(MYSQL_DRIVER != null ? MYSQL_DRIVER : "com.mysql.jdbc.Driver");
 			Connection conexion = DriverManager
-					.getConnection(URL_DB != null ? URL_DB : "jdbc:mysql://localhost/proyectobd", "administrador", "Admin1234");
+					.getConnection(URL_DB != null ? URL_DB : "jdbc:mysql://localhost/proyectobd", "root", "");
 			return conexion;
 		} catch (ClassNotFoundException cnE) {
 			cnE.printStackTrace();

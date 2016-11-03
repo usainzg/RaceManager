@@ -13,8 +13,10 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import bbdd.ManagerBd;
 import login.Login;
 import javax.swing.JPasswordField;
 
@@ -26,14 +28,20 @@ public class MainWindow extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JTextField txtEmail;
 	private final String[] USERTYPES = { "Normal", "Admin", "Organizador" };
-	private Login loginSystem = new Login();
+	private Login loginSystem = null;
 	private JPasswordField txtPassword;
 
 	/**
 	 * Create the application.
 	 */
 	public MainWindow() {
-
+		
+		String db = JOptionPane.showInputDialog("Introduce la base de datos que desees usar: (mysql o hibernate)");
+		ManagerBd ma = new ManagerBd();
+		ma.setDb(db);
+		loginSystem = new Login(ma);
+		
+		
 		setBounds(500, 300, 667, 473);
 		setTitle("Proyecto Unai");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -112,7 +120,7 @@ public class MainWindow extends JFrame {
 		// action listeners
 		btnRegistrarse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				RegistroWindow registro = new RegistroWindow();
+				RegistroWindow registro = new RegistroWindow(ma);
 				registro.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 				registro.setVisible(true);
 			}

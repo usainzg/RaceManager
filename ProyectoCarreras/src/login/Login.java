@@ -14,11 +14,12 @@ import vista.MenuOrg;
 import vista.VisualizacionCarrerasWindow;
 
 public class Login {
-	// TODO change null
-	private ManagerBd mySql = new ManagerBd();
+	
+	private ManagerBd dbm = null;
 	private Utilidades util = new Utilidades();
 
-	public Login() {
+	public Login(ManagerBd dbm) {
+		this.dbm = dbm;
 	}
 
 	// ADMIN LOGIN
@@ -26,7 +27,7 @@ public class Login {
 
 		UsuarioAdmin uAdmin = new UsuarioAdmin("", "", "", email.getText(), pass.getText(), 0, "");
 		try {
-			boolean resLogin = mySql.loginAdmin(uAdmin);
+			boolean resLogin = dbm.loginAdmin(uAdmin);
 			if (resLogin == true) {
 				util.createInfobox("Logeado!", "Login realizado con existo");
 				return true;
@@ -45,7 +46,7 @@ public class Login {
 	public boolean loginNormal(JTextField email, JTextField pass) {
 		UsuarioEstandar uStd = new UsuarioEstandar("", "", "", email.getText(), pass.getText(), 0, "");
 		try {
-			boolean resLogin = mySql.loginNormal(uStd);
+			boolean resLogin = dbm.loginNormal(uStd);
 			if (resLogin == true) {
 				util.createInfobox("Logeado!", "Login realizado con existo");
 				return true;
@@ -64,7 +65,7 @@ public class Login {
 	public boolean loginOrganizador(JTextField email, JTextField pass) {
 		UsuarioOrganizador uOrg = new UsuarioOrganizador("", "", "", email.getText(), pass.getText(), 0, "", 0);
 		try {
-			boolean resLogin = mySql.loginOrganizador(uOrg);
+			boolean resLogin = dbm.loginOrganizador(uOrg);
 			if (resLogin == true) {
 				util.createInfobox("Logeado!", "Login realizado con existo");
 				return true;

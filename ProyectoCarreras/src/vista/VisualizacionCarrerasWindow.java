@@ -23,12 +23,13 @@ public class VisualizacionCarrerasWindow extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 	private DefaultTableModel modelo;
-	private final ManagerBd mySql = new ManagerBd();
+	private ManagerBd dbm = null;
 
 	/**
 	 * Create the frame.
 	 */
 	public VisualizacionCarrerasWindow() {
+		
 		setTitle("Carreras");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 642, 462);
@@ -54,7 +55,7 @@ public class VisualizacionCarrerasWindow extends JFrame {
 
 		ArrayList<Carrera> carreras;
 		try {
-			carreras = mySql.consultarCarreras();
+			carreras = dbm.consultarCarreras();
 
 			for (Carrera c : carreras) {
 				Object[] fila = new Object[7];
