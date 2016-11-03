@@ -14,17 +14,15 @@ import clases.UsuarioOrganizador;
 import utilidades.Utilidades;
 
 public class MySqlManager implements InterfazBD {
+	
 	private final String MYSQL_DRIVER = "com.mysql.jdbc.Driver";
 	private final String URL_DB = "jdbc:mysql://localhost/proyectobd";
 	private final Utilidades util = new Utilidades();
 
-	public MySqlManager() {
-	}
-
 	@Override
 	public Connection conectarBD() throws Exception {
 		try {
-			Class.forName(MYSQL_DRIVER != null ? MYSQL_DRIVER : "com.mysql.jdbc.Diver");
+			Class.forName(MYSQL_DRIVER != null ? MYSQL_DRIVER : "com.mysql.jdbc.Driver");
 			Connection conexion = DriverManager
 					.getConnection(URL_DB != null ? URL_DB : "jdbc:mysql://localhost/proyectobd", "administrador", "Admin1234");
 			return conexion;

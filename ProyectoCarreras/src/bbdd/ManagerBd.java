@@ -10,111 +10,118 @@ import clases.UsuarioOrganizador;
 
 public class ManagerBd implements InterfazBD {
 	
-	Object bd;
+	private ManagerBd dbm = null;
+	private final String MYSQL = "mysql";
+	private final String HIBERNATE = "hibernate";
 	
 	
-	// TODO implement method for BD change
-	public ManagerBd(){
-		/*if(bd.getClass() == MySqlManager.class) {
-			bd = (MySqlManager) bd;
-		}*/
+	public void setDb(final String db){
+		switch(db){
+		case MYSQL:
+			dbm = 
+			break;
+		case HIBERNATE:
+			
+			break;
+		default:
+			break;
+		}
 	}
-
-	MySqlManager mySql = new MySqlManager();
+	
 	
 	@Override
 	public Connection conectarBD() throws Exception {
-		return mySql.conectarBD();
+		return dbm.conectarBD();
 	}
 
 	@Override
 	public ArrayList<Carrera> consultarCarreras() throws Exception {
-		return mySql.consultarCarreras();
+		return dbm.consultarCarreras();
 	}
 
 	@Override
 	public int altaCarrera(Carrera c) throws Exception {
-		return mySql.altaCarrera(c);
+		return dbm.altaCarrera(c);
 	}
 
 	@Override
 	public int deleteCarrera(Carrera c) throws Exception {
-		return mySql.deleteCarrera(c);
+		return dbm.deleteCarrera(c);
 	}
 
 	@Override
 	public ArrayList<UsuarioEstandar> consultarUsuariosEstandar() throws Exception {
-		return mySql.consultarUsuariosEstandar();
+		return dbm.consultarUsuariosEstandar();
 	}
 
 	@Override
 	public ArrayList<UsuarioOrganizador> consultarUsuariosOrganizador() throws Exception {
-		return mySql.consultarUsuariosOrganizador();
+		return dbm.consultarUsuariosOrganizador();
 	}
 
 	@Override
 	public int altaOrganizador(UsuarioOrganizador uOrg) throws Exception {
-		return mySql.altaOrganizador(uOrg);
+		return dbm.altaOrganizador(uOrg);
 	}
 
 	@Override
 	public int altaUsuarioNormal(UsuarioEstandar uStd) throws Exception {
-		return mySql.altaUsuarioNormal(uStd);
+		return dbm.altaUsuarioNormal(uStd);
 	}
 
 	@Override
 	public int deleteUsuarioOrganizador(UsuarioOrganizador uOrg) throws Exception {
-		return mySql.deleteUsuarioOrganizador(uOrg);
+		return dbm.deleteUsuarioOrganizador(uOrg);
 	}
 
 	@Override
 	public int deleteUsuarioNormal(UsuarioEstandar uStd) throws Exception {
-		return mySql.deleteUsuarioNormal(uStd);
+		return dbm.deleteUsuarioNormal(uStd);
 	}
 
 	@Override
 	public int updateUsuarioOrganizador(UsuarioOrganizador uOrg, UsuarioOrganizador datos) throws Exception {
-		return mySql.updateUsuarioOrganizador(uOrg, datos);
+		return dbm.updateUsuarioOrganizador(uOrg, datos);
 	}
 
 	@Override
 	public int updateUsuarioNormal(UsuarioEstandar uStd, UsuarioEstandar datos) throws Exception {
-		return mySql.updateUsuarioNormal(uStd, datos);
+		return dbm.updateUsuarioNormal(uStd, datos);
 	}
 
 	@Override
 	public boolean loginAdmin(UsuarioAdmin admin) throws Exception {
-		return mySql.loginAdmin(admin);
+		return dbm.loginAdmin(admin);
 	}
 
 	@Override
 	public boolean loginNormal(UsuarioEstandar uStd) throws Exception {
-		return mySql.loginNormal(uStd);
+		return dbm.loginNormal(uStd);
 	}
 
 	@Override
 	public boolean loginOrganizador(UsuarioOrganizador uOrg) throws Exception {
-		return mySql.loginOrganizador(uOrg);
+		return dbm.loginOrganizador(uOrg);
 	}
 
 	@Override
 	public ArrayList<UsuarioEstandar> consultarEmailNormal() throws Exception {
-		return mySql.consultarEmailNormal();
+		return dbm.consultarEmailNormal();
 	}
 
 	@Override
 	public ArrayList<UsuarioOrganizador> consultarEmailOrg() throws Exception {
-		return mySql.consultarEmailOrg();
+		return dbm.consultarEmailOrg();
 	}
 
 	@Override
 	public int updateCarreraAdmin(Carrera cViejo, Carrera c) throws Exception {
-		return mySql.updateCarreraAdmin(cViejo, c);
+		return dbm.updateCarreraAdmin(cViejo, c);
 	}
 
 	@Override
 	public int updateCarreraOrg(Carrera cViejo, Carrera c) throws Exception {
-		return mySql.updateCarreraOrg(cViejo, c);
+		return dbm.updateCarreraOrg(cViejo, c);
 	}
 
 
