@@ -1,4 +1,4 @@
-package vistas;
+package vista.ventanas;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -18,9 +18,11 @@ import javax.swing.JTextField;
 
 import bbdd.ManagerBd;
 import login.Login;
+import vista.RegistroWindow;
+
 import javax.swing.JPasswordField;
 
-public class MainWindow extends JFrame {
+public class MainView extends JFrame {
 
 	/**
 	 * 
@@ -34,7 +36,7 @@ public class MainWindow extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public MainWindow() {
+	public MainView() {
 		
 		String db = JOptionPane.showInputDialog("Introduce la base de datos que desees usar: (mysql o hibernate)");
 		ManagerBd ma = new ManagerBd();
