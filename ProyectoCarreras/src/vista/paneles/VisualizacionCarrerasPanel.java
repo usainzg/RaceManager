@@ -1,43 +1,26 @@
-package vista;
+package vista.paneles;
 
-import java.awt.BorderLayout;
 import java.util.ArrayList;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import bbdd.ManagerBd;
 import clases.Carrera;
 
-public class VisualizacionCarrerasWindow extends JFrame {
-
-	/**
-	 * 
-	 */
+public class VisualizacionCarrerasPanel extends JPanel {
+	
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
 	private JTable table;
 	private DefaultTableModel modelo;
-	private ManagerBd dbm = null;
 
 	/**
-	 * Create the frame.
+	 * Create the panel.
 	 */
-	public VisualizacionCarrerasWindow() {
+	public VisualizacionCarrerasPanel() {
 		
-		setTitle("Carreras");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 642, 462);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
-
 		table = new JTable();
 		table.setEnabled(false);
 		table.setRowSelectionAllowed(false);
@@ -53,7 +36,7 @@ public class VisualizacionCarrerasWindow extends JFrame {
 		modelo.addColumn("FECHA");
 		modelo.addColumn("LUGAR");
 
-		ArrayList<Carrera> carreras;
+		/* ArrayList<Carrera> carreras;
 		try {
 			carreras = dbm.consultarCarreras();
 
@@ -72,11 +55,12 @@ public class VisualizacionCarrerasWindow extends JFrame {
 
 		} catch (Exception e1) {
 			e1.printStackTrace();
-		}
+		}*/ 
 		table.setModel(modelo);
 
-		contentPane.add(sp);
+		add(sp);
 		table.setAutoCreateRowSorter(true);
 	}
 
 }
+
