@@ -2,7 +2,7 @@ package principal;
 
 import javax.swing.JFrame;
 
-import vista.MainWindow;
+import vistas.MainWindow;
 
 public class LanzadorGui {
 

@@ -1,4 +1,4 @@
-package vista;
+package paneles;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;

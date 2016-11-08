@@ -9,9 +9,9 @@ import clases.UsuarioAdmin;
 import clases.UsuarioEstandar;
 import clases.UsuarioOrganizador;
 import utilidades.Utilidades;
-import vista.MenuAdmin;
-import vista.MenuOrg;
-import vista.VisualizacionCarrerasWindow;
+import vistas.MenuAdmin;
+import vistas.MenuOrg;
+import vistas.VisualizacionCarrerasWindow;
 
 public class Login {
 	
