@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import java.awt.GridLayout;
 
-public class RegistroUsuarioPanel extends JPanel {
+public class RegistroPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -28,7 +28,7 @@ public class RegistroUsuarioPanel extends JPanel {
 	private final String[] USERTYPES = { "Normal", "Organizacion" };
 
 	
-	public RegistroUsuarioPanel() {
+	public RegistroPanel() {
 				setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		// labels

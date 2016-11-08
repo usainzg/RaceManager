@@ -54,6 +54,8 @@ public class AdminView implements ActionListener {
 			System.out.println("DESDE ELIMINAR CARRERAS");
 		}else if(e.getSource() == "mnVisualizarCarreras"){
 			System.out.println("DESDE VER CARRERAS");
+		}else if(e.getSource() == "mnModificarCarreras"){
+			
 		}
 		
 	}
