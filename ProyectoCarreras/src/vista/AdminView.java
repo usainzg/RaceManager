@@ -1,44 +1,21 @@
 package vista;
 
-import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import java.awt.BorderLayout;
+import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JMenu;
 
-public class AdminView {
+public class AdminView implements ActionListener {
 
 	private JFrame frmVistaAdmin;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AdminView window = new AdminView();
-					window.frmVistaAdmin.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
-	 */
 	public AdminView() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		frmVistaAdmin = new JFrame();
 		frmVistaAdmin.setTitle("Vista Admin");
@@ -51,22 +28,33 @@ public class AdminView {
 		JMenu mntCarreras = new JMenu("Gestion Carreras");
 		menuBar.add(mntCarreras);
 		
-		JMenuItem mnVisualizacionCarreras = new JMenuItem("Visualizar Carreras");
-		mntCarreras.add(mnVisualizacionCarreras);
+		JMenuItem mnVisualizarCarreras = new JMenuItem("Visualizar Carreras");
+		mntCarreras.add(mnVisualizarCarreras);
 		
-		JMenuItem mnModificacionCarreras = new JMenuItem("Modificar Carreras");
-		mntCarreras.add(mnModificacionCarreras);
+		JMenuItem mnModificarCarreras = new JMenuItem("Modificar Carreras");
+		mntCarreras.add(mnModificarCarreras);
 		
-		JMenuItem mnNewMenuItem = new JMenuItem("Eliminar Carreras");
-		mntCarreras.add(mnNewMenuItem);
+		JMenuItem mnEliminarCarreras = new JMenuItem("Eliminar Carreras");
+		mntCarreras.add(mnEliminarCarreras);
 		
 		JMenu mntUsuarios = new JMenu("Gestion Usuarios");
 		menuBar.add(mntUsuarios);
 		
-		JMenuItem mnModificacionUsuario = new JMenuItem("Modificar Usuarios");
-		mntUsuarios.add(mnModificacionUsuario);
+		JMenuItem mnModificarUsuarios = new JMenuItem("Modificar Usuarios");
+		mntUsuarios.add(mnModificarUsuarios);
 		
-		JMenuItem mnEliminacionCarreras = new JMenuItem("Eliminar Usuarios");
-		mntUsuarios.add(mnEliminacionCarreras);
+		JMenuItem mnEliminarUsuarios = new JMenuItem("Eliminar Usuarios");
+		mntUsuarios.add(mnEliminarUsuarios);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
+		if(e.getSource() == "mnEliminarCarreras"){
+			System.out.println("DESDE ELIMINAR CARRERAS");
+		}else if(e.getSource() == "mnVisualizarCarreras"){
+			System.out.println("DESDE VER CARRERAS");
+		}
+		
 	}
 }

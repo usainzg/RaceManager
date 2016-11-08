@@ -3,22 +3,17 @@ package vista;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import clases.Carrera;
-
 public class DeleteCarreraAdminPanel extends JPanel {
 
-	/**
-	 * Create the panel.
-	 */
+	private static final long serialVersionUID = 1L;
+
+
 	public DeleteCarreraAdminPanel() {
 		
 		JComboBox<Object> comboBox = new JComboBox<>();
