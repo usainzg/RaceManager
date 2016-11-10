@@ -10,9 +10,8 @@ public class LanzadorGui {
 
 		MainView main = new MainView();
 		
-
-		main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		main.setVisible(true);
+		main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 
 	}

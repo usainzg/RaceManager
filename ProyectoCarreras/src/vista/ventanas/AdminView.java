@@ -8,22 +8,21 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-public class AdminView implements ActionListener {
+public class AdminView extends JFrame implements ActionListener {
 
-	private JFrame frmVistaAdmin;
+	private static final long serialVersionUID = 1L;
 
 	public AdminView() {
 		initialize();
 	}
 
 	private void initialize() {
-		frmVistaAdmin = new JFrame();
-		frmVistaAdmin.setTitle("Vista Admin");
-		frmVistaAdmin.setBounds(100, 100, 450, 300);
-		frmVistaAdmin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("Vista Admin");
+		setBounds(100, 100, 450, 300);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JMenuBar menuBar = new JMenuBar();
-		frmVistaAdmin.setJMenuBar(menuBar);
+		setJMenuBar(menuBar);
 		
 		JMenu mntCarreras = new JMenu("Gestion Carreras");
 		menuBar.add(mntCarreras);
@@ -49,7 +48,7 @@ public class AdminView implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+		// TODO
 		if(e.getSource() == "mnEliminarCarreras"){
 			System.out.println("DESDE ELIMINAR CARRERAS");
 		}else if(e.getSource() == "mnVisualizarCarreras"){

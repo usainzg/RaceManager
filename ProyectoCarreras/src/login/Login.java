@@ -9,9 +9,9 @@ import clases.UsuarioAdmin;
 import clases.UsuarioEstandar;
 import clases.UsuarioOrganizador;
 import utilidades.Utilidades;
-import vista.MenuAdmin;
-import vista.MenuOrg;
-import vista.VisualizacionCarrerasWindow;
+import vista.ventanas.AdminView;
+import vista.ventanas.NormalView;
+import vista.ventanas.OrgView;
 
 public class Login {
 	
@@ -103,25 +103,25 @@ public class Login {
 				// admin login
 				if (comboTipoUsuario.getSelectedItem().toString() == "Admin") {
 					if (loginAdmin(txtEmail, txtPassword)) {
-						MenuAdmin menuAdmin = new MenuAdmin();
-						menuAdmin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-						menuAdmin.setVisible(true);
+						AdminView admin = new AdminView();
+						admin.setVisible(true);
+						admin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					}
 
 					// usuario normal login
 				} else if (comboTipoUsuario.getSelectedItem().toString() == "Normal") {
 					if (loginNormal(txtEmail, txtPassword)) {
-						VisualizacionCarrerasWindow viCarr = new VisualizacionCarrerasWindow();
-						viCarr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-						viCarr.setVisible(true);
+						NormalView normal = new NormalView();
+						normal.setVisible(true);
+						normal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					}
 
 					// organizador login
 				} else {
 					if (loginOrganizador(txtEmail, txtPassword)) {
-						MenuOrg menuOrg = new MenuOrg();
-						menuOrg.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-						menuOrg.setVisible(true);
+						OrgView org = new OrgView();
+						org.setVisible(true);
+						org.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					}
 				}
 			}

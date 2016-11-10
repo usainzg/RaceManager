@@ -1,50 +1,80 @@
 package vista.ventanas;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 import bbdd.ManagerBd;
 import login.Login;
+import vista.paneles.LoginPanel;
+import vista.paneles.RegistroPanel;
 
 public class MainView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	
+	
 	private Login loginSystem = null;
+	private ManagerBd ma;
+	
+	private LoginPanel panelLogin = new LoginPanel();
+	private RegistroPanel panelRegistro = new RegistroPanel();
+	
+	private JButton btnAccederLogin, btnRegistrarseLogin;
+	private JComboBox<String> comboTipoUsuarioLogin;
+	private JTextField txtEmail, txtPassword;
+	
 
 	public MainView() {
 		
+		// TODO si mete uno erroneo
+		
 		String db = JOptionPane.showInputDialog("Introduce la base de datos que desees usar: (mysql o hibernate)");
-		ManagerBd ma = new ManagerBd();
+
+		ma = new ManagerBd();
 		ma.setDb(db);
+		
 		loginSystem = new Login(ma);
 		
 		
 		setBounds(500, 300, 667, 473);
 		setTitle("Proyecto Unai");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		getContentPane().setLayout(null);
-
+		getContentPane().add(panelLogin);
 		
-
-		// action listeners
-		 /*btnRegistrarse.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				RegistroWindow registro = new RegistroWindow(ma);
-				registro.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-				registro.setVisible(true);
+		btnAccederLogin = panelLogin.getBtnAcceder();
+		btnRegistrarseLogin = panelLogin.getBtnRegistrarse();
+		comboTipoUsuarioLogin = panelLogin.getComboTipoUsuario();
+		txtEmail = panelLogin.getTxtEmail();
+		txtPassword = panelLogin.getTxtPassword();
+		
+		
+		
+		btnAccederLogin.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try{
+					loginSystem.validacionLogin(comboTipoUsuarioLogin, txtEmail, txtPassword);
+				}catch(Exception ex){
+					
+				}
 			}
 		});
-
-		btnAcceder.addActionListener(new ActionListener() {
+		
+		btnRegistrarseLogin.addActionListener(new ActionListener() {
+			
+			@Override
 			public void actionPerformed(ActionEvent e) {
-				try {
-					loginSystem.validacionLogin(comboTipoUsuario, txtEmail, txtPassword);
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-
+				getContentPane().removeAll();
+				getContentPane().add(panelRegistro);
+				repaint();
 			}
-		});*/
-		// end action listeners
+		});
 	}
 }

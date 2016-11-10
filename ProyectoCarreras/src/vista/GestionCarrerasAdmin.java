@@ -1,8 +1,6 @@
 package vista;
 
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -38,7 +36,7 @@ public class GestionCarrerasAdmin extends JFrame {
 		btnModificarCarrera.setBounds(32, 82, 146, 23);
 		getContentPane().add(btnModificarCarrera);
 
-		btnModificarCarrera.addActionListener(new ActionListener() {
+		/*btnModificarCarrera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ModificacionCarreraAdmin mod = new ModificacionCarreraAdmin();
 				mod.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -52,6 +50,6 @@ public class GestionCarrerasAdmin extends JFrame {
 				borrado.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				borrado.setVisible(true);
 			}
-		});
+		});*/
 	}
 }
