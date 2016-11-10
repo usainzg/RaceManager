@@ -8,6 +8,7 @@ import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
+import bbdd.ManagerBd;
 import clases.Carrera;
 
 public class VisualizacionCarrerasPanel extends JPanel {
@@ -15,16 +16,22 @@ public class VisualizacionCarrerasPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTable table;
 	private DefaultTableModel modelo;
+	private ManagerBd manager;
 
 	/**
 	 * Create the panel.
 	 */
-	public VisualizacionCarrerasPanel() {
+	public VisualizacionCarrerasPanel(ManagerBd manager) {
+		
+		this.manager = manager;
 		
 		table = new JTable();
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+		table.setFillsViewportHeight(true);
 		table.setEnabled(false);
 		table.setRowSelectionAllowed(false);
 		JScrollPane sp = new JScrollPane(table);
+		sp.setBounds(-2, 0, 520, 413);
 		sp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		modelo = new DefaultTableModel();
 
@@ -36,9 +43,20 @@ public class VisualizacionCarrerasPanel extends JPanel {
 		modelo.addColumn("FECHA");
 		modelo.addColumn("LUGAR");
 
-		/* ArrayList<Carrera> carreras;
+		
+		setLayout(null);
+		table.setModel(modelo);
+
+		add(sp);
+		table.setAutoCreateRowSorter(true);
+		
+		rellenarTabla();
+	}
+	
+	private void rellenarTabla(){
+		ArrayList<Carrera> carreras;
 		try {
-			carreras = dbm.consultarCarreras();
+			carreras = manager.consultarCarreras();
 
 			for (Carrera c : carreras) {
 				Object[] fila = new Object[7];
@@ -55,11 +73,7 @@ public class VisualizacionCarrerasPanel extends JPanel {
 
 		} catch (Exception e1) {
 			e1.printStackTrace();
-		}*/ 
-		table.setModel(modelo);
-
-		add(sp);
-		table.setAutoCreateRowSorter(true);
+		}
 	}
 
 }

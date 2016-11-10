@@ -72,8 +72,11 @@ public class MainView extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				getContentPane().removeAll();
+				
 				getContentPane().add(panelRegistro);
+				
 				repaint();
+				
 			}
 		});
 	}

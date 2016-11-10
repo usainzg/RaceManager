@@ -32,78 +32,7 @@ public class RegistroPanel extends JPanel {
 	private JLabel lblNewLabel;
 
 	public RegistroPanel() {
-
 		setLayout();
-
-		{
-			
-
-			// register event handler
-			/*
-			 * okBtn.addActionListener(new ActionListener() { public void
-			 * actionPerformed(ActionEvent e) { boolean salidaForm =
-			 * validarFormulario(); if (salidaForm == true) {
-			 */
-
-			// NORMAL USER REGISTER
-			/*
-			 * if
-			 * (comboTipoUsuario.getSelectedItem().toString().equals("Normal"))
-			 * { UsuarioEstandar uToInsert = new
-			 * UsuarioEstandar(registroNombre.getText(),
-			 * registroApellidos.getText(), registroDireccion.getText(),
-			 * registroEmail.getText(), registroPassword.getText(),
-			 * Integer.parseInt(registroTelf.getText()),
-			 * registroClub.getText()); try {
-			 * 
-			 * int filas = dbm.altaUsuarioNormal(uToInsert);
-			 * System.out.println("introducidas: " + filas);
-			 * 
-			 * util.
-			 * createInfobox("El usuario ha sido introducido correctamente en la base de datos."
-			 * , "Insercion correcta."); } catch (Exception e1) {
-			 * util.createErrorbox("No se han podido introducir los datos.",
-			 * "Insercion incorrecta."); }
-			 */
-
-			// ORGANIZACION USER REGISTER
-			/*
-			 * } else { UsuarioOrganizador uOrg = new
-			 * UsuarioOrganizador(registroNombre.getText(),
-			 * registroApellidos.getText(), registroDireccion.getText(),
-			 * registroEmail.getText(), registroPassword.getText(),
-			 * Integer.parseInt(registroTelf.getText()),
-			 * registroClub.getText()); try {
-			 * 
-			 * int filas = dbm.altaOrganizador(uOrg);
-			 * System.out.println("introducidas: " + filas);
-			 * 
-			 * util.
-			 * createInfobox("El usuario ha sido introducido correctamente en la base de datos."
-			 * , "Insercion correcta."); } catch (Exception e1) {
-			 * util.createErrorbox("No se han podido introducir los datos.",
-			 * "Insercion incorrecta."); } } }
-			 * 
-			 * } });
-			 */
-			okBtn.setFont(new Font("Tahoma", Font.BOLD, 11));
-			okBtn.setActionCommand("");
-
-		}
-		{
-			JButton cancelBtn = new JButton("Cancel");
-			cancelBtn.setBounds(194, 289, 81, 29);
-			add(cancelBtn);
-
-			// cancel event handler
-			cancelBtn.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					// TODO return to main panel (mainLoginPanel)
-				}
-			});
-			cancelBtn.setFont(new Font("Tahoma", Font.BOLD, 11));
-			cancelBtn.setActionCommand("Cancel");
-		}
 	}
 
 	private void setLayout() {
@@ -194,10 +123,25 @@ public class RegistroPanel extends JPanel {
 		 * } });
 		 */
 		btnLimpiar.setFont(new Font("Tahoma", Font.BOLD, 11));
-		
+
 		JButton okBtn = new JButton("Registrarse");
 		okBtn.setBounds(32, 289, 110, 29);
+		okBtn.setFont(new Font("Tahoma", Font.BOLD, 11));
+		okBtn.setActionCommand("");
 		add(okBtn);
+
+		JButton cancelBtn = new JButton("Cancel");
+		cancelBtn.setBounds(194, 289, 81, 29);
+		add(cancelBtn);
+
+		// cancel event handler
+		cancelBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// TODO return to main panel (mainLoginPanel)
+			}
+		});
+		cancelBtn.setFont(new Font("Tahoma", Font.BOLD, 11));
+		cancelBtn.setActionCommand("Cancel");
 
 		// populate combobox with constant string array
 		comboTipoUsuario.setModel(new DefaultComboBoxModel<String>(USERTYPES));

@@ -111,9 +111,9 @@ public class Login {
 					// usuario normal login
 				} else if (comboTipoUsuario.getSelectedItem().toString() == "Normal") {
 					if (loginNormal(txtEmail, txtPassword)) {
-						NormalView normal = new NormalView();
+						/*NormalView normal = new NormalView();
 						normal.setVisible(true);
-						normal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+						normal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);*/
 					}
 
 					// organizador login
