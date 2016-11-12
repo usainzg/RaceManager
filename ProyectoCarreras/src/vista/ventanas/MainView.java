@@ -14,8 +14,6 @@ import bbdd.ManagerBd;
 import login.Login;
 import vista.paneles.LoginPanel;
 import vista.paneles.RegistroPanel;
-import vista.paneles.VisualizacionCarrerasPanel;
-import java.awt.Dimension;
 
 public class MainView extends JFrame {
 
@@ -83,6 +81,7 @@ public class MainView extends JFrame {
 				getContentPane().revalidate();
 				
 				getContentPane().add(panelRegistro);
+				pack();
 				getContentPane().repaint();
 				getContentPane().revalidate();
 				
