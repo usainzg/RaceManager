@@ -34,11 +34,12 @@ public class RegistroPanel extends JPanel {
 	private JLabel lblContrasena;
 	private JLabel lblDireccion;
 	private JLabel lblNewLabel;
-	
+	private JButton cancelBtn, okBtn, btnLimpiar;
+	private JComboBox<String> comboTipoUsuario;
+
 	private Utilidades util = new Utilidades();
 	
-	private JButton cancelBtn, okBtn, btnLimpiar;
-
+	
 	public JButton getCancelBtn() {
 		return cancelBtn;
 	}
@@ -47,10 +48,43 @@ public class RegistroPanel extends JPanel {
 		return okBtn;
 	}
 
-	
 	public JButton getBtnLimpiar() {
 		return btnLimpiar;
 	}
+
+	public JTextField getRegistroNombre() {
+		return registroNombre;
+	}
+
+	public JTextField getRegistroApellidos() {
+		return registroApellidos;
+	}
+
+	public JTextField getRegistroEmail() {
+		return registroEmail;
+	}
+	public JTextField getRegistroPassword() {
+		return registroPassword;
+	}
+
+	public JTextField getRegistroDireccion() {
+		return registroDireccion;
+	}
+
+	public JTextField getRegistroTelf() {
+		return registroTelf;
+	}
+
+	public JTextField getRegistroClub() {
+		return registroClub;
+	}
+
+	public JComboBox<String> getComboTipoUsuario() {
+		return comboTipoUsuario;
+	}
+
+
+
 
 
 	private final String[] USERTYPES = { "Normal", "Organizacion" };

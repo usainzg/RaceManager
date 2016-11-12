@@ -35,9 +35,9 @@ public class LoginPanel extends JPanel {
 
 	private void setLayoutView() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[] { 24, 17, 0, 30, 30 };
+		gridBagLayout.columnWidths = new int[] { 24, 17, 0, 0, 30, 30 };
 		gridBagLayout.rowHeights = new int[] { 36, 56, 0, 0, 0, 30, 0, 82, 0, 42 };
-		gridBagLayout.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0 };
+		gridBagLayout.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
 		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
 		setLayout(gridBagLayout);
 
@@ -120,28 +120,28 @@ public class LoginPanel extends JPanel {
 		btnAcceder.setFont(new Font("Tahoma", Font.BOLD, 13));
 		GridBagConstraints gbc_btnAcceder = new GridBagConstraints();
 		gbc_btnAcceder.insets = new Insets(0, 0, 5, 5);
-		gbc_btnAcceder.gridwidth = 2;
+		gbc_btnAcceder.gridwidth = 3;
 		gbc_btnAcceder.gridx = 2;
 		gbc_btnAcceder.gridy = 6;
 		add(btnAcceder, gbc_btnAcceder);
 
 		JLabel lblEnCasoDe = new JLabel("En caso de no estar registrado y que desee hacerlo: ");
-		lblEnCasoDe.setHorizontalAlignment(SwingConstants.CENTER);
-		lblEnCasoDe.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblEnCasoDe.setHorizontalAlignment(SwingConstants.LEFT);
+		lblEnCasoDe.setFont(new Font("Tahoma", Font.BOLD, 13));
 		GridBagConstraints gbc_lblEnCasoDe = new GridBagConstraints();
 		gbc_lblEnCasoDe.insets = new Insets(0, 0, 5, 5);
 		gbc_lblEnCasoDe.gridx = 2;
 		gbc_lblEnCasoDe.gridy = 7;
 		add(lblEnCasoDe, gbc_lblEnCasoDe);
-
-		btnRegistrarse = new JButton("Registrarse");
-
-		btnRegistrarse.setFont(new Font("Tahoma", Font.BOLD, 11));
-		GridBagConstraints gbc_btnRegistrarse = new GridBagConstraints();
-		gbc_btnRegistrarse.insets = new Insets(0, 0, 5, 5);
-		gbc_btnRegistrarse.gridx = 2;
-		gbc_btnRegistrarse.gridy = 8;
-		add(btnRegistrarse, gbc_btnRegistrarse);
+										
+												btnRegistrarse = new JButton("Registrarse");
+												
+														btnRegistrarse.setFont(new Font("Tahoma", Font.BOLD, 11));
+														GridBagConstraints gbc_btnRegistrarse = new GridBagConstraints();
+														gbc_btnRegistrarse.insets = new Insets(0, 0, 5, 5);
+														gbc_btnRegistrarse.gridx = 3;
+														gbc_btnRegistrarse.gridy = 7;
+														add(btnRegistrarse, gbc_btnRegistrarse);
 
 	}
 
