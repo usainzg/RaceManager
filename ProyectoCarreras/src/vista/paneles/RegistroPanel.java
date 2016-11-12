@@ -32,10 +32,11 @@ public class RegistroPanel extends JPanel {
 	private JLabel lblNewLabel;
 
 	public RegistroPanel() {
-		setLayout();
+		setLayoutView();
 	}
 
-	private void setLayout() {
+	private void setLayoutView() {
+		setLayout(null);
 
 		lblContrasena = new JLabel("Contraseña");
 		lblContrasena.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -145,7 +146,7 @@ public class RegistroPanel extends JPanel {
 
 		// populate combobox with constant string array
 		comboTipoUsuario.setModel(new DefaultComboBoxModel<String>(USERTYPES));
-		setLayout(null);
+		
 		add(lblContrasena);
 		add(registroPassword);
 		add(lblDireccion);

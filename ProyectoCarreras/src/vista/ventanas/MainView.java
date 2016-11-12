@@ -1,5 +1,6 @@
 package vista.ventanas;
 
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,6 +14,8 @@ import bbdd.ManagerBd;
 import login.Login;
 import vista.paneles.LoginPanel;
 import vista.paneles.RegistroPanel;
+import vista.paneles.VisualizacionCarrerasPanel;
+import java.awt.Dimension;
 
 public class MainView extends JFrame {
 
@@ -31,8 +34,10 @@ public class MainView extends JFrame {
 	
 
 	public MainView() {
+		setResizable(false);
 		
 		// TODO si mete uno erroneo
+		getContentPane().setLayout(new BorderLayout());
 		
 		String db = JOptionPane.showInputDialog("Introduce la base de datos que desees usar: (mysql o hibernate)");
 
@@ -42,10 +47,12 @@ public class MainView extends JFrame {
 		loginSystem = new Login(ma);
 		
 		
-		setBounds(500, 300, 667, 473);
+		setBounds(500, 300, 523, 403);
 		setTitle("Proyecto Unai");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		getContentPane().add(panelLogin);
+		
+		getContentPane().add(panelLogin, BorderLayout.CENTER);
+		pack();
 		
 		btnAccederLogin = panelLogin.getBtnAcceder();
 		btnRegistrarseLogin = panelLogin.getBtnRegistrarse();
@@ -72,10 +79,12 @@ public class MainView extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				getContentPane().removeAll();
+				getContentPane().repaint();
+				getContentPane().revalidate();
 				
 				getContentPane().add(panelRegistro);
-				
-				repaint();
+				getContentPane().repaint();
+				getContentPane().revalidate();
 				
 			}
 		});
