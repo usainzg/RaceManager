@@ -73,7 +73,14 @@ public class OrgView extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				getContentPane().removeAll();
+				getContentPane().repaint();
+				getContentPane().revalidate();
+				
+				getContentPane().add(panelModificacionCarreraOrg);
+				pack();
+				getContentPane().repaint();
+				getContentPane().revalidate();
 				
 			}
 		});
@@ -82,7 +89,14 @@ public class OrgView extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				getContentPane().removeAll();
+				getContentPane().repaint();
+				getContentPane().revalidate();
+				
+				getContentPane().add(panelBorradoCarreraOrg);
+				pack();
+				getContentPane().repaint();
+				getContentPane().revalidate();
 				
 			}
 		});
