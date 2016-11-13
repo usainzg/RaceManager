@@ -78,6 +78,9 @@ public class BorradoUsuario extends JPanel {
 
 		comboTipo = new JComboBox<>();
 		comboTipo.setBounds(161, 32, 195, 20);
+		comboTipo.addItem("Normal");
+		comboTipo.addItem("Organizador");
+		comboTipo.setSelectedItem("Normal");
 		GridBagConstraints gbc_comboTipo = new GridBagConstraints();
 		gbc_comboTipo.fill = GridBagConstraints.HORIZONTAL;
 		gbc_comboTipo.insets = new Insets(0, 0, 5, 5);

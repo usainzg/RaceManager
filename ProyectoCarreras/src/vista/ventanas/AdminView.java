@@ -11,6 +11,8 @@ import javax.swing.JMenuItem;
 
 import bbdd.ManagerBd;
 import vista.paneles.VisualizacionCarrerasPanel;
+import vista.paneles.admin.BorradoUsuario;
+import vista.paneles.admin.DeleteCarreraAdminPanel;
 import vista.paneles.admin.ModificacionCarreraAdmin;
 
 public class AdminView extends JFrame {
@@ -20,6 +22,7 @@ public class AdminView extends JFrame {
 	private ModificacionCarreraAdmin panelModificacion = new ModificacionCarreraAdmin();
 	private VisualizacionCarrerasPanel panelVisualizacion;
 	private BorradoUsuario panelBorradoUsuario = new BorradoUsuario();
+	private DeleteCarreraAdminPanel panelBorradoCarrera = new DeleteCarreraAdminPanel();
 	
 	
 	private static final long serialVersionUID = 1L;
@@ -93,5 +96,49 @@ public class AdminView extends JFrame {
 				
 			}
 		});
+		
+		mnEliminarCarreras.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				getContentPane().removeAll();
+				getContentPane().repaint();
+				getContentPane().revalidate();
+				
+				getContentPane().add(panelBorradoCarrera);
+				pack();
+				getContentPane().repaint();
+				getContentPane().revalidate();
+				
+			}
+		});
+		
+		
+		
+		mnModificarUsuarios.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		mnEliminarUsuarios.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				getContentPane().removeAll();
+				getContentPane().repaint();
+				getContentPane().revalidate();
+				
+				getContentPane().add(panelBorradoUsuario);
+				pack();
+				getContentPane().repaint();
+				getContentPane().revalidate();
+			}
+		});
+		
+		
 	}
 }
