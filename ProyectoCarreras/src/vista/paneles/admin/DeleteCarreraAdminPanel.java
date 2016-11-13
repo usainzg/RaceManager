@@ -34,15 +34,15 @@ public class DeleteCarreraAdminPanel extends JPanel {
 		gbc_lblCarreraABorrar.gridy = 1;
 		add(lblCarreraABorrar, gbc_lblCarreraABorrar);
 
-		JComboBox<Object> comboBox = new JComboBox<>();
-		comboBox.setBounds(191, 45, 180, 20);
-		GridBagConstraints gbc_comboBox = new GridBagConstraints();
-		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox.anchor = GridBagConstraints.WEST;
-		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
-		gbc_comboBox.gridx = 2;
-		gbc_comboBox.gridy = 1;
-		add(comboBox, gbc_comboBox);
+		JComboBox<Object> comboCarreraBorrar = new JComboBox<>();
+		comboCarreraBorrar.setBounds(191, 45, 180, 20);
+		GridBagConstraints gbc_comboCarreraBorrar = new GridBagConstraints();
+		gbc_comboCarreraBorrar.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboCarreraBorrar.anchor = GridBagConstraints.WEST;
+		gbc_comboCarreraBorrar.insets = new Insets(0, 0, 5, 5);
+		gbc_comboCarreraBorrar.gridx = 2;
+		gbc_comboCarreraBorrar.gridy = 1;
+		add(comboCarreraBorrar, gbc_comboCarreraBorrar);
 
 		JButton btnBorrar = new JButton("Borrar");
 

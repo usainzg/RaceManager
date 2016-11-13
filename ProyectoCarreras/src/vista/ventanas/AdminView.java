@@ -14,27 +14,30 @@ import vista.paneles.VisualizacionCarrerasPanel;
 import vista.paneles.admin.BorradoUsuario;
 import vista.paneles.admin.DeleteCarreraAdminPanel;
 import vista.paneles.admin.ModificacionCarreraAdmin;
+import vista.paneles.admin.ModificacionUsuarioAdmin;
 
 public class AdminView extends JFrame {
 	
 	private ManagerBd manager;
 	
-	private ModificacionCarreraAdmin panelModificacion = new ModificacionCarreraAdmin();
+	private ModificacionCarreraAdmin panelModificacionCarrera = new ModificacionCarreraAdmin();
 	private VisualizacionCarrerasPanel panelVisualizacion;
 	private BorradoUsuario panelBorradoUsuario = new BorradoUsuario();
 	private DeleteCarreraAdminPanel panelBorradoCarrera = new DeleteCarreraAdminPanel();
+	private ModificacionUsuarioAdmin panelModificacionUsuario = new ModificacionUsuarioAdmin();
 	
 	
 	private static final long serialVersionUID = 1L;
 
 	public AdminView(ManagerBd manager) {
+		setResizable(false);
 		this.manager = manager;
 		this.panelVisualizacion = new VisualizacionCarrerasPanel(manager);
 		initialize();
 	}
 
 	private void initialize() {
-		setTitle("Vista Admin");
+		setTitle("Admin");
 		setBounds(100, 100, 450, 300);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -89,7 +92,7 @@ public class AdminView extends JFrame {
 				getContentPane().repaint();
 				getContentPane().revalidate();
 				
-				getContentPane().add(panelModificacion);
+				getContentPane().add(panelModificacionCarrera);
 				pack();
 				getContentPane().repaint();
 				getContentPane().revalidate();
@@ -119,7 +122,14 @@ public class AdminView extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				getContentPane().removeAll();
+				getContentPane().repaint();
+				getContentPane().revalidate();
+				
+				getContentPane().add(panelModificacionUsuario);
+				pack();
+				getContentPane().repaint();
+				getContentPane().revalidate();
 				
 			}
 		});
