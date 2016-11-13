@@ -118,7 +118,7 @@ public class Login {
 					// organizador login
 				} else {
 					if (loginOrganizador(txtEmail, txtPassword)) {
-						OrgView org = new OrgView();
+						OrgView org = new OrgView(dbm);
 						org.setVisible(true);
 						org.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					}

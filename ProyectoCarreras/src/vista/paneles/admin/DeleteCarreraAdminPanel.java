@@ -13,6 +13,19 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
 public class DeleteCarreraAdminPanel extends JPanel {
+	
+	private JComboBox<Object> comboCarreraBorrar;
+	private JButton btnBorrar;
+	
+	
+
+	public JComboBox<Object> getComboCarreraBorrar() {
+		return comboCarreraBorrar;
+	}
+
+	public JButton getBtnBorrar() {
+		return btnBorrar;
+	}
 
 	private static final long serialVersionUID = 1L;
 
@@ -34,7 +47,7 @@ public class DeleteCarreraAdminPanel extends JPanel {
 		gbc_lblCarreraABorrar.gridy = 1;
 		add(lblCarreraABorrar, gbc_lblCarreraABorrar);
 
-		JComboBox<Object> comboCarreraBorrar = new JComboBox<>();
+		comboCarreraBorrar = new JComboBox<>();
 		comboCarreraBorrar.setBounds(191, 45, 180, 20);
 		GridBagConstraints gbc_comboCarreraBorrar = new GridBagConstraints();
 		gbc_comboCarreraBorrar.fill = GridBagConstraints.HORIZONTAL;
@@ -44,7 +57,7 @@ public class DeleteCarreraAdminPanel extends JPanel {
 		gbc_comboCarreraBorrar.gridy = 1;
 		add(comboCarreraBorrar, gbc_comboCarreraBorrar);
 
-		JButton btnBorrar = new JButton("Borrar");
+		btnBorrar = new JButton("Borrar");
 
 		btnBorrar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnBorrar.setBounds(151, 108, 89, 23);
