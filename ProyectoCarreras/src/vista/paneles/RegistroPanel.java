@@ -213,7 +213,7 @@ public class RegistroPanel extends JPanel {
 		lblTipoUsuario.setFont(new Font("Tahoma", Font.BOLD, 12));
 
 		// combobox with user types
-		JComboBox<String> comboTipoUsuario = new JComboBox<String>();
+		comboTipoUsuario = new JComboBox<String>();
 
 		// populate combobox with constant string array
 		comboTipoUsuario.setModel(new DefaultComboBoxModel<String>(USERTYPES));
@@ -305,7 +305,6 @@ public class RegistroPanel extends JPanel {
 				for (JTextField j : arrJ) {
 					util.resetJTextField(j);
 				}
-
 			}
 		});
 	}

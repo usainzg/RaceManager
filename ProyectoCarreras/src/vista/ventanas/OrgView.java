@@ -19,19 +19,20 @@ public class OrgView extends JFrame {
 	private ManagerBd manager;
 	
 	private VisualizacionCarrerasPanel panelVisualizacion;
-	private BorradoCarreraOrg panelBorradoCarreraOrg;
-	private ModificacionCarreraOrg panelModificacionCarreraOrg;
+	private BorradoCarreraOrg panelBorradoCarreraOrg = new BorradoCarreraOrg();
+	private ModificacionCarreraOrg panelModificacionCarreraOrg = new ModificacionCarreraOrg();
 
 	private static final long serialVersionUID = 1L;
 
 	public OrgView(ManagerBd manager) {
+		setResizable(false);
 		this.manager = manager;
 		this.panelVisualizacion = new VisualizacionCarrerasPanel(manager);
 		setLayoutView();
 	}
 
 	private void setLayoutView() {
-		setTitle("Vista Organizacion");
+		setTitle("Organizador");
 		setBounds(100, 100, 450, 300);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
