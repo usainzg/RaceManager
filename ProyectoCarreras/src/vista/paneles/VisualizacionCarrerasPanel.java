@@ -10,6 +10,8 @@ import javax.swing.table.DefaultTableModel;
 
 import bbdd.ManagerBd;
 import clases.Carrera;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
 
 public class VisualizacionCarrerasPanel extends JPanel {
 	
@@ -24,15 +26,6 @@ public class VisualizacionCarrerasPanel extends JPanel {
 	public VisualizacionCarrerasPanel(ManagerBd manager) {
 		
 		this.manager = manager;
-		
-		table = new JTable();
-		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-		table.setFillsViewportHeight(true);
-		table.setEnabled(false);
-		table.setRowSelectionAllowed(false);
-		JScrollPane sp = new JScrollPane(table);
-		sp.setBounds(-2, 0, 520, 413);
-		sp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		modelo = new DefaultTableModel();
 
 		modelo.addColumn("NOMBRE");
@@ -42,13 +35,30 @@ public class VisualizacionCarrerasPanel extends JPanel {
 		modelo.addColumn("PRECIO");
 		modelo.addColumn("FECHA");
 		modelo.addColumn("LUGAR");
-
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[]{460, 0};
+		gridBagLayout.rowHeights = new int[]{413, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		setLayout(gridBagLayout);
 		
-		setLayout(null);
+		table = new JTable();
+		table.setColumnSelectionAllowed(true);
+		table.setCellSelectionEnabled(true);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+		table.setFillsViewportHeight(true);
+		table.setEnabled(false);
+		table.setRowSelectionAllowed(false);
+		JScrollPane sp = new JScrollPane(table);
+		sp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		table.setModel(modelo);
-
-		add(sp);
-		table.setAutoCreateRowSorter(true);
+		
+				GridBagConstraints gbc_sp = new GridBagConstraints();
+				gbc_sp.fill = GridBagConstraints.BOTH;
+				gbc_sp.gridx = 0;
+				gbc_sp.gridy = 0;
+				add(sp, gbc_sp);
+				table.setAutoCreateRowSorter(true);
 		
 		rellenarTabla();
 	}

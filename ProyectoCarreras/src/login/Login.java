@@ -10,7 +10,6 @@ import clases.UsuarioEstandar;
 import clases.UsuarioOrganizador;
 import utilidades.Utilidades;
 import vista.ventanas.AdminView;
-import vista.ventanas.NormalView;
 import vista.ventanas.OrgView;
 
 public class Login {
@@ -29,10 +28,10 @@ public class Login {
 		try {
 			boolean resLogin = dbm.loginAdmin(uAdmin);
 			if (resLogin == true) {
-				util.createInfobox("Logeado!", "Login realizado con existo");
+				util.createInfobox("Logeado!", "Login realizado con exito.");
 				return true;
 			} else {
-				util.createInfobox("Datos incorrectos", "No logeado");
+				util.createInfobox("Datos incorrectos.", "No logeado.");
 				return false;
 			}
 
@@ -103,7 +102,7 @@ public class Login {
 				// admin login
 				if (comboTipoUsuario.getSelectedItem().toString() == "Admin") {
 					if (loginAdmin(txtEmail, txtPassword)) {
-						AdminView admin = new AdminView();
+						AdminView admin = new AdminView(dbm);
 						admin.setVisible(true);
 						admin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					}
