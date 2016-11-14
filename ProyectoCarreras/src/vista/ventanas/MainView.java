@@ -8,15 +8,17 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import bbdd.ManagerBd;
 import login.Login;
+import utilidades.ViewUtil;
 import vista.paneles.LoginPanel;
 import vista.paneles.RegistroPanel;
 import java.awt.GridBagLayout;
 
-public class MainView extends JFrame implements ActionListener {
+public class MainView extends JFrame implements ActionListener, ViewUtil {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -62,7 +64,6 @@ public class MainView extends JFrame implements ActionListener {
 		while(true){
 			
 			db = JOptionPane.showInputDialog("Introduce la base de datos que desees usar: (mysql o hibernate)");
-			// TODO si mete uno erroneo
 			
 			if(db.equalsIgnoreCase(OPTION_MYSQL) || db.equalsIgnoreCase(OPTION_HIBERNATE)) {
 				ma = new ManagerBd();
@@ -85,66 +86,56 @@ public class MainView extends JFrame implements ActionListener {
 		getContentPane().add(panelLogin, BorderLayout.CENTER);
 		pack();
 		
-		btnAccederLogin.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				try{
-					loginSystem.validacionLogin(comboTipoUsuarioLogin, txtEmail, txtPassword);
-				}catch(Exception ex){
-					
-				}
-			}
-		});
 		
-		btnRegistrarseLogin.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				getContentPane().removeAll();
-				getContentPane().repaint();
-				getContentPane().revalidate();
-				
-				getContentPane().add(panelRegistro);
-				pack();
-				getContentPane().repaint();
-				getContentPane().revalidate();
-				
-			}
-		});
+		btnAccederLogin.addActionListener(this);
 		
+		btnRegistrarseLogin.addActionListener(this);
 		
-		btnCancelRegistro.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				getContentPane().removeAll();
-				getContentPane().repaint();
-				getContentPane().revalidate();
-				
-				getContentPane().add(panelLogin);
-				pack();
-				getContentPane().repaint();
-				getContentPane().revalidate();
-			}
-		});
+		btnCancelRegistro.addActionListener(this);
 		
-		btnOkRegistro.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				// TODO validar datos e introducirlos en la bbdd
-				
-			}
-		});
+		btnOkRegistro.addActionListener(this);
+		
 		
 	}
+	
+	
 
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		
+		if(e.getSource() == btnAccederLogin){
+			try{
+				loginSystem.validacionLogin(comboTipoUsuarioLogin, txtEmail, txtPassword);
+			}catch(Exception ex){
+				
+			}
+		}else if(e.getSource() == btnRegistrarseLogin){
+			
+			changePanel(panelRegistro);
+			
+		}else if(e.getSource() == btnCancelRegistro){
+			
+			changePanel(panelLogin);
+			
+		}else if(e.getSource() == btnOkRegistro){
+			
+			
+		}
+		
+	}
+
+	@Override
+	public void changePanel(final JPanel panel) {
+		
+		getContentPane().removeAll();
+		getContentPane().repaint();
+		getContentPane().revalidate();
+		
+		getContentPane().add(panel);
+		pack();
+		getContentPane().repaint();
+		getContentPane().revalidate();
 		
 	}
 }

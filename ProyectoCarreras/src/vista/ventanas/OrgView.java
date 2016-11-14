@@ -8,23 +8,35 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 
 import bbdd.ManagerBd;
+import clases.UsuarioOrganizador;
+import utilidades.ViewUtil;
 import vista.paneles.VisualizacionCarrerasPanel;
 import vista.paneles.org.BorradoCarreraOrg;
 import vista.paneles.org.ModificacionCarreraOrg;
 
-public class OrgView extends JFrame {
+public class OrgView extends JFrame implements ActionListener, ViewUtil{
 	
+	// manager
 	private ManagerBd manager;
 	
+	// referencia al org logeado
+	private UsuarioOrganizador orgLogeado;
+	
+	// JMenuItems para cambiar paneles
+	private JMenuItem mnVisualizacionCarreras, mnModificacionCarreras, mnBorrarCarrera;
+	
+	// Paneles
 	private VisualizacionCarrerasPanel panelVisualizacion;
 	private BorradoCarreraOrg panelBorradoCarreraOrg = new BorradoCarreraOrg();
 	private ModificacionCarreraOrg panelModificacionCarreraOrg = new ModificacionCarreraOrg();
 
 	private static final long serialVersionUID = 1L;
 
-	public OrgView(ManagerBd manager) {
+	public OrgView(ManagerBd manager, UsuarioOrganizador orgLogeado) {
+		this.orgLogeado = orgLogeado;
 		setResizable(false);
 		this.manager = manager;
 		this.panelVisualizacion = new VisualizacionCarrerasPanel(manager);
@@ -45,62 +57,50 @@ public class OrgView extends JFrame {
 		JMenu mntCarreras = new JMenu("Gestion Carreras");
 		menuBar.add(mntCarreras);
 		
-		JMenuItem mnVisualizacionCarreras = new JMenuItem("Visualizar Carreras");
+		mnVisualizacionCarreras = new JMenuItem("Visualizar Carreras");
 		mntCarreras.add(mnVisualizacionCarreras);
 		
-		JMenuItem mnModificacionCarreras = new JMenuItem("Modificar Carrera");
+		mnModificacionCarreras = new JMenuItem("Modificar Carrera");
 		mntCarreras.add(mnModificacionCarreras);
 		
-		JMenuItem mnBorrarCarrera = new JMenuItem("Borrar Carrera");
+		mnBorrarCarrera = new JMenuItem("Borrar Carrera");
 		mntCarreras.add(mnBorrarCarrera);
 		
-		mnVisualizacionCarreras.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				getContentPane().removeAll();
-				getContentPane().repaint();
-				getContentPane().revalidate();
-				
-				getContentPane().add(panelVisualizacion);
-				pack();
-				getContentPane().repaint();
-				getContentPane().revalidate();
-				
-			}
-		});
+		mnVisualizacionCarreras.addActionListener(this);
+		mnModificacionCarreras.addActionListener(this);
+		mnBorrarCarrera.addActionListener(this);
 		
-		mnModificacionCarreras.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				getContentPane().removeAll();
-				getContentPane().repaint();
-				getContentPane().revalidate();
-				
-				getContentPane().add(panelModificacionCarreraOrg);
-				pack();
-				getContentPane().repaint();
-				getContentPane().revalidate();
-				
-			}
-		});
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == mnVisualizacionCarreras){
 		
-		mnBorrarCarrera.addActionListener(new ActionListener() {
+			changePanel(panelVisualizacion);
 			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				getContentPane().removeAll();
-				getContentPane().repaint();
-				getContentPane().revalidate();
-				
-				getContentPane().add(panelBorradoCarreraOrg);
-				pack();
-				getContentPane().repaint();
-				getContentPane().revalidate();
-				
-			}
-		});
+		}else if(e.getSource() == mnModificacionCarreras){
+			
+			changePanel(panelModificacionCarreraOrg);
+			
+		}else if(e.getSource() == mnBorrarCarrera){
+			
+			changePanel(panelBorradoCarreraOrg);
+			
+		}
+		
+	}
+
+	@Override
+	public void changePanel(final JPanel panel) {
+		
+		getContentPane().removeAll();
+		getContentPane().repaint();
+		getContentPane().revalidate();
+		
+		getContentPane().add(panel);
+		pack();
+		getContentPane().repaint();
+		getContentPane().revalidate();
 		
 	}
 	

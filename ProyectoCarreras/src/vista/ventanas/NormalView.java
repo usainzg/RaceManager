@@ -1,5 +1,7 @@
 package vista.ventanas;
 
+import java.awt.BorderLayout;
+
 import javax.swing.JFrame;
 
 import bbdd.ManagerBd;
@@ -22,7 +24,8 @@ public class NormalView extends JFrame {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 519, 431);
-		getContentPane().add(panel);
+		getContentPane().add(panel, BorderLayout.CENTER);
+		pack();
 	}
 
 }

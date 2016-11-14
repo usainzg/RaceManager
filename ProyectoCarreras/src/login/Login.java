@@ -10,12 +10,14 @@ import clases.UsuarioEstandar;
 import clases.UsuarioOrganizador;
 import utilidades.Utilidades;
 import vista.ventanas.AdminView;
+import vista.ventanas.NormalView;
 import vista.ventanas.OrgView;
 
 public class Login {
 	
 	private ManagerBd dbm = null;
 	private Utilidades util = new Utilidades();
+	private UsuarioOrganizador orgLogeado;
 
 	public Login(ManagerBd dbm) {
 		this.dbm = dbm;
@@ -67,6 +69,7 @@ public class Login {
 			boolean resLogin = dbm.loginOrganizador(uOrg);
 			if (resLogin == true) {
 				util.createInfobox("Logeado!", "Login realizado con existo");
+				orgLogeado = new UsuarioOrganizador("", "", "", email.getText(), pass.getText(), 0, "", 0);
 				return true;
 			} else {
 				util.createInfobox("Datos incorrectos", "No logeado");
@@ -110,15 +113,15 @@ public class Login {
 					// usuario normal login
 				} else if (comboTipoUsuario.getSelectedItem().toString() == "Normal") {
 					if (loginNormal(txtEmail, txtPassword)) {
-						/*NormalView normal = new NormalView();
+						NormalView normal = new NormalView(dbm);
 						normal.setVisible(true);
-						normal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);*/
+						normal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					}
 
 					// organizador login
 				} else {
 					if (loginOrganizador(txtEmail, txtPassword)) {
-						OrgView org = new OrgView(dbm);
+						OrgView org = new OrgView(dbm, orgLogeado);
 						org.setVisible(true);
 						org.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					}
