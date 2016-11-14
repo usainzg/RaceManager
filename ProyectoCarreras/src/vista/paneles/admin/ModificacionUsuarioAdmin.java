@@ -21,6 +21,44 @@ public class ModificacionUsuarioAdmin extends JPanel {
 	private JTextField txtTelf;
 	private JTextField txtClub;
 	private JComboBox<String> comboTipoUsuarioModificar;
+	private JComboBox<Object> comboEmailAModificar;
+	private JButton btnModificar;
+	
+	public JTextField getTxtNombre() {
+		return txtNombre;
+	}
+
+	public JTextField getTxtApellidos() {
+		return txtApellidos;
+	}
+
+	public JTextField getTxtDir() {
+		return txtDir;
+	}
+
+	public JTextField getTxtPass() {
+		return txtPass;
+	}
+
+	public JTextField getTxtTelf() {
+		return txtTelf;
+	}
+
+	public JTextField getTxtClub() {
+		return txtClub;
+	}
+
+	public JComboBox<String> getComboTipoUsuarioModificar() {
+		return comboTipoUsuarioModificar;
+	}
+
+	public JComboBox<Object> getComboEmailAModificar() {
+		return comboEmailAModificar;
+	}
+
+	public JButton getBtnModificar() {
+		return btnModificar;
+	}
 
 	/**
 	 * Create the panel.
@@ -31,7 +69,7 @@ public class ModificacionUsuarioAdmin extends JPanel {
 
 	private void setLayoutView() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[] { 57, 47, 18, 136, 10, 12, 11, 79, 34, 0 };
+		gridBagLayout.columnWidths = new int[] { 57, 47, 18, 136, 10, 12, 11, 79, 43, 0 };
 		gridBagLayout.rowHeights = new int[] { 34, 20, 20, 30, 23, 23, 0, 0, 0, 0, 0, 0, 0, 33, 0 };
 		gridBagLayout.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
@@ -51,6 +89,9 @@ public class ModificacionUsuarioAdmin extends JPanel {
 
 		comboTipoUsuarioModificar = new JComboBox<String>();
 		comboTipoUsuarioModificar.setBounds(87, 77, 142, 20);
+		comboTipoUsuarioModificar.addItem("Normal");
+		comboTipoUsuarioModificar.addItem("Organizador");
+		comboTipoUsuarioModificar.setSelectedItem("Normal");
 		GridBagConstraints gbc_comboTipoUsuarioModificar = new GridBagConstraints();
 		gbc_comboTipoUsuarioModificar.fill = GridBagConstraints.HORIZONTAL;
 		gbc_comboTipoUsuarioModificar.anchor = GridBagConstraints.NORTHWEST;
@@ -70,7 +111,7 @@ public class ModificacionUsuarioAdmin extends JPanel {
 		gbc_lblEmailUsuarioA.gridy = 1;
 		add(lblEmailUsuarioA, gbc_lblEmailUsuarioA);
 
-		JComboBox<Object> comboEmailAModificar = new JComboBox<>();
+		comboEmailAModificar = new JComboBox<>();
 		comboEmailAModificar.setBounds(310, 77, 214, 20);
 		GridBagConstraints gbc_comboEmailAModificar = new GridBagConstraints();
 		gbc_comboEmailAModificar.fill = GridBagConstraints.HORIZONTAL;
@@ -158,9 +199,9 @@ public class ModificacionUsuarioAdmin extends JPanel {
 		txtDir = new JTextField();
 		txtDir.setBounds(404, 148, 142, 20);
 		GridBagConstraints gbc_txtDir = new GridBagConstraints();
+		gbc_txtDir.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtDir.anchor = GridBagConstraints.NORTHWEST;
 		gbc_txtDir.insets = new Insets(0, 0, 5, 5);
-		gbc_txtDir.gridwidth = 4;
 		gbc_txtDir.gridx = 3;
 		gbc_txtDir.gridy = 7;
 		add(txtDir, gbc_txtDir);
@@ -204,7 +245,7 @@ public class ModificacionUsuarioAdmin extends JPanel {
 		add(txtClub, gbc_txtClub);
 		txtClub.setColumns(10);
 
-		JButton btnModificar = new JButton("Modificar");
+		btnModificar = new JButton("Modificar");
 
 		btnModificar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnModificar.setBounds(162, 294, 89, 23);
@@ -224,14 +265,8 @@ public class ModificacionUsuarioAdmin extends JPanel {
 		gbc_btnLimpiar.gridy = 12;
 		add(btnLimpiar, gbc_btnLimpiar);
 
-		initUserTypesCombo();
+		
 
-	}
-
-	private void initUserTypesCombo() {
-		comboTipoUsuarioModificar.addItem("Normal");
-		comboTipoUsuarioModificar.addItem("Organizador");
-		comboTipoUsuarioModificar.setSelectedItem("Normal");
 	}
 
 }

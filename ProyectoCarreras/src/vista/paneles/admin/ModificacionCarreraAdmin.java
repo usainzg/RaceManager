@@ -1,35 +1,66 @@
 package vista.paneles.admin;
 
 import java.awt.Font;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
+
+import utilidades.Utilidades;
 
 public class ModificacionCarreraAdmin extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	private Utilidades util = new Utilidades();
+	
 	private JTextField txtDistancia;
 	private JTextField txtDesnivel;
 	private JTextField txtPrecio;
 	private JTextField txtLugar;
 	private JTextField txtFecha;
+	private JComboBox<Object> comboBox;
+	private JButton btnModificar;
 
-	/**
-	 * Create the panel.
-	 */
-	public ModificacionCarreraAdmin() {
-		setLayout();
+	public JTextField getTxtDistancia() {
+		return txtDistancia;
 	}
 
-	private void setLayout() {
+	public JTextField getTxtDesnivel() {
+		return txtDesnivel;
+	}
+
+	public JTextField getTxtPrecio() {
+		return txtPrecio;
+	}
+
+	public JTextField getTxtLugar() {
+		return txtLugar;
+	}
+
+	public JTextField getTxtFecha() {
+		return txtFecha;
+	}
+
+	public JComboBox<Object> getComboBox() {
+		return comboBox;
+	}
+
+	public JButton getBtnModificar() {
+		return btnModificar;
+	}
+
+	public ModificacionCarreraAdmin() {
+		setLayoutView();
+	}
+
+	private void setLayoutView() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 59, 135, 146, 70, 0 };
 		gridBagLayout.rowHeights = new int[] { 20, 20, 23, 0, 0, 0, 0, 35, 0, 49, 0 };
@@ -57,7 +88,7 @@ public class ModificacionCarreraAdmin extends JPanel {
 		gbc_lblNuevosDatos.gridy = 2;
 		add(lblNuevosDatos, gbc_lblNuevosDatos);
 
-		JComboBox<Object> comboBox = new JComboBox<>();
+		comboBox = new JComboBox<>();
 		comboBox.setBounds(188, 15, 203, 27);
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
@@ -136,6 +167,7 @@ public class ModificacionCarreraAdmin extends JPanel {
 		txtFecha.setText("Ej. 1999-09-09");
 		txtFecha.setBounds(149, 256, 130, 26);
 		GridBagConstraints gbc_txtFecha = new GridBagConstraints();
+		gbc_txtFecha.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtFecha.anchor = GridBagConstraints.WEST;
 		gbc_txtFecha.insets = new Insets(0, 0, 5, 5);
 		gbc_txtFecha.gridx = 2;
@@ -164,8 +196,22 @@ public class ModificacionCarreraAdmin extends JPanel {
 		add(txtLugar, gbc_txtLugar);
 		txtLugar.setColumns(10);
 
-		JButton btnModificar = new JButton("Modificar");
+		JButton btnLimpiar = new JButton("Limpiar");
+		GridBagConstraints gbc_btnLimpiar = new GridBagConstraints();
+		gbc_btnLimpiar.insets = new Insets(0, 0, 5, 5);
+		gbc_btnLimpiar.gridx = 1;
+		gbc_btnLimpiar.gridy = 8;
+		add(btnLimpiar, gbc_btnLimpiar);
+		
+		btnLimpiar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				util.resetJTextField(txtDesnivel, txtDistancia, txtFecha, txtLugar, txtPrecio);	
+			}
+		});
 
+		btnModificar = new JButton("Modificar");
 		btnModificar.setBounds(333, 120, 117, 29);
 		GridBagConstraints gbc_btnModificar = new GridBagConstraints();
 		gbc_btnModificar.fill = GridBagConstraints.HORIZONTAL;
@@ -174,28 +220,6 @@ public class ModificacionCarreraAdmin extends JPanel {
 		gbc_btnModificar.gridy = 8;
 		add(btnModificar, gbc_btnModificar);
 
-		addFocusListenerTxtFecha();
-	}
-
-	private void addFocusListenerTxtFecha() {
-
-		txtFecha.addFocusListener(new FocusListener() {
-
-			@Override
-			public void focusGained(FocusEvent e) {
-				// util.resetJTextField(txtEj);
-
-			}
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				/*
-				 * if (!util.isValidDate(txtEj)) { util.createInfobox(
-				 * "Vuelva a introducir la fecha en el siguiente formato: 0000-00-00 / años-meses-dias"
-				 * , "Formato fecha erroneo"); }
-				 */
-			}
-		});
 	}
 
 }
