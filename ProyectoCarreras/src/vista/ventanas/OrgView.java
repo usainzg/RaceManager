@@ -4,11 +4,14 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import bbdd.ManagerBd;
 import clases.UsuarioOrganizador;
@@ -33,6 +36,21 @@ public class OrgView extends JFrame implements ActionListener, ViewUtil{
 	private BorradoCarreraOrg panelBorradoCarreraOrg = new BorradoCarreraOrg();
 	private ModificacionCarreraOrg panelModificacionCarreraOrg = new ModificacionCarreraOrg();
 
+	
+	// Referencias panel Borrado
+	private JButton btnBorrarPanelBorrado = panelBorradoCarreraOrg.getBtnBorrar();
+	private JComboBox<Object> comboPanelBorrado = panelBorradoCarreraOrg.getComboCarreraBorrarOrg();
+	
+	// Referencias panel Modificacion
+	private JTextField txtDistancia = panelModificacionCarreraOrg.getTxtDistancia();
+	private JTextField txtDesnivel = panelModificacionCarreraOrg.getTxtDesnivel();
+	private JTextField txtPrecio = panelModificacionCarreraOrg.getTxtPrecio();
+	private JTextField txtFecha = panelModificacionCarreraOrg.getTxtFecha();
+	private JTextField txtLugar = panelModificacionCarreraOrg.getTxtLugar();
+	private JButton btnModificar = panelModificacionCarreraOrg.getBtnModificar();
+	private JButton btnLimpiar = panelModificacionCarreraOrg.getBtnLimpiar();
+	private JComboBox<Object> comboCarreraModificar = panelModificacionCarreraOrg.getComboCarreraModificar();
+	
 	private static final long serialVersionUID = 1L;
 
 	public OrgView(ManagerBd manager, UsuarioOrganizador orgLogeado) {

@@ -20,6 +20,42 @@ public class ModificacionCarreraOrg extends JPanel {
 	private JTextField txtPrecio;
 	private JTextField txtFecha;
 	private JTextField txtLugar;
+	private JButton btnModificar, btnLimpiar;
+	private JComboBox<Object> comboCarreraModificar;
+
+	
+	public JTextField getTxtDistancia() {
+		return txtDistancia;
+	}
+
+	public JTextField getTxtDesnivel() {
+		return txtDesnivel;
+	}
+
+	public JTextField getTxtPrecio() {
+		return txtPrecio;
+	}
+
+	public JTextField getTxtFecha() {
+		return txtFecha;
+	}
+
+	public JTextField getTxtLugar() {
+		return txtLugar;
+	}
+
+	public JButton getBtnModificar() {
+		return btnModificar;
+	}
+
+	public JButton getBtnLimpiar() {
+		return btnLimpiar;
+	}
+
+	public JComboBox<Object> getComboCarreraModificar() {
+		return comboCarreraModificar;
+	}
+
 
 	public ModificacionCarreraOrg() {
 		setBounds(100, 100, 582, 351);
@@ -41,7 +77,7 @@ public class ModificacionCarreraOrg extends JPanel {
 		gbc_lblCarreraAModificar.gridy = 1;
 		add(lblCarreraAModificar, gbc_lblCarreraAModificar);
 
-		JComboBox<Object> comboCarreraModificar = new JComboBox<>();
+		comboCarreraModificar = new JComboBox<>();
 		comboCarreraModificar.setBounds(188, 15, 203, 27);
 		GridBagConstraints gbc_comboCarreraModificar = new GridBagConstraints();
 		gbc_comboCarreraModificar.fill = GridBagConstraints.HORIZONTAL;
@@ -156,7 +192,7 @@ public class ModificacionCarreraOrg extends JPanel {
 		add(txtLugar, gbc_txtLugar);
 		txtLugar.setColumns(10);
 
-		JButton btnModificar = new JButton("Modificar");
+		btnModificar = new JButton("Modificar");
 
 		btnModificar.setBounds(333, 120, 117, 29);
 		GridBagConstraints gbc_btnModificar = new GridBagConstraints();
@@ -165,7 +201,7 @@ public class ModificacionCarreraOrg extends JPanel {
 		gbc_btnModificar.gridy = 9;
 		add(btnModificar, gbc_btnModificar);
 
-		JButton btnLimpiar = new JButton("Limpiar");
+		btnLimpiar = new JButton("Limpiar");
 
 		btnLimpiar.setBounds(333, 163, 117, 29);
 		GridBagConstraints gbc_btnLimpiar = new GridBagConstraints();

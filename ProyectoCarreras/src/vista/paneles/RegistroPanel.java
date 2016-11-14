@@ -27,6 +27,9 @@ public class RegistroPanel extends JPanel {
 	private JTextField registroDireccion;
 	private JTextField registroTelf;
 	private JTextField registroClub;
+	private JButton cancelBtn, okBtn, btnLimpiar;
+	private JComboBox<String> comboTipoUsuario;
+	
 	private JLabel lblClub;
 	private JLabel lblApellidos;
 	private JLabel lblEmail;
@@ -34,8 +37,6 @@ public class RegistroPanel extends JPanel {
 	private JLabel lblContrasena;
 	private JLabel lblDireccion;
 	private JLabel lblNewLabel;
-	private JButton cancelBtn, okBtn, btnLimpiar;
-	private JComboBox<String> comboTipoUsuario;
 
 	private Utilidades util = new Utilidades();
 	
