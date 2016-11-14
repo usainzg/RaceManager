@@ -3,6 +3,7 @@ package vista.ventanas;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -14,7 +15,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import bbdd.ManagerBd;
+import clases.Carrera;
 import clases.UsuarioOrganizador;
+import utilidades.Utilidades;
 import utilidades.ViewUtil;
 import vista.paneles.VisualizacionCarrerasPanel;
 import vista.paneles.org.BorradoCarreraOrg;
@@ -24,8 +27,9 @@ public class OrgView extends JFrame implements ActionListener, ViewUtil{
 	
 	// manager
 	private ManagerBd manager;
+	private Utilidades util = new Utilidades();
 	
-	// referencia al org logeado
+	// Referencia al org logeado
 	private UsuarioOrganizador orgLogeado;
 	
 	// JMenuItems para cambiar paneles
@@ -84,10 +88,15 @@ public class OrgView extends JFrame implements ActionListener, ViewUtil{
 		mnBorrarCarrera = new JMenuItem("Borrar Carrera");
 		mntCarreras.add(mnBorrarCarrera);
 		
+		
 		mnVisualizacionCarreras.addActionListener(this);
 		mnModificacionCarreras.addActionListener(this);
 		mnBorrarCarrera.addActionListener(this);
 		
+		btnBorrarPanelBorrado.addActionListener(this);
+		
+		btnModificar.addActionListener(this);
+		btnLimpiar.addActionListener(this);
 	}
 
 	@Override
@@ -103,7 +112,35 @@ public class OrgView extends JFrame implements ActionListener, ViewUtil{
 		}else if(e.getSource() == mnBorrarCarrera){
 			
 			changePanel(panelBorradoCarreraOrg);
+			initComboBorrado();
 			
+		}
+		
+		
+		if(e.getSource() == btnBorrarPanelBorrado){
+			
+			initComboBorrado();
+		}
+		
+		
+		if(e.getSource() == btnModificar){
+			
+		}else if(e.getSource() == btnLimpiar){
+			util.resetJTextField(txtDesnivel, txtDistancia, txtFecha, txtLugar, txtPrecio);
+		}
+	}
+	
+	private void initComboBorrado(){
+		
+		System.out.println(orgLogeado.getNbUsuario());
+		
+		try {
+			ArrayList<Carrera> carreras = manager.consultarCarrerasOrg(orgLogeado);
+			System.out.println(carreras.size());
+			for(Carrera c: carreras){
+			}
+		} catch (Exception e) {
+			util.createErrorbox("Error al recoger datos de la base de datos", "Error conexion base de datos"); 
 		}
 		
 	}

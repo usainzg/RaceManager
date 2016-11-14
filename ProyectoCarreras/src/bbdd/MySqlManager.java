@@ -501,4 +501,39 @@ public class MySqlManager extends MainDBManager{
 		}
 	}
 
+	@Override
+	public ArrayList<Carrera> consultarCarrerasOrg(UsuarioOrganizador org) throws Exception {
+		Connection cn = conectarBD();
+		if (cn == null) {
+			util.createErrorbox("No se ha podido establecer conexion con la base de datos.",
+					"Error al conectar base de datos.");
+		}
+		try {
+			String sql = "SELECT c.* FROM carrera c "
+					+ "WHERE organizador=" + org.getId();
+			Statement sentencia = cn.createStatement();
+			ResultSet rs = sentencia.executeQuery(sql);
+			ArrayList<Carrera> arr = new ArrayList<Carrera>();
+			while (rs.next()) {
+				Carrera c = new Carrera();
+				c.setNbCarrera(rs.getString("nombre"));
+				c.setOrgCarrera(org);
+				c.setDistanciaCarrera(rs.getInt("distancia"));
+				c.setDesnivelCarrera(rs.getInt("desnivel"));
+				c.setPrecioCarrera(rs.getInt("precio"));
+				c.setLugarCarrera(rs.getString("lugar"));
+				c.setFechaCarrera(rs.getDate("fecha").toString());
+				arr.add(c);
+			}
+			rs.close();
+			return arr;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			if (cn != null)
+				cn.close();
+		}
+	}
+
 }

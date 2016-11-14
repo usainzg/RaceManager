@@ -123,5 +123,10 @@ public class ManagerBd implements InterfazBD {
 		return dbm.updateCarreraOrg(cViejo, c);
 	}
 
+	@Override
+	public ArrayList<Carrera> consultarCarrerasOrg(UsuarioOrganizador org) throws Exception {
+		return dbm.consultarCarrerasOrg(org);
+	}
+
 
 }

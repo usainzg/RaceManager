@@ -17,7 +17,8 @@ public abstract interface InterfazBD {
 	abstract ArrayList<Carrera> consultarCarreras() throws Exception;
 	abstract ArrayList<UsuarioEstandar> consultarUsuariosEstandar() throws Exception;
 	abstract ArrayList<UsuarioOrganizador> consultarUsuariosOrganizador() throws Exception;
-
+	abstract ArrayList<Carrera> consultarCarrerasOrg(UsuarioOrganizador org) throws Exception;
+	
 	// selects para vista
 	abstract ArrayList<UsuarioEstandar> consultarEmailNormal() throws Exception;
 	abstract ArrayList<UsuarioOrganizador> consultarEmailOrg() throws Exception;
