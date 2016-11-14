@@ -22,7 +22,7 @@ public class Login {
 	}
 
 	// ADMIN LOGIN
-	public boolean loginAdmin(JTextField email, JTextField pass) {
+	public boolean loginAdmin(final JTextField email, final JTextField pass) {
 
 		UsuarioAdmin uAdmin = new UsuarioAdmin("", "", "", email.getText(), pass.getText(), 0, "");
 		try {
@@ -42,7 +42,7 @@ public class Login {
 	}
 
 	// NORMAL LOGIN
-	public boolean loginNormal(JTextField email, JTextField pass) {
+	public boolean loginNormal(final JTextField email, final JTextField pass) {
 		UsuarioEstandar uStd = new UsuarioEstandar("", "", "", email.getText(), pass.getText(), 0, "");
 		try {
 			boolean resLogin = dbm.loginNormal(uStd);
@@ -61,7 +61,7 @@ public class Login {
 	}
 
 	// ORGANIZADOR LOGIN
-	public boolean loginOrganizador(JTextField email, JTextField pass) {
+	public boolean loginOrganizador(final JTextField email, final JTextField pass) {
 		UsuarioOrganizador uOrg = new UsuarioOrganizador("", "", "", email.getText(), pass.getText(), 0, "", 0);
 		try {
 			boolean resLogin = dbm.loginOrganizador(uOrg);
@@ -81,7 +81,7 @@ public class Login {
 	}
 
 	// VALIDACION DE LOGIN
-	public void validacionLogin(JComboBox<String> comboTipoUsuario, JTextField txtEmail, JTextField txtPassword)
+	public void validacionLogin(final JComboBox<String> comboTipoUsuario, final JTextField txtEmail, final JTextField txtPassword)
 			throws Exception {
 
 		if (!txtEmail.getText().equals("") && !txtPassword.getText().equals("")) {

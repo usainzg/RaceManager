@@ -16,9 +16,12 @@ import vista.paneles.LoginPanel;
 import vista.paneles.RegistroPanel;
 import java.awt.GridBagLayout;
 
-public class MainView extends JFrame {
+public class MainView extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
+	
+	private final String OPTION_MYSQL = "mysql";
+	private final String OPTION_HIBERNATE = "hibernate";
 	
 	
 	private Login loginSystem = null;
@@ -55,10 +58,20 @@ public class MainView extends JFrame {
 		
 		getContentPane().setLayout(new BorderLayout());
 		
-		String db = JOptionPane.showInputDialog("Introduce la base de datos que desees usar: (mysql o hibernate)");
-		// TODO si mete uno erroneo
-		ma = new ManagerBd();
-		ma.setDb(db);
+		String db = "";
+		while(true){
+			
+			db = JOptionPane.showInputDialog("Introduce la base de datos que desees usar: (mysql o hibernate)");
+			// TODO si mete uno erroneo
+			
+			if(db.equalsIgnoreCase(OPTION_MYSQL) || db.equalsIgnoreCase(OPTION_HIBERNATE)) {
+				ma = new ManagerBd();
+				ma.setDb(db);
+				break;
+			}
+			
+		}
+		
 		
 		loginSystem = new Login(ma);
 		
@@ -125,6 +138,13 @@ public class MainView extends JFrame {
 				
 			}
 		});
+		
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 }

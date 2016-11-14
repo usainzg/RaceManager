@@ -29,7 +29,7 @@ public class AdminView extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 
-	public AdminView(ManagerBd manager) {
+	public AdminView(final ManagerBd manager) {
 		setResizable(false);
 		this.manager = manager;
 		this.panelVisualizacion = new VisualizacionCarrerasPanel(manager);
