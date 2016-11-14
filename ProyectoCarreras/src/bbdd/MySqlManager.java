@@ -13,8 +13,8 @@ import clases.UsuarioEstandar;
 import clases.UsuarioOrganizador;
 import utilidades.Utilidades;
 
-public class MySqlManager extends MainDBManager{
-	
+public class MySqlManager extends MainDBManager {
+
 	private final String MYSQL_DRIVER = "com.mysql.jdbc.Driver";
 	private final String URL_DB = "jdbc:mysql://localhost/proyectobd";
 	private final Utilidades util = new Utilidades();
@@ -509,8 +509,7 @@ public class MySqlManager extends MainDBManager{
 					"Error al conectar base de datos.");
 		}
 		try {
-			String sql = "SELECT c.* FROM carrera c "
-					+ "WHERE organizador=" + org.getId();
+			String sql = "SELECT c.* FROM carrera c " + "WHERE organizador=" + org.getId();
 			Statement sentencia = cn.createStatement();
 			ResultSet rs = sentencia.executeQuery(sql);
 			ArrayList<Carrera> arr = new ArrayList<Carrera>();

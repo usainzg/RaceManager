@@ -1,6 +1,7 @@
 package vista.ventanas;
 
 import java.awt.BorderLayout;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,7 +20,6 @@ import utilidades.Utilidades;
 import utilidades.ViewUtil;
 import vista.paneles.LoginPanel;
 import vista.paneles.RegistroPanel;
-import java.awt.GridBagLayout;
 
 public class MainView extends JFrame implements ActionListener, ViewUtil {
 
@@ -142,15 +142,15 @@ public class MainView extends JFrame implements ActionListener, ViewUtil {
 
 	private void registroUsuario() {
 		boolean salidaForm = validarFormulario();
-		
+
 		if (salidaForm == true) {
 
 			// NORMAL USER REGISTER
 			if (reComboUsuario.getSelectedItem().toString().equals("Normal")) {
-				
+
 				UsuarioEstandar uToInsert = new UsuarioEstandar(reNombre.getText(), reApellidos.getText(),
-						reDir.getText(), reEmail.getText(), rePass.getText(),
-						Integer.parseInt(reTelf.getText()), reClub.getText());
+						reDir.getText(), reEmail.getText(), rePass.getText(), Integer.parseInt(reTelf.getText()),
+						reClub.getText());
 				try {
 
 					int filas = ma.altaUsuarioNormal(uToInsert);
@@ -164,10 +164,10 @@ public class MainView extends JFrame implements ActionListener, ViewUtil {
 
 				// ORGANIZACION USER REGISTER
 			} else {
-				
+
 				UsuarioOrganizador uOrg = new UsuarioOrganizador(reNombre.getText(), reApellidos.getText(),
-						reDir.getText(), reEmail.getText(), rePass.getText(),
-						Integer.parseInt(reTelf.getText()), reClub.getText());
+						reDir.getText(), reEmail.getText(), rePass.getText(), Integer.parseInt(reTelf.getText()),
+						reClub.getText());
 				try {
 
 					int filas = ma.altaOrganizador(uOrg);
@@ -183,30 +183,34 @@ public class MainView extends JFrame implements ActionListener, ViewUtil {
 
 	}
 
-	private boolean validarFormulario(){
- 		if(!reNombre.getText().equals("") && !reApellidos.getText().equals("") && !reEmail.getText().equals("") && !rePass.getText().equals("") && 
- 				!reDir.getText().equals("") && !reTelf.getText().equals("") && !reClub.getText().equals("")){
+	private boolean validarFormulario() {
+		if (!reNombre.getText().equals("") && !reApellidos.getText().equals("") && !reEmail.getText().equals("")
+				&& !rePass.getText().equals("") && !reDir.getText().equals("") && !reTelf.getText().equals("")
+				&& !reClub.getText().equals("")) {
 
- 			if(!util.isValidPhone(reTelf.getText())){
- 				util.createErrorbox("El campo telefono debe ser numerico y tener un maximo de 9 digitos.", "Formato telefono erroneo.");
- 				return false;
- 			}
- 			
- 			if(!util.isValidEmail(reEmail.getText())){
- 				util.createErrorbox("El email debe tener una @.", "Formato email erroneo.");
- 				return false;
- 			}
- 			
- 			if(!util.isValidPassword(rePass.getText())){
- 				util.createErrorbox("La contraseña tiene que tener 6 caracteres y debe contener mayusculas y numeros..", "Formato password erroneo.");
- 				return false;
- 			}			
- 			
- 			return true;
- 		}else {
- 			util.createErrorbox("Te faltan campos por rellenar, por favor completa todos los campos.", "Faltan campos por rellenar.");
+			if (!util.isValidPhone(reTelf.getText())) {
+				util.createErrorbox("El campo telefono debe ser numerico y tener un maximo de 9 digitos.",
+						"Formato telefono erroneo.");
+				return false;
+			}
+
+			if (!util.isValidEmail(reEmail.getText())) {
+				util.createErrorbox("El email debe tener una @.", "Formato email erroneo.");
+				return false;
+			}
+
+			if (!util.isValidPassword(rePass.getText())) {
+				util.createErrorbox("La contraseña tiene que tener 6 caracteres y debe contener mayusculas y numeros..",
+						"Formato password erroneo.");
+				return false;
+			}
+
+			return true;
+		} else {
+			util.createErrorbox("Te faltan campos por rellenar, por favor completa todos los campos.",
+					"Faltan campos por rellenar.");
 			return false;
- 		}
+		}
 	}
 
 }

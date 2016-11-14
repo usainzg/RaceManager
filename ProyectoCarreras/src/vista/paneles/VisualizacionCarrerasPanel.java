@@ -1,5 +1,7 @@
 package vista.paneles;
 
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
@@ -10,11 +12,9 @@ import javax.swing.table.DefaultTableModel;
 
 import bbdd.ManagerBd;
 import clases.Carrera;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
 
 public class VisualizacionCarrerasPanel extends JPanel {
-	
+
 	private static final long serialVersionUID = 1L;
 	private JTable table;
 	private DefaultTableModel modelo;
@@ -24,7 +24,7 @@ public class VisualizacionCarrerasPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public VisualizacionCarrerasPanel(ManagerBd manager) {
-		
+
 		this.manager = manager;
 		modelo = new DefaultTableModel();
 
@@ -36,12 +36,12 @@ public class VisualizacionCarrerasPanel extends JPanel {
 		modelo.addColumn("FECHA");
 		modelo.addColumn("LUGAR");
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{460, 0};
-		gridBagLayout.rowHeights = new int[]{413, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		gridBagLayout.columnWidths = new int[] { 460, 0 };
+		gridBagLayout.rowHeights = new int[] { 413, 0 };
+		gridBagLayout.columnWeights = new double[] { 0.0, Double.MIN_VALUE };
+		gridBagLayout.rowWeights = new double[] { 0.0, Double.MIN_VALUE };
 		setLayout(gridBagLayout);
-		
+
 		table = new JTable();
 		table.setColumnSelectionAllowed(true);
 		table.setCellSelectionEnabled(true);
@@ -52,18 +52,18 @@ public class VisualizacionCarrerasPanel extends JPanel {
 		JScrollPane sp = new JScrollPane(table);
 		sp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		table.setModel(modelo);
-		
-				GridBagConstraints gbc_sp = new GridBagConstraints();
-				gbc_sp.fill = GridBagConstraints.BOTH;
-				gbc_sp.gridx = 0;
-				gbc_sp.gridy = 0;
-				add(sp, gbc_sp);
-				table.setAutoCreateRowSorter(true);
-		
+
+		GridBagConstraints gbc_sp = new GridBagConstraints();
+		gbc_sp.fill = GridBagConstraints.BOTH;
+		gbc_sp.gridx = 0;
+		gbc_sp.gridy = 0;
+		add(sp, gbc_sp);
+		table.setAutoCreateRowSorter(true);
+
 		rellenarTabla();
 	}
-	
-	private void rellenarTabla(){
+
+	private void rellenarTabla() {
 		ArrayList<Carrera> carreras;
 		try {
 			carreras = manager.consultarCarreras();
@@ -87,4 +87,3 @@ public class VisualizacionCarrerasPanel extends JPanel {
 	}
 
 }
-

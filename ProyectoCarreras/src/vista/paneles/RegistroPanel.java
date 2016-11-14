@@ -29,7 +29,7 @@ public class RegistroPanel extends JPanel {
 	private JTextField registroClub;
 	private JButton cancelBtn, okBtn, btnLimpiar;
 	private JComboBox<String> comboTipoUsuario;
-	
+
 	private JLabel lblClub;
 	private JLabel lblApellidos;
 	private JLabel lblEmail;
@@ -39,8 +39,7 @@ public class RegistroPanel extends JPanel {
 	private JLabel lblNewLabel;
 
 	private Utilidades util = new Utilidades();
-	
-	
+
 	public JButton getCancelBtn() {
 		return cancelBtn;
 	}
@@ -64,6 +63,7 @@ public class RegistroPanel extends JPanel {
 	public JTextField getRegistroEmail() {
 		return registroEmail;
 	}
+
 	public JTextField getRegistroPassword() {
 		return registroPassword;
 	}
@@ -84,12 +84,8 @@ public class RegistroPanel extends JPanel {
 		return comboTipoUsuario;
 	}
 
-
-
-
-
 	private final String[] USERTYPES = { "Normal", "Organizacion" };
-	
+
 	public RegistroPanel() {
 		setLayoutView();
 	}
@@ -285,7 +281,7 @@ public class RegistroPanel extends JPanel {
 		gbc_cancelBtn.gridx = 4;
 		gbc_cancelBtn.gridy = 6;
 		add(cancelBtn, gbc_cancelBtn);
-		
+
 		cancelBtn.setFont(new Font("Tahoma", Font.BOLD, 11));
 		cancelBtn.setActionCommand("Cancel");
 
@@ -297,7 +293,7 @@ public class RegistroPanel extends JPanel {
 		gbc_btnLimpiar.gridy = 6;
 		add(btnLimpiar, gbc_btnLimpiar);
 		btnLimpiar.setFont(new Font("Tahoma", Font.BOLD, 11));
-		
+
 		btnLimpiar.addActionListener(new ActionListener() {
 			JTextField[] arrJ = { registroNombre, registroApellidos, registroClub, registroDireccion, registroEmail,
 					registroPassword, registroTelf };

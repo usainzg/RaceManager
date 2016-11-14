@@ -1,15 +1,15 @@
 package vista.paneles.org;
 
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 
 public class ModificacionCarreraOrg extends JPanel {
 
@@ -23,7 +23,6 @@ public class ModificacionCarreraOrg extends JPanel {
 	private JButton btnModificar, btnLimpiar;
 	private JComboBox<Object> comboCarreraModificar;
 
-	
 	public JTextField getTxtDistancia() {
 		return txtDistancia;
 	}
@@ -55,7 +54,6 @@ public class ModificacionCarreraOrg extends JPanel {
 	public JComboBox<Object> getComboCarreraModificar() {
 		return comboCarreraModificar;
 	}
-
 
 	public ModificacionCarreraOrg() {
 		setBounds(100, 100, 582, 351);

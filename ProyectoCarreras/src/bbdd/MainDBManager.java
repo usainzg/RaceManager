@@ -1,3 +1,4 @@
 package bbdd;
 
-public abstract class MainDBManager implements InterfazBD { }
+public abstract class MainDBManager implements InterfazBD {
+}

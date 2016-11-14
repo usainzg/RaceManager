@@ -30,28 +30,28 @@ import vista.paneles.admin.DeleteCarreraAdminPanel;
 import vista.paneles.admin.ModificacionCarreraAdmin;
 import vista.paneles.admin.ModificacionUsuarioAdmin;
 
-public class AdminView extends JFrame implements ActionListener, ViewUtil{
-	
+public class AdminView extends JFrame implements ActionListener, ViewUtil {
+
 	// OBJETOS
 	private ManagerBd manager;
 	private Utilidades util = new Utilidades();
-	
+
 	// PANELES
 	private ModificacionCarreraAdmin panelModificacionCarrera = new ModificacionCarreraAdmin();
 	private VisualizacionCarrerasPanel panelVisualizacion;
 	private BorradoUsuario panelBorradoUsuario = new BorradoUsuario();
 	private DeleteCarreraAdminPanel panelBorradoCarrera = new DeleteCarreraAdminPanel();
 	private ModificacionUsuarioAdmin panelModificacionUsuario = new ModificacionUsuarioAdmin();
-	
+
 	// ITEMS MENU
-	private JMenuItem mnVisualizarCarreras, mnModificarCarreras, 
-					mnEliminarCarreras, mnModificarUsuarios, mnEliminarUsuarios;
-	
+	private JMenuItem mnVisualizarCarreras, mnModificarCarreras, mnEliminarCarreras, mnModificarUsuarios,
+			mnEliminarUsuarios;
+
 	// REFERENCIAS CARRERA
 	// Referencias panel BorradoCarrera
 	private JComboBox<Object> borradoComboCarrera = panelBorradoCarrera.getComboCarreraBorrar();
 	private JButton btnBorradoCarrera = panelBorradoCarrera.getBtnBorrar();
-	
+
 	// Referencia panel ModificacionCarreraAdmin
 	private JTextField modDistancia = panelModificacionCarrera.getTxtDistancia();
 	private JTextField modDesnivel = panelModificacionCarrera.getTxtDesnivel();
@@ -60,14 +60,13 @@ public class AdminView extends JFrame implements ActionListener, ViewUtil{
 	private JTextField modFecha = panelModificacionCarrera.getTxtFecha();
 	private JComboBox<Object> modCombo = panelModificacionCarrera.getComboBox();
 	private JButton modBtn = panelModificacionCarrera.getBtnModificar();
-	
-	
+
 	// REFERENCIAS USUARIO
 	// Referencias panel BorradoUsuario
 	private JComboBox<String> borradoComboTipoUsuario = panelBorradoUsuario.getComboTipo();
 	private JComboBox<Object> borradoComboEmailUsuario = panelBorradoUsuario.getComboEmail();
 	private JButton btnBorradoUsuario = panelBorradoUsuario.getBtnBorrar();
-	
+
 	// Referencias panel ModificacionUsuario
 	private JTextField modUsuarioNombre = panelModificacionUsuario.getTxtNombre();
 	private JTextField modUsuarioApellidos = panelModificacionUsuario.getTxtApellidos();
@@ -78,8 +77,7 @@ public class AdminView extends JFrame implements ActionListener, ViewUtil{
 	private JComboBox<String> modUsuarioComboTipo = panelModificacionUsuario.getComboTipoUsuarioModificar();
 	private JComboBox<Object> modUsuarioComboEmail = panelModificacionUsuario.getComboEmailAModificar();
 	private JButton modUsuarioBtnModificar = panelModificacionUsuario.getBtnModificar();
-	
-	
+
 	private static final long serialVersionUID = 1L;
 
 	public AdminView(final ManagerBd manager) {
@@ -93,137 +91,133 @@ public class AdminView extends JFrame implements ActionListener, ViewUtil{
 		setTitle("Admin");
 		setBounds(100, 100, 450, 300);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
 		getContentPane().add(panelVisualizacion, BorderLayout.CENTER);
 		pack();
-		
+
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
-		
+
 		JMenu mntCarreras = new JMenu("Gestion Carreras");
 		menuBar.add(mntCarreras);
-		
+
 		mnVisualizarCarreras = new JMenuItem("Visualizar Carreras");
 		mntCarreras.add(mnVisualizarCarreras);
-		
+
 		mnModificarCarreras = new JMenuItem("Modificar Carreras");
 		mntCarreras.add(mnModificarCarreras);
-		
+
 		mnEliminarCarreras = new JMenuItem("Eliminar Carreras");
 		mntCarreras.add(mnEliminarCarreras);
-		
+
 		JMenu mntUsuarios = new JMenu("Gestion Usuarios");
 		menuBar.add(mntUsuarios);
-		
+
 		mnModificarUsuarios = new JMenuItem("Modificar Usuarios");
 		mntUsuarios.add(mnModificarUsuarios);
-		
+
 		mnEliminarUsuarios = new JMenuItem("Eliminar Usuarios");
 		mntUsuarios.add(mnEliminarUsuarios);
-		
+
 		// listeners jmenuitem carreras
 		mnVisualizarCarreras.addActionListener(this);
 		mnModificarCarreras.addActionListener(this);
 		mnEliminarCarreras.addActionListener(this);
-		
+
 		// listeners jmenuitem usuarios
 		mnModificarUsuarios.addActionListener(this);
 		mnEliminarUsuarios.addActionListener(this);
-		
+
 		// listeners borrado usuario
 		btnBorradoUsuario.addActionListener(this);
 		borradoComboTipoUsuario.addActionListener(this);
-		
+
 		// listeners borrado carrera
 		btnBorradoCarrera.addActionListener(this);
-		
+
 		// listeners modificacion carrera
 		modBtn.addActionListener(this);
-		
+
 		// focus listener modFecha
 		modFecha.addFocusListener(new FocusListener() {
-			
+
 			@Override
 			public void focusLost(FocusEvent e) {
-				if (!modFecha.equals("") && !util.isValidDate(modFecha)) { 
-					util.createInfobox("Vuelva a introducir la fecha en el siguiente formato: 0000-00-00 / años-meses-dias", 
-							"Formato fecha erroneo"); 
+				if (!modFecha.equals("") && !util.isValidDate(modFecha)) {
+					util.createInfobox(
+							"Vuelva a introducir la fecha en el siguiente formato: 0000-00-00 / años-meses-dias",
+							"Formato fecha erroneo");
 					util.resetJTextField(modFecha);
 					modFecha.requestFocus();
-					}
+				}
 			}
-			
+
 			@Override
-			public void focusGained(FocusEvent e) {	
+			public void focusGained(FocusEvent e) {
 				util.resetJTextField(modFecha);
 			}
 		});
-	
-		
+
 		// listeners modificacion usuario
 		modUsuarioComboTipo.addActionListener(this);
 		modUsuarioBtnModificar.addActionListener(this);
 	}
-	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
-		if(e.getSource() == mnVisualizarCarreras){
-			
+
+		if (e.getSource() == mnVisualizarCarreras) {
+
 			changePanel(panelVisualizacion);
-			
-		}else if(e.getSource() == mnModificarCarreras){
-			
+
+		} else if (e.getSource() == mnModificarCarreras) {
+
 			changePanel(panelModificacionCarrera);
 			initComboCarreraMod();
-			
-		}else if(e.getSource() == mnEliminarCarreras){
-			
+
+		} else if (e.getSource() == mnEliminarCarreras) {
+
 			changePanel(panelBorradoCarrera);
 			initComboCarrera();
-			
-		}else if(e.getSource() == mnModificarUsuarios){
-			
+
+		} else if (e.getSource() == mnModificarUsuarios) {
+
 			changePanel(panelModificacionUsuario);
 			modUsuarioComboTipo.setSelectedItem("Organizador");
-			
-		}else if(e.getSource() == mnEliminarUsuarios){
-			
+
+		} else if (e.getSource() == mnEliminarUsuarios) {
+
 			changePanel(panelBorradoUsuario);
 			borradoComboTipoUsuario.setSelectedItem("Organizador");
-		} 
-		
-		
+		}
+
 		// action listener panel borrado usuario
-		if(e.getSource() == btnBorradoUsuario){
+		if (e.getSource() == btnBorradoUsuario) {
 			borrarUsuario();
-		}else if(e.getSource() == borradoComboTipoUsuario){
+		} else if (e.getSource() == borradoComboTipoUsuario) {
 			changeComboTipoBorrado();
 		}
-		
-		
+
 		// action listener para borrado carrera
-		if(e.getSource() == btnBorradoCarrera){
+		if (e.getSource() == btnBorradoCarrera) {
 			borrarCarrera();
 		}
-		
+
 		// action listeners para modificar carrera
-		if(e.getSource() == modBtn){
+		if (e.getSource() == modBtn) {
 			modificarCarrera();
 		}
-		
+
 		// action listeners para modificacion usuario
-		if(e.getSource() == modUsuarioBtnModificar){
+		if (e.getSource() == modUsuarioBtnModificar) {
 			modificarUsuario();
-		}else if(e.getSource() == modUsuarioComboTipo){
+		} else if (e.getSource() == modUsuarioComboTipo) {
 			changeComboTipoModificacion();
 		}
 	}
-	
-	
+
 	// metodos BorradoUsuario
-	private void changeComboTipoBorrado(){
+	private void changeComboTipoBorrado() {
 		borradoComboEmailUsuario.removeAllItems();
 		if (borradoComboTipoUsuario.getSelectedItem().equals("Normal")) {
 
@@ -252,7 +246,8 @@ public class AdminView extends JFrame implements ActionListener, ViewUtil{
 			}
 		}
 	}
-	private void borrarUsuario(){
+
+	private void borrarUsuario() {
 		if (borradoComboTipoUsuario.getSelectedItem().equals("Normal")) {
 
 			try {
@@ -294,8 +289,8 @@ public class AdminView extends JFrame implements ActionListener, ViewUtil{
 	}
 
 	// metodos ModificacionUsuarioAdmin
-	private void changeComboTipoModificacion(){
-		
+	private void changeComboTipoModificacion() {
+
 		modUsuarioComboEmail.removeAllItems();
 		if (modUsuarioComboTipo.getSelectedItem().equals("Normal")) {
 
@@ -324,10 +319,11 @@ public class AdminView extends JFrame implements ActionListener, ViewUtil{
 			}
 
 		}
-		
+
 	}
-	private void modificarUsuario(){
-		
+
+	private void modificarUsuario() {
+
 		if (validarEntradaModificacionUsuario() == true) {
 
 			if (modUsuarioComboTipo.getSelectedItem().equals("Normal")) {
@@ -345,8 +341,7 @@ public class AdminView extends JFrame implements ActionListener, ViewUtil{
 
 				try {
 					int filas = manager.updateUsuarioNormal(uViejo, u);
-					util.createInfobox("Se han modificado " + filas + " correctamente.",
-							"Modificacion correcta");
+					util.createInfobox("Se han modificado " + filas + " correctamente.", "Modificacion correcta");
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
@@ -367,8 +362,7 @@ public class AdminView extends JFrame implements ActionListener, ViewUtil{
 
 				try {
 					int filas = manager.updateUsuarioOrganizador(uViejo, uOrg);
-					util.createInfobox("Se han modificado " + filas + " correctamente.",
-							"Modificacion correcta");
+					util.createInfobox("Se han modificado " + filas + " correctamente.", "Modificacion correcta");
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
@@ -379,9 +373,11 @@ public class AdminView extends JFrame implements ActionListener, ViewUtil{
 			util.createErrorbox("Vuelve a introducir los datos por favor.", "Datos erroneos");
 		}
 	}
-	private boolean validarEntradaModificacionUsuario(){
-		if (!modUsuarioNombre.getText().equals("") && !modUsuarioApellidos.getText().equals("") && !modUsuarioPass.getText().equals("")
-				&& !modUsuarioDir.getText().equals("") && !modUsuarioTelf.getText().equals("") && !modUsuarioClub.getText().equals("")) {
+
+	private boolean validarEntradaModificacionUsuario() {
+		if (!modUsuarioNombre.getText().equals("") && !modUsuarioApellidos.getText().equals("")
+				&& !modUsuarioPass.getText().equals("") && !modUsuarioDir.getText().equals("")
+				&& !modUsuarioTelf.getText().equals("") && !modUsuarioClub.getText().equals("")) {
 
 			// validate pass
 			if (!util.isValidPassword(modUsuarioPass.getText())) {
@@ -405,27 +401,25 @@ public class AdminView extends JFrame implements ActionListener, ViewUtil{
 			return false;
 		}
 	}
-	
-	
+
 	// metodos BorradoCarrera
-	private void initComboCarrera(){
+	private void initComboCarrera() {
 		ArrayList<Carrera> arr = new ArrayList<>();
-		 
-		 try {
-			 arr = manager.consultarCarreras();
-			 for (Carrera c : arr) { 
-				 borradoComboCarrera.addItem(c.getNbCarrera());
-			 } 
-		}catch(Exception e) {
-			util.createErrorbox("Error al recoger datos de la base de datos", "Error conexion base de datos"); 
+
+		try {
+			arr = manager.consultarCarreras();
+			for (Carrera c : arr) {
+				borradoComboCarrera.addItem(c.getNbCarrera());
+			}
+		} catch (Exception e) {
+			util.createErrorbox("Error al recoger datos de la base de datos", "Error conexion base de datos");
 		}
 	}
-	private void borrarCarrera(){
-			
+
+	private void borrarCarrera() {
+
 		try {
-			Carrera c = new
-			Carrera(borradoComboCarrera.getSelectedItem().toString(), null, 0,
-			0, 0, "", "");
+			Carrera c = new Carrera(borradoComboCarrera.getSelectedItem().toString(), null, 0, 0, 0, "", "");
 			int filas = manager.deleteCarrera(c);
 
 			util.createInfobox("Se han borrado " + filas + " filas de la base de datos.", "Borrado completado");
@@ -437,7 +431,7 @@ public class AdminView extends JFrame implements ActionListener, ViewUtil{
 	}
 
 	// metodos ModificacionCarreraAdmin
-	private void initComboCarreraMod(){
+	private void initComboCarreraMod() {
 		ArrayList<Carrera> arr = new ArrayList<>();
 
 		try {
@@ -450,7 +444,8 @@ public class AdminView extends JFrame implements ActionListener, ViewUtil{
 			util.createErrorbox("Error al recoger datos de la base de datos", "Error conexion base de datos");
 		}
 	}
-	private void modificarCarrera(){
+
+	private void modificarCarrera() {
 		if (util.isValidDate(modFecha)) {
 			try {
 
@@ -488,22 +483,20 @@ public class AdminView extends JFrame implements ActionListener, ViewUtil{
 		}
 
 	}
-	
-	
+
 	// metodos de la interfaz
 	@Override
 	public void changePanel(final JPanel panel) {
-		
+
 		getContentPane().removeAll();
 		getContentPane().repaint();
 		getContentPane().revalidate();
-		
+
 		getContentPane().add(panel);
 		pack();
 		getContentPane().repaint();
 		getContentPane().revalidate();
-		
-	}
 
+	}
 
 }

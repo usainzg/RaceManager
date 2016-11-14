@@ -14,7 +14,7 @@ import vista.ventanas.NormalView;
 import vista.ventanas.OrgView;
 
 public class Login {
-	
+
 	private ManagerBd dbm = null;
 	private Utilidades util = new Utilidades();
 	private UsuarioOrganizador orgLogeado;
@@ -84,8 +84,8 @@ public class Login {
 	}
 
 	// VALIDACION DE LOGIN
-	public void validacionLogin(final JComboBox<String> comboTipoUsuario, final JTextField txtEmail, final JTextField txtPassword)
-			throws Exception {
+	public void validacionLogin(final JComboBox<String> comboTipoUsuario, final JTextField txtEmail,
+			final JTextField txtPassword) throws Exception {
 
 		if (!txtEmail.getText().equals("") && !txtPassword.getText().equals("")) {
 

@@ -38,7 +38,7 @@ public class Utilidades {
 		Matcher matcher = VALID_DATE_REGEX.matcher(fecha.getText());
 		return matcher.find();
 	}
-	
+
 	// to generate error and infoboxes
 	public void createInfobox(String infoMessage, String title) {
 		JOptionPane.showMessageDialog(null, infoMessage, title, JOptionPane.INFORMATION_MESSAGE);
@@ -47,10 +47,11 @@ public class Utilidades {
 	public void createErrorbox(String errMessage, String title) {
 		JOptionPane.showMessageDialog(null, errMessage, title, JOptionPane.ERROR_MESSAGE);
 	}
-	
+
 	// utilities for swing objects
-	public void resetJTextField(JTextField...fields){
-		for(JTextField f: fields) f.setText("");
+	public void resetJTextField(JTextField... fields) {
+		for (JTextField f : fields)
+			f.setText("");
 	}
 
 }

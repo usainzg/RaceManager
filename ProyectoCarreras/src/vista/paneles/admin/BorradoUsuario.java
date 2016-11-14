@@ -30,12 +30,10 @@ public class BorradoUsuario extends JPanel {
 		return btnBorrar;
 	}
 
-	
 	public BorradoUsuario() {
 		setLayoutView();
 	}
 
-	
 	private void setLayoutView() {
 
 		setBounds(100, 100, 434, 198);

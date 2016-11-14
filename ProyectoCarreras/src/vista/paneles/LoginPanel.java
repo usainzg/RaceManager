@@ -133,15 +133,15 @@ public class LoginPanel extends JPanel {
 		gbc_lblEnCasoDe.gridx = 2;
 		gbc_lblEnCasoDe.gridy = 7;
 		add(lblEnCasoDe, gbc_lblEnCasoDe);
-										
-												btnRegistrarse = new JButton("Registrarse");
-												
-														btnRegistrarse.setFont(new Font("Tahoma", Font.BOLD, 11));
-														GridBagConstraints gbc_btnRegistrarse = new GridBagConstraints();
-														gbc_btnRegistrarse.insets = new Insets(0, 0, 5, 5);
-														gbc_btnRegistrarse.gridx = 3;
-														gbc_btnRegistrarse.gridy = 7;
-														add(btnRegistrarse, gbc_btnRegistrarse);
+
+		btnRegistrarse = new JButton("Registrarse");
+
+		btnRegistrarse.setFont(new Font("Tahoma", Font.BOLD, 11));
+		GridBagConstraints gbc_btnRegistrarse = new GridBagConstraints();
+		gbc_btnRegistrarse.insets = new Insets(0, 0, 5, 5);
+		gbc_btnRegistrarse.gridx = 3;
+		gbc_btnRegistrarse.gridy = 7;
+		add(btnRegistrarse, gbc_btnRegistrarse);
 
 	}
 

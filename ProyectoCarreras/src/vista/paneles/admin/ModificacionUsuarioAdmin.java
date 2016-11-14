@@ -1,15 +1,15 @@
 package vista.paneles.admin;
 
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 
 public class ModificacionUsuarioAdmin extends JPanel {
 
@@ -23,7 +23,7 @@ public class ModificacionUsuarioAdmin extends JPanel {
 	private JComboBox<String> comboTipoUsuarioModificar;
 	private JComboBox<Object> comboEmailAModificar;
 	private JButton btnModificar;
-	
+
 	public JTextField getTxtNombre() {
 		return txtNombre;
 	}
@@ -264,8 +264,6 @@ public class ModificacionUsuarioAdmin extends JPanel {
 		gbc_btnLimpiar.gridx = 5;
 		gbc_btnLimpiar.gridy = 12;
 		add(btnLimpiar, gbc_btnLimpiar);
-
-		
 
 	}
 

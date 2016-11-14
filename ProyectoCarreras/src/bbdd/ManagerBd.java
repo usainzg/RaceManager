@@ -9,25 +9,24 @@ import clases.UsuarioEstandar;
 import clases.UsuarioOrganizador;
 
 public class ManagerBd implements InterfazBD {
-	
+
 	private MainDBManager dbm = null;
 	private final String MYSQL = "mysql";
 	private final String HIBERNATE = "hibernate";
-	
-	
-	public void setDb(final String db){
-		switch(db){
+
+	public void setDb(final String db) {
+		switch (db) {
 		case MYSQL:
 			dbm = new MySqlManager();
 			break;
 		case HIBERNATE:
-			
+
 			break;
 		default:
 			break;
 		}
 	}
-	
+
 	@Override
 	public Connection conectarBD() throws Exception {
 		return dbm.conectarBD();
@@ -127,6 +126,5 @@ public class ManagerBd implements InterfazBD {
 	public ArrayList<Carrera> consultarCarrerasOrg(UsuarioOrganizador org) throws Exception {
 		return dbm.consultarCarrerasOrg(org);
 	}
-
 
 }

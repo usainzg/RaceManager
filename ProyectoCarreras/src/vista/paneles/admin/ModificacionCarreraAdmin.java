@@ -19,7 +19,7 @@ public class ModificacionCarreraAdmin extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private Utilidades util = new Utilidades();
-	
+
 	private JTextField txtDistancia;
 	private JTextField txtDesnivel;
 	private JTextField txtPrecio;
@@ -202,12 +202,12 @@ public class ModificacionCarreraAdmin extends JPanel {
 		gbc_btnLimpiar.gridx = 1;
 		gbc_btnLimpiar.gridy = 8;
 		add(btnLimpiar, gbc_btnLimpiar);
-		
+
 		btnLimpiar.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				util.resetJTextField(txtDesnivel, txtDistancia, txtFecha, txtLugar, txtPrecio);	
+				util.resetJTextField(txtDesnivel, txtDistancia, txtFecha, txtLugar, txtPrecio);
 			}
 		});
 

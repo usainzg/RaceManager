@@ -11,10 +11,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class DeleteCarreraAdminPanel extends JPanel {
-	
+
 	private JComboBox<Object> comboCarreraBorrar;
 	private JButton btnBorrar;
-	
+
 	public JComboBox<Object> getComboCarreraBorrar() {
 		return comboCarreraBorrar;
 	}
@@ -66,4 +66,3 @@ public class DeleteCarreraAdminPanel extends JPanel {
 	}
 
 }
-

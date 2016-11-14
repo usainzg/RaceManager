@@ -1,14 +1,14 @@
 package vista.paneles.org;
 
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 
 public class BorradoCarreraOrg extends JPanel {
 
@@ -28,7 +28,6 @@ public class BorradoCarreraOrg extends JPanel {
 	public BorradoCarreraOrg() {
 		setLayoutView();
 	}
-	
 
 	private void setLayoutView() {
 		setBounds(100, 100, 408, 224);
