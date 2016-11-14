@@ -14,6 +14,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 import bbdd.ManagerBd;
+import clases.Carrera;
 import clases.UsuarioEstandar;
 import clases.UsuarioOrganizador;
 import utilidades.Utilidades;
@@ -26,16 +27,18 @@ import vista.paneles.admin.ModificacionUsuarioAdmin;
 
 public class AdminView extends JFrame implements ActionListener, ViewUtil{
 	
+	// OBJETOS
 	private ManagerBd manager;
 	private Utilidades util = new Utilidades();
 	
+	// PANELES
 	private ModificacionCarreraAdmin panelModificacionCarrera = new ModificacionCarreraAdmin();
 	private VisualizacionCarrerasPanel panelVisualizacion;
 	private BorradoUsuario panelBorradoUsuario = new BorradoUsuario();
 	private DeleteCarreraAdminPanel panelBorradoCarrera = new DeleteCarreraAdminPanel();
 	private ModificacionUsuarioAdmin panelModificacionUsuario = new ModificacionUsuarioAdmin();
 	
-	
+	// ITEMS MENU
 	private JMenuItem mnVisualizarCarreras, mnModificarCarreras, 
 					mnEliminarCarreras, mnModificarUsuarios, mnEliminarUsuarios;
 	
@@ -43,6 +46,11 @@ public class AdminView extends JFrame implements ActionListener, ViewUtil{
 	private JComboBox<String> borradoComboTipoUsuario = panelBorradoUsuario.getComboTipo();
 	private JComboBox<Object> borradoComboEmailUsuario = panelBorradoUsuario.getComboEmail();
 	private JButton btnBorradoUsuario = panelBorradoUsuario.getBtnBorrar();
+	
+	// Referencias panel BorradoCarrera
+	private JComboBox<Object> borradoComboCarrera = panelBorradoCarrera.getComboCarreraBorrar();
+	private JButton btnBorradoCarrera = panelBorradoCarrera.getBtnBorrar();
+	
 	
 	private static final long serialVersionUID = 1L;
 
@@ -85,35 +93,23 @@ public class AdminView extends JFrame implements ActionListener, ViewUtil{
 		mnEliminarUsuarios = new JMenuItem("Eliminar Usuarios");
 		mntUsuarios.add(mnEliminarUsuarios);
 		
-		
+		// listeners jmenuitem carreras
 		mnVisualizarCarreras.addActionListener(this);
 		mnModificarCarreras.addActionListener(this);
 		mnEliminarCarreras.addActionListener(this);
 		
-		
+		// listeners jmenuitem usuarios
 		mnModificarUsuarios.addActionListener(this);
 		mnEliminarUsuarios.addActionListener(this);
 		
-		
+		// listeners borrado usuario
 		btnBorradoUsuario.addActionListener(this);
 		borradoComboTipoUsuario.addActionListener(this);
+		
+		// listeners borrado carrera
+		btnBorradoCarrera.addActionListener(this);
 	}
 	
-	
-
-	@Override
-	public void changePanel(final JPanel panel) {
-		
-		getContentPane().removeAll();
-		getContentPane().repaint();
-		getContentPane().revalidate();
-		
-		getContentPane().add(panel);
-		pack();
-		getContentPane().repaint();
-		getContentPane().revalidate();
-		
-	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -129,6 +125,7 @@ public class AdminView extends JFrame implements ActionListener, ViewUtil{
 		}else if(e.getSource() == mnEliminarCarreras){
 			
 			changePanel(panelBorradoCarrera);
+			initComboCarrera();
 			
 		}else if(e.getSource() == mnModificarUsuarios){
 			
@@ -139,6 +136,7 @@ public class AdminView extends JFrame implements ActionListener, ViewUtil{
 			borradoComboTipoUsuario.setSelectedItem("Normal");
 		} 
 		
+		
 		// action listener panel borrado usuario
 		if(e.getSource() == btnBorradoUsuario){
 			borrarUsuario();
@@ -146,8 +144,15 @@ public class AdminView extends JFrame implements ActionListener, ViewUtil{
 			changeComboTipoBorrado();
 		}
 		
+		
+		// action listener para borrado carrera
+		if(e.getSource() == btnBorradoCarrera){
+			borrarCarrera();
+		}
 	}
 	
+	
+	// metodos BorradoUsuario
 	private void changeComboTipoBorrado(){
 		borradoComboEmailUsuario.removeAllItems();
 		if (borradoComboTipoUsuario.getSelectedItem().equals("Normal")) {
@@ -177,7 +182,6 @@ public class AdminView extends JFrame implements ActionListener, ViewUtil{
 			}
 		}
 	}
-	
 	private void borrarUsuario(){
 		if (borradoComboTipoUsuario.getSelectedItem().equals("Normal")) {
 
@@ -217,5 +221,50 @@ public class AdminView extends JFrame implements ActionListener, ViewUtil{
 			}
 
 		}
+	}
+
+	
+	// metodos BorradoCarrera
+	private void initComboCarrera(){
+		ArrayList<Carrera> arr = new ArrayList<>();
+		 
+		 try {
+			 arr = manager.consultarCarreras();
+			 for (Carrera c : arr) { 
+				 borradoComboCarrera.addItem(c.getNbCarrera());
+			 } 
+		}catch(Exception e) {
+			util.createErrorbox("Error al recoger datos de la base de datos", "Error conexion base de datos"); 
+		}
+	}
+	private void borrarCarrera(){
+			
+		try {
+			Carrera c = new
+			Carrera(borradoComboCarrera.getSelectedItem().toString(), null, 0,
+			0, 0, "", "");
+			int filas = manager.deleteCarrera(c);
+
+			util.createInfobox("Se han borrado " + filas + " filas de la base de datos.", "Borrado completado");
+			borradoComboCarrera.removeItem(c.getNbCarrera());
+
+		} catch (Exception ex) {
+			util.createErrorbox("No se ha podido borrar la carrera", "Borrado no completado");
+		}
+	}
+
+	// metodos de la interfaz
+	@Override
+	public void changePanel(final JPanel panel) {
+		
+		getContentPane().removeAll();
+		getContentPane().repaint();
+		getContentPane().revalidate();
+		
+		getContentPane().add(panel);
+		pack();
+		getContentPane().repaint();
+		getContentPane().revalidate();
+		
 	}
 }

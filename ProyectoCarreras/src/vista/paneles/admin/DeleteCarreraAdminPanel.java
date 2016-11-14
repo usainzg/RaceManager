@@ -1,24 +1,20 @@
 package vista.paneles.admin;
 
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 
 public class DeleteCarreraAdminPanel extends JPanel {
 	
 	private JComboBox<Object> comboCarreraBorrar;
 	private JButton btnBorrar;
 	
-	
-
 	public JComboBox<Object> getComboCarreraBorrar() {
 		return comboCarreraBorrar;
 	}
@@ -67,38 +63,7 @@ public class DeleteCarreraAdminPanel extends JPanel {
 		gbc_btnBorrar.gridx = 1;
 		gbc_btnBorrar.gridy = 2;
 		add(btnBorrar, gbc_btnBorrar);
-
-		/*
-		 * ArrayList<Carrera> arr = new ArrayList<>();
-		 * 
-		 * try { arr = mySql.consultarCarreras();
-		 * 
-		 * for (Carrera c : arr) { comboBox.addItem(c.getNbCarrera()); } } catch
-		 * (Exception e) {
-		 * util.createErrorbox("Error al recoger datos de la base de datos",
-		 * "Error conexion base de datos"); }
-		 */
-
-		btnBorrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					// Carrera c = new
-					// Carrera(comboBox.getSelectedItem().toString(), null, 0,
-					// 0, 0, "", "");
-					// int filas = mySql.deleteCarrera(c);
-
-					// util.createInfobox("Se han borrado " + filas + " filas de
-					// la base de datos.", "Borrado completado");
-					// comboBox.removeItem(c.getNbCarrera());
-
-				} catch (Exception ex) {
-					// util.createErrorbox("No se ha podido borrar la carrera",
-					// "Borrado no completado");
-				}
-			}
-		});
 	}
 
 }
 
-// }
