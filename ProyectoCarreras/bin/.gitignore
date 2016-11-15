@@ -7,3 +7,5 @@
 /principal/
 /utilidades/
 /vista/
+/hibernate.cfg.xml
+/hibernate.reveng.xml
