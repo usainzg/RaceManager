@@ -122,14 +122,44 @@ public class HibernateManager extends MainDBManager {
 
 	@Override
 	public ArrayList<UsuarioNormal> consultarEmailNormal() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		iniciaOperacion();
+
+		ArrayList<UsuarioNormal> normales = new ArrayList<>();
+
+		Query<clasesHibernate.Usuarionormal> query = sesion.createQuery("FROM Usuarionormal");
+
+		if (query != null) {
+			List<clasesHibernate.Usuarionormal> lista = query.getResultList();
+			Iterator<clasesHibernate.Usuarionormal> iterator = lista.iterator();
+			while (iterator.hasNext()) {
+				UsuarioNormal u = new UsuarioNormal(iterator.next());
+				normales.add(u);
+			}
+		}
+
+		terminaOperacion();
+		return normales;
 	}
 
 	@Override
 	public ArrayList<UsuarioOrganizador> consultarEmailOrg() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		iniciaOperacion();
+
+		ArrayList<UsuarioOrganizador> orgs = new ArrayList<>();
+
+		Query<clasesHibernate.Usuarioorganizador> query = sesion.createQuery("FROM Usuarioorganizador");
+
+		if (query != null) {
+			List<clasesHibernate.Usuarioorganizador> lista = query.getResultList();
+			Iterator<clasesHibernate.Usuarioorganizador> iterator = lista.iterator();
+			while (iterator.hasNext()) {
+				UsuarioOrganizador o = new UsuarioOrganizador(iterator.next());
+				orgs.add(o);
+			}
+		}
+
+		terminaOperacion();
+		return orgs;
 	}
 
 	@Override
