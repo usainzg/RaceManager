@@ -3,7 +3,9 @@ package vista.ventanas;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -106,7 +108,8 @@ public class OrgView extends JFrame implements ActionListener, ViewUtil {
 		} else if (e.getSource() == mnModificacionCarreras) {
 
 			changePanel(panelModificacionCarreraOrg);
-
+			initComboModificar();
+			
 		} else if (e.getSource() == mnBorrarCarrera) {
 
 			changePanel(panelBorradoCarreraOrg);
@@ -116,11 +119,14 @@ public class OrgView extends JFrame implements ActionListener, ViewUtil {
 
 		if (e.getSource() == btnBorrarPanelBorrado) {
 
-			initComboBorrado();
+			borrarCarreraOrg();
+			
 		}
 
 		if (e.getSource() == btnModificar) {
-
+			
+			modificarCarreraOrg();
+			
 		} else if (e.getSource() == btnLimpiar) {
 			util.resetJTextField(txtDesnivel, txtDistancia, txtFecha, txtLugar, txtPrecio);
 		}
@@ -128,19 +134,80 @@ public class OrgView extends JFrame implements ActionListener, ViewUtil {
 
 	private void initComboBorrado() {
 
-		System.out.println(orgLogeado.getNbUsuario());
-
 		try {
 			ArrayList<Carrera> carreras = manager.consultarCarrerasOrg(orgLogeado);
-			System.out.println(carreras.size());
 			for (Carrera c : carreras) {
+				comboPanelBorrado.addItem(c.getNbCarrera());
 			}
 		} catch (Exception e) {
 			util.createErrorbox("Error al recoger datos de la base de datos", "Error conexion base de datos");
 		}
 
 	}
+	private void borrarCarreraOrg(){
+		
+		try {
+			Carrera c = new Carrera(comboPanelBorrado.getSelectedItem().toString(), null, 0, 0, 0, "", "");
+			int filas = manager.deleteCarrera(c);
 
+			util.createInfobox("Se han borrado " + filas + " filas de la base de datos.", "Borrado completado");
+			comboPanelBorrado.removeItem(c.getNbCarrera());
+
+		} catch (Exception ex) {
+			util.createErrorbox("No se ha podido borrar la carrera", "Borrado no completado");
+		}
+	}
+	
+	private void initComboModificar(){
+		try {
+			ArrayList<Carrera> carreras = manager.consultarCarrerasOrg(orgLogeado);
+			for (Carrera c : carreras) {
+				comboCarreraModificar.addItem(c.getNbCarrera());
+			}
+		} catch (Exception e) {
+			util.createErrorbox("Error al recoger datos de la base de datos", "Error conexion base de datos");
+		}
+	}
+	private void modificarCarreraOrg(){
+		
+		if (util.isValidDate(txtFecha)) {
+			try {
+
+				Carrera c = new Carrera(comboCarreraModificar.getSelectedItem().toString(), null, 0, 0, 0, "", "");
+				Carrera cNueva = new Carrera();
+				cNueva.setNbCarrera(comboCarreraModificar.getSelectedItem().toString());
+				cNueva.setOrgCarrera(null);
+				cNueva.setDistanciaCarrera(Integer.parseInt(txtDistancia.getText()));
+				cNueva.setDesnivelCarrera(Integer.parseInt(txtDesnivel.getText()));
+				cNueva.setPrecioCarrera(Integer.parseInt(txtPrecio.getText()));
+
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+				String str = txtFecha.getText();
+
+				try {
+					Date date = formatter.parse(str);
+					String formateado = formatter.format(date);
+					cNueva.setFechaCarrera(formateado);
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
+
+				cNueva.setLugarCarrera(txtLugar.getText());
+
+				int filas = manager.updateCarreraAdmin(c, cNueva);
+				util.createInfobox("Se han modificado " + filas + " filas de la base de datos.",
+						"Modificacion no completada.");
+
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+
+		} else {
+			util.createErrorbox("Revise los campos", "Fallo de formato");
+		}
+		
+	}
+	
 	@Override
 	public void changePanel(final JPanel panel) {
 

@@ -509,7 +509,7 @@ public class MySqlManager extends MainDBManager {
 					"Error al conectar base de datos.");
 		}
 		try {
-			String sql = "SELECT c.* FROM carrera c " + "WHERE organizador=" + org.getId();
+			String sql = "SELECT c.* FROM carrera c " + "WHERE organizador= (SELECT id FROM usuarioorganizador WHERE email= '" + org.getEmailUsuario() + "')";
 			Statement sentencia = cn.createStatement();
 			ResultSet rs = sentencia.executeQuery(sql);
 			ArrayList<Carrera> arr = new ArrayList<Carrera>();
