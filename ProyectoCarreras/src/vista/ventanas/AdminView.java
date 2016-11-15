@@ -20,7 +20,7 @@ import javax.swing.JTextField;
 
 import bbdd.ManagerBd;
 import clases.Carrera;
-import clases.UsuarioEstandar;
+import clases.UsuarioNormal;
 import clases.UsuarioOrganizador;
 import utilidades.Utilidades;
 import utilidades.ViewUtil;
@@ -221,14 +221,14 @@ public class AdminView extends JFrame implements ActionListener, ViewUtil {
 		borradoComboEmailUsuario.removeAllItems();
 		if (borradoComboTipoUsuario.getSelectedItem().equals("Normal")) {
 
-			ArrayList<UsuarioEstandar> arrU = new ArrayList<UsuarioEstandar>();
+			ArrayList<UsuarioNormal> arrU = new ArrayList<UsuarioNormal>();
 			try {
 				arrU = manager.consultarEmailNormal();
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
 
-			for (UsuarioEstandar u : arrU) {
+			for (UsuarioNormal u : arrU) {
 				borradoComboEmailUsuario.addItem(u.getEmailUsuario());
 			}
 
@@ -251,7 +251,7 @@ public class AdminView extends JFrame implements ActionListener, ViewUtil {
 		if (borradoComboTipoUsuario.getSelectedItem().equals("Normal")) {
 
 			try {
-				UsuarioEstandar uStd = new UsuarioEstandar();
+				UsuarioNormal uStd = new UsuarioNormal();
 				uStd.setNbUsuario("");
 				uStd.setApellidosUsuario("");
 				uStd.setEmailUsuario(borradoComboEmailUsuario.getSelectedItem().toString());
@@ -294,14 +294,14 @@ public class AdminView extends JFrame implements ActionListener, ViewUtil {
 		modUsuarioComboEmail.removeAllItems();
 		if (modUsuarioComboTipo.getSelectedItem().equals("Normal")) {
 
-			ArrayList<UsuarioEstandar> arrU = new ArrayList<UsuarioEstandar>();
+			ArrayList<UsuarioNormal> arrU = new ArrayList<UsuarioNormal>();
 			try {
 				arrU = manager.consultarEmailNormal();
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
 
-			for (UsuarioEstandar u : arrU) {
+			for (UsuarioNormal u : arrU) {
 				modUsuarioComboEmail.addItem(u.getEmailUsuario());
 			}
 
@@ -327,9 +327,9 @@ public class AdminView extends JFrame implements ActionListener, ViewUtil {
 		if (validarEntradaModificacionUsuario() == true) {
 
 			if (modUsuarioComboTipo.getSelectedItem().equals("Normal")) {
-				UsuarioEstandar uViejo = new UsuarioEstandar("", "", modUsuarioComboEmail.getSelectedItem().toString(),
+				UsuarioNormal uViejo = new UsuarioNormal("", "", modUsuarioComboEmail.getSelectedItem().toString(),
 						"", "", 0, "");
-				UsuarioEstandar u = new UsuarioEstandar();
+				UsuarioNormal u = new UsuarioNormal();
 
 				u.setNbUsuario(modUsuarioNombre.getText());
 				u.setApellidosUsuario(modUsuarioApellidos.getText());

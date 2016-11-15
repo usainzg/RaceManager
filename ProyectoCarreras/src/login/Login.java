@@ -6,7 +6,7 @@ import javax.swing.JTextField;
 
 import bbdd.ManagerBd;
 import clases.UsuarioAdmin;
-import clases.UsuarioEstandar;
+import clases.UsuarioNormal;
 import clases.UsuarioOrganizador;
 import utilidades.Utilidades;
 import vista.ventanas.AdminView;
@@ -45,7 +45,7 @@ public class Login {
 
 	// NORMAL LOGIN
 	public boolean loginNormal(final JTextField email, final JTextField pass) {
-		UsuarioEstandar uStd = new UsuarioEstandar("", "", "", email.getText(), pass.getText(), 0, "");
+		UsuarioNormal uStd = new UsuarioNormal("", "", "", email.getText(), pass.getText(), 0, "");
 		try {
 			boolean resLogin = dbm.loginNormal(uStd);
 			if (resLogin == true) {

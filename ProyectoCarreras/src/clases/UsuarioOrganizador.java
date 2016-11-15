@@ -16,6 +16,11 @@ public class UsuarioOrganizador extends Usuario {
 			String club) {
 		super(nombre, apellidos, direccion, email, pass, telf, club);
 	}
+	
+	public UsuarioOrganizador(clasesHibernate.Usuarioorganizador org){
+		super(org.getNombre(), org.getApellidos(), org.getDireccion(), org.getEmail(), org.getPassword(), org.getTelefono(), org.getClub());
+		this.id = org.getId();
+	}
 
 	// getters and setters
 	public int getId() {

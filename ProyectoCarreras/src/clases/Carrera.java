@@ -1,5 +1,7 @@
 package clases;
 
+import java.util.Iterator;
+
 public class Carrera {
 
 	// Carrera class params
@@ -20,6 +22,27 @@ public class Carrera {
 		this.precioCarrera = precio;
 		this.fechaCarrera = fecha;
 		this.lugarCarrera = lugar;
+	}
+	
+	public Carrera(clasesHibernate.Carrera c){
+		this.nbCarrera = c.getNombre();
+		this.distanciaCarrera = c.getDistancia();
+		this.desnivelCarrera = c.getDesnivel();
+		this.precioCarrera = c.getPrecio();
+		this.fechaCarrera = c.getFecha().toString();
+		this.lugarCarrera = c.getLugar();
+		
+		UsuarioOrganizador org = new UsuarioOrganizador();
+		org.setId(c.getUsuarioorganizador().getId());
+		org.setNbUsuario(c.getUsuarioorganizador().getNombre());
+		org.setTelfUsuario(c.getUsuarioorganizador().getTelefono());
+		org.setPassUsuario(c.getUsuarioorganizador().getPassword());
+		org.setEmailUsuario(c.getUsuarioorganizador().getEmail());
+		org.setDirUsuario(c.getUsuarioorganizador().getDireccion());
+		org.setClubUsuario(c.getUsuarioorganizador().getClub());
+		org.setApellidosUsuario(c.getUsuarioorganizador().getApellidos());
+		
+		this.orgCarrera = org;
 	}
 
 	public Carrera() {

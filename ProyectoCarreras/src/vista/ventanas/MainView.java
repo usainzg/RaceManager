@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import bbdd.ManagerBd;
-import clases.UsuarioEstandar;
+import clases.UsuarioNormal;
 import clases.UsuarioOrganizador;
 import login.Login;
 import utilidades.Utilidades;
@@ -148,7 +148,7 @@ public class MainView extends JFrame implements ActionListener, ViewUtil {
 			// NORMAL USER REGISTER
 			if (reComboUsuario.getSelectedItem().toString().equals("Normal")) {
 
-				UsuarioEstandar uToInsert = new UsuarioEstandar(reNombre.getText(), reApellidos.getText(),
+				UsuarioNormal uToInsert = new UsuarioNormal(reNombre.getText(), reApellidos.getText(),
 						reDir.getText(), reEmail.getText(), rePass.getText(), Integer.parseInt(reTelf.getText()),
 						reClub.getText());
 				try {

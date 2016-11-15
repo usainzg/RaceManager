@@ -7,7 +7,9 @@ public class UsuarioAdmin extends Usuario {
 		super(nombre, apellidos, direccion, email, pass, telf, club);
 	}
 
-	public UsuarioAdmin() {
+	public UsuarioAdmin() {}
+	
+	public UsuarioAdmin(clasesHibernate.Usuarioadmin uA){
+		super(uA.getNombre(), uA.getApellidos(), uA.getDireccion(), uA.getEmail(), uA.getPassword(), uA.getTelefono(), uA.getClub());
 	}
-
 }

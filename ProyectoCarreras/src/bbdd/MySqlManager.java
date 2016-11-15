@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 import clases.Carrera;
 import clases.UsuarioAdmin;
-import clases.UsuarioEstandar;
+import clases.UsuarioNormal;
 import clases.UsuarioOrganizador;
 import utilidades.Utilidades;
 
@@ -109,7 +109,7 @@ public class MySqlManager extends MainDBManager {
 	}
 
 	@Override
-	public ArrayList<UsuarioEstandar> consultarUsuariosEstandar() throws Exception {
+	public ArrayList<UsuarioNormal> consultarUsuariosEstandar() throws Exception {
 		Connection cn = conectarBD();
 		if (cn == null) {
 			util.createErrorbox("No se ha podido establecer conexion con la base de datos.",
@@ -120,9 +120,9 @@ public class MySqlManager extends MainDBManager {
 			String sql = "SELECT * FROM usuarionormal";
 			Statement sentencia = cn.createStatement();
 			ResultSet rs = sentencia.executeQuery(sql);
-			ArrayList<UsuarioEstandar> arr = new ArrayList<UsuarioEstandar>();
+			ArrayList<UsuarioNormal> arr = new ArrayList<UsuarioNormal>();
 			while (rs.next()) {
-				UsuarioEstandar uStd = new UsuarioEstandar();
+				UsuarioNormal uStd = new UsuarioNormal();
 				uStd.setNbUsuario(rs.getString("nombre"));
 				uStd.setApellidosUsuario(rs.getString("apellidos"));
 				uStd.setEmailUsuario(rs.getString("email"));
@@ -191,7 +191,7 @@ public class MySqlManager extends MainDBManager {
 	}
 
 	@Override
-	public int altaUsuarioNormal(UsuarioEstandar uStd) throws Exception {
+	public int altaUsuarioNormal(UsuarioNormal uStd) throws Exception {
 		Connection cn = conectarBD();
 		if (cn == null) {
 			util.createErrorbox("No se ha podido establecer conexion con la base de datos.",
@@ -254,7 +254,7 @@ public class MySqlManager extends MainDBManager {
 	}
 
 	@Override
-	public int deleteUsuarioNormal(UsuarioEstandar uStd) throws Exception {
+	public int deleteUsuarioNormal(UsuarioNormal uStd) throws Exception {
 		Connection cn = conectarBD();
 		if (cn == null) {
 			util.createErrorbox("No se ha podido establecer conexion con la base de datos.",
@@ -325,7 +325,7 @@ public class MySqlManager extends MainDBManager {
 	}
 
 	@Override
-	public int updateUsuarioNormal(UsuarioEstandar uStd, UsuarioEstandar datos) throws Exception {
+	public int updateUsuarioNormal(UsuarioNormal uStd, UsuarioNormal datos) throws Exception {
 		Connection cn = conectarBD();
 		if (cn == null) {
 			return -1;
@@ -377,7 +377,7 @@ public class MySqlManager extends MainDBManager {
 	}
 
 	@Override
-	public boolean loginNormal(UsuarioEstandar uStd) throws Exception {
+	public boolean loginNormal(UsuarioNormal uStd) throws Exception {
 		Connection cn = conectarBD();
 		if (cn == null) {
 			return false;
@@ -432,7 +432,7 @@ public class MySqlManager extends MainDBManager {
 	// END OF LOGIN
 
 	@Override
-	public ArrayList<UsuarioEstandar> consultarEmailNormal() throws Exception {
+	public ArrayList<UsuarioNormal> consultarEmailNormal() throws Exception {
 		Connection cn = conectarBD();
 		if (cn == null) {
 			return null;
@@ -443,9 +443,9 @@ public class MySqlManager extends MainDBManager {
 			Statement sentencia = cn.createStatement();
 			ResultSet rs = sentencia.executeQuery(sql);
 
-			ArrayList<UsuarioEstandar> arr = new ArrayList<UsuarioEstandar>();
+			ArrayList<UsuarioNormal> arr = new ArrayList<UsuarioNormal>();
 			while (rs.next()) {
-				UsuarioEstandar uStd = new UsuarioEstandar();
+				UsuarioNormal uStd = new UsuarioNormal();
 				uStd.setNbUsuario("");
 				uStd.setApellidosUsuario("");
 				uStd.setEmailUsuario(rs.getString("email"));

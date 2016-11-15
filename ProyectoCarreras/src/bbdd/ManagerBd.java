@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import clases.Carrera;
 import clases.UsuarioAdmin;
-import clases.UsuarioEstandar;
+import clases.UsuarioNormal;
 import clases.UsuarioOrganizador;
 
 public class ManagerBd implements InterfazBD {
@@ -48,7 +48,7 @@ public class ManagerBd implements InterfazBD {
 	}
 
 	@Override
-	public ArrayList<UsuarioEstandar> consultarUsuariosEstandar() throws Exception {
+	public ArrayList<UsuarioNormal> consultarUsuariosEstandar() throws Exception {
 		return dbm.consultarUsuariosEstandar();
 	}
 
@@ -63,7 +63,7 @@ public class ManagerBd implements InterfazBD {
 	}
 
 	@Override
-	public int altaUsuarioNormal(UsuarioEstandar uStd) throws Exception {
+	public int altaUsuarioNormal(UsuarioNormal uStd) throws Exception {
 		return dbm.altaUsuarioNormal(uStd);
 	}
 
@@ -73,7 +73,7 @@ public class ManagerBd implements InterfazBD {
 	}
 
 	@Override
-	public int deleteUsuarioNormal(UsuarioEstandar uStd) throws Exception {
+	public int deleteUsuarioNormal(UsuarioNormal uStd) throws Exception {
 		return dbm.deleteUsuarioNormal(uStd);
 	}
 
@@ -83,7 +83,7 @@ public class ManagerBd implements InterfazBD {
 	}
 
 	@Override
-	public int updateUsuarioNormal(UsuarioEstandar uStd, UsuarioEstandar datos) throws Exception {
+	public int updateUsuarioNormal(UsuarioNormal uStd, UsuarioNormal datos) throws Exception {
 		return dbm.updateUsuarioNormal(uStd, datos);
 	}
 
@@ -93,7 +93,7 @@ public class ManagerBd implements InterfazBD {
 	}
 
 	@Override
-	public boolean loginNormal(UsuarioEstandar uStd) throws Exception {
+	public boolean loginNormal(UsuarioNormal uStd) throws Exception {
 		return dbm.loginNormal(uStd);
 	}
 
@@ -103,7 +103,7 @@ public class ManagerBd implements InterfazBD {
 	}
 
 	@Override
-	public ArrayList<UsuarioEstandar> consultarEmailNormal() throws Exception {
+	public ArrayList<UsuarioNormal> consultarEmailNormal() throws Exception {
 		return dbm.consultarEmailNormal();
 	}
 
