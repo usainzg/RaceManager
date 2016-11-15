@@ -16,21 +16,19 @@ import clases.UsuarioAdmin;
 import clases.UsuarioNormal;
 import clases.UsuarioOrganizador;
 
-public class HibernateManager extends MainDBManager{
-	
+public class HibernateManager extends MainDBManager {
+
 	private Session sesion;
-	
-	private void iniciaOperacion()
-	{
-	        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-	        sesion = sessionFactory.openSession();
-	        sesion.getTransaction().begin();
+
+	private void iniciaOperacion() {
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		sesion = sessionFactory.openSession();
+		sesion.getTransaction().begin();
 	}
-	
-	private void terminaOperacion()
-	{
-	        sesion.getTransaction().commit();
-	        sesion.close();
+
+	private void terminaOperacion() {
+		sesion.getTransaction().commit();
+		sesion.close();
 	}
 
 	@Override
@@ -41,64 +39,64 @@ public class HibernateManager extends MainDBManager{
 	@Override
 	public ArrayList<Carrera> consultarCarreras() throws Exception {
 		iniciaOperacion();
-		
+
 		ArrayList<Carrera> carreras = new ArrayList<>();
-		
+
 		Query<clasesHibernate.Carrera> query = sesion.createQuery("FROM Carrera");
-		
-		if(query != null){
+
+		if (query != null) {
 			List<clasesHibernate.Carrera> lista = query.getResultList();
 			Iterator<clasesHibernate.Carrera> iterator = lista.iterator();
-			while(iterator.hasNext()){
+			while (iterator.hasNext()) {
 				Carrera c = new Carrera(iterator.next());
 				carreras.add(c);
 			}
 		}
-	    
-	    terminaOperacion(); 
-	    return carreras;
+
+		terminaOperacion();
+		return carreras;
 	}
 
 	@Override
 	public ArrayList<UsuarioNormal> consultarUsuariosEstandar() throws Exception {
 		iniciaOperacion();
-		
+
 		ArrayList<UsuarioNormal> normales = new ArrayList<>();
-		
+
 		Query<clasesHibernate.Usuarionormal> query = sesion.createQuery("FROM Usuarionormal");
-		
-		if(query != null){
+
+		if (query != null) {
 			List<clasesHibernate.Usuarionormal> lista = query.getResultList();
 			Iterator<clasesHibernate.Usuarionormal> iterator = lista.iterator();
-			while(iterator.hasNext()){
+			while (iterator.hasNext()) {
 				UsuarioNormal u = new UsuarioNormal(iterator.next());
 				normales.add(u);
 			}
 		}
-	    
-	    terminaOperacion(); 
-	    return normales;
+
+		terminaOperacion();
+		return normales;
 	}
 
 	@Override
 	public ArrayList<UsuarioOrganizador> consultarUsuariosOrganizador() throws Exception {
 		iniciaOperacion();
-		
+
 		ArrayList<UsuarioOrganizador> orgs = new ArrayList<>();
-		
+
 		Query<clasesHibernate.Usuarioorganizador> query = sesion.createQuery("FROM Usuarioorganizador");
-		
-		if(query != null){
+
+		if (query != null) {
 			List<clasesHibernate.Usuarioorganizador> lista = query.getResultList();
 			Iterator<clasesHibernate.Usuarioorganizador> iterator = lista.iterator();
-			while(iterator.hasNext()){
+			while (iterator.hasNext()) {
 				UsuarioOrganizador o = new UsuarioOrganizador(iterator.next());
 				orgs.add(o);
 			}
 		}
-	    
-	    terminaOperacion(); 
-	    return orgs;
+
+		terminaOperacion();
+		return orgs;
 	}
 
 	@Override
@@ -121,20 +119,52 @@ public class HibernateManager extends MainDBManager{
 
 	@Override
 	public int altaCarrera(Carrera c) throws Exception {
-		// TODO Auto-generated method stub
+		// TODO
 		return 0;
 	}
 
 	@Override
 	public int altaOrganizador(UsuarioOrganizador uOrg) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		// nombre, apellidos, email, password, direccion, telefono, club
+		clasesHibernate.Usuarioorganizador org = new clasesHibernate.Usuarioorganizador();
+		org.setNombre(uOrg.getNbUsuario());
+		org.setApellidos(uOrg.getApellidosUsuario());
+		org.setEmail(uOrg.getEmailUsuario());
+		org.setPassword(uOrg.getPassUsuario());
+		org.setDireccion(uOrg.getDirUsuario());
+		org.setTelefono(uOrg.getTelfUsuario());
+		org.setClub(uOrg.getClubUsuario());
+
+		try {
+			iniciaOperacion();
+			sesion.save(org);
+			terminaOperacion();
+			return 1;
+		} catch (Exception e) {
+			return 0;
+		}
+
 	}
 
 	@Override
 	public int altaUsuarioNormal(UsuarioNormal uStd) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		clasesHibernate.Usuarionormal u = new clasesHibernate.Usuarionormal();
+		u.setNombre(uStd.getNbUsuario());
+		u.setApellidos(uStd.getApellidosUsuario());
+		u.setEmail(uStd.getEmailUsuario());
+		u.setPassword(uStd.getPassUsuario());
+		u.setDireccion(uStd.getDirUsuario());
+		u.setTelefono(uStd.getTelfUsuario());
+		u.setClub(uStd.getClubUsuario());
+
+		try {
+			iniciaOperacion();
+			sesion.save(u);
+			terminaOperacion();
+			return 1;
+		} catch (Exception e) {
+			return 0;
+		}
 	}
 
 	@Override
@@ -183,27 +213,27 @@ public class HibernateManager extends MainDBManager{
 	public boolean loginAdmin(UsuarioAdmin admin) throws Exception {
 
 		iniciaOperacion();
-		Query<?> query = sesion.createQuery("FROM Usuarioadmin WHERE email='" + admin.getEmailUsuario() + "' AND password='"
-				+ admin.getPassUsuario() + "'");
-		if(query.getSingleResult() != null) {
+		Query<?> query = sesion.createQuery("FROM Usuarioadmin WHERE email='" + admin.getEmailUsuario()
+				+ "' AND password='" + admin.getPassUsuario() + "'");
+		if (query.getSingleResult() != null) {
 			terminaOperacion();
 			return true;
-		}else{
+		} else {
 			terminaOperacion();
 			return false;
 		}
-		
+
 	}
 
 	@Override
 	public boolean loginNormal(UsuarioNormal uStd) throws Exception {
 		iniciaOperacion();
-		Query<?> query = sesion.createQuery("FROM Usuarioadmin WHERE email='" + uStd.getEmailUsuario() + "' AND password='"
-				+ uStd.getPassUsuario() + "'");
-		if(query.getSingleResult() != null) {
+		Query<?> query = sesion.createQuery("FROM Usuarioadmin WHERE email='" + uStd.getEmailUsuario()
+				+ "' AND password='" + uStd.getPassUsuario() + "'");
+		if (query.getSingleResult() != null) {
 			terminaOperacion();
 			return true;
-		}else{
+		} else {
 			terminaOperacion();
 			return false;
 		}
@@ -212,12 +242,12 @@ public class HibernateManager extends MainDBManager{
 	@Override
 	public boolean loginOrganizador(UsuarioOrganizador uOrg) throws Exception {
 		iniciaOperacion();
-		Query<?> query = sesion.createQuery("FROM Usuarioorganizador WHERE email='" + uOrg.getEmailUsuario() + "' AND password='"
-				+ uOrg.getPassUsuario() + "'");
-		if(query.getSingleResult() != null) {
+		Query<?> query = sesion.createQuery("FROM Usuarioorganizador WHERE email='" + uOrg.getEmailUsuario()
+				+ "' AND password='" + uOrg.getPassUsuario() + "'");
+		if (query.getSingleResult() != null) {
 			terminaOperacion();
 			return true;
-		}else{
+		} else {
 			terminaOperacion();
 			return false;
 		}
