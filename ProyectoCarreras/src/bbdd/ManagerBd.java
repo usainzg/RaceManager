@@ -20,7 +20,7 @@ public class ManagerBd implements InterfazBD {
 			dbm = new MySqlManager();
 			break;
 		case HIBERNATE:
-
+			dbm = new HibernateManager();
 			break;
 		default:
 			break;
