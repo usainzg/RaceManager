@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15-nov-2016 9:41:01 by Hibernate Tools 5.2.0.Beta1 -->
+<hibernate-mapping>
+    <class name="clasesHibernate.Usuarioadmin" table="usuarioadmin" catalog="proyectobd" optimistic-lock="version">
+        <id name="email" type="string">
+            <column name="email" length="25" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="25" not-null="true" />
+        </property>
+        <property name="apellidos" type="string">
+            <column name="apellidos" length="25" not-null="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="10" not-null="true" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="direccion" length="25" not-null="true" />
+        </property>
+        <property name="telefono" type="int">
+            <column name="telefono" not-null="true" />
+        </property>
+        <property name="club" type="string">
+            <column name="club" length="25" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

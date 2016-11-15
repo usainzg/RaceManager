@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15-nov-2016 9:41:01 by Hibernate Tools 5.2.0.Beta1 -->
+<hibernate-mapping>
+    <class name="clasesHibernate.Carrera" table="carrera" catalog="proyectobd" optimistic-lock="version">
+        <id name="nombre" type="string">
+            <column name="nombre" length="25" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="usuarioorganizador" class="clasesHibernate.Usuarioorganizador" fetch="select">
+            <column name="organizador" not-null="true" />
+        </many-to-one>
+        <property name="distancia" type="int">
+            <column name="distancia" not-null="true" />
+        </property>
+        <property name="desnivel" type="int">
+            <column name="desnivel" not-null="true" />
+        </property>
+        <property name="precio" type="int">
+            <column name="precio" not-null="true" />
+        </property>
+        <property name="fecha" type="date">
+            <column name="fecha" length="10" not-null="true" />
+        </property>
+        <property name="lugar" type="string">
+            <column name="lugar" length="25" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
