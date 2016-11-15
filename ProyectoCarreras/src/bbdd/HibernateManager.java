@@ -101,8 +101,23 @@ public class HibernateManager extends MainDBManager {
 
 	@Override
 	public ArrayList<Carrera> consultarCarrerasOrg(UsuarioOrganizador org) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		iniciaOperacion();
+
+		ArrayList<Carrera> carreras = new ArrayList<>();
+
+		Query<clasesHibernate.Carrera> query = sesion.createQuery("FROM Carrera WHERE usuarioorganizador.email = '" + org.getEmailUsuario() + "'");
+
+		if (query != null) {
+			List<clasesHibernate.Carrera> lista = query.getResultList();
+			Iterator<clasesHibernate.Carrera> iterator = lista.iterator();
+			while (iterator.hasNext()) {
+				Carrera c = new Carrera(iterator.next());
+				carreras.add(c);
+			}
+		}
+
+		terminaOperacion();
+		return carreras;
 	}
 
 	@Override
