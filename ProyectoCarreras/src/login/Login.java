@@ -23,7 +23,13 @@ public class Login {
 		this.dbm = dbm;
 	}
 
-	// ADMIN LOGIN
+	/**
+	 * Metodo para realizar el login del admin
+	 * 
+	 * @param email email del admin a logear
+	 * @param pass pass del admin a logear
+	 * @return true + popup correcto si se ha logeado correctamente, false y popup alerta en el caso contrario
+	 */
 	public boolean loginAdmin(final JTextField email, final JTextField pass) {
 
 		UsuarioAdmin uAdmin = new UsuarioAdmin("", "", "", email.getText(), pass.getText(), 0, "");
@@ -43,7 +49,13 @@ public class Login {
 		}
 	}
 
-	// NORMAL LOGIN
+	/**
+	 * Metodo para realizar el login del usuario normal
+	 * 
+	 * @param email email del usuario normal a logear
+	 * @param pass pass del usuario normal a logear
+	 * @return true + popup correcto si se ha logeado correctamente, false y popup alerta en el caso contrario
+	 */
 	public boolean loginNormal(final JTextField email, final JTextField pass) {
 		UsuarioNormal uStd = new UsuarioNormal("", "", "", email.getText(), pass.getText(), 0, "");
 		try {
@@ -62,7 +74,13 @@ public class Login {
 		}
 	}
 
-	// ORGANIZADOR LOGIN
+	/**
+	 * Metodo para realizar el login del usuario organizador
+	 * 
+	 * @param email email del usuario organizador a logear
+	 * @param pass pass del usuario organizador a logear
+	 * @return true + popup correcto si se ha logeado correctamente, false y popup alerta en el caso contrario
+	 */
 	public boolean loginOrganizador(final JTextField email, final JTextField pass) {
 		UsuarioOrganizador uOrg = new UsuarioOrganizador("", "", "", email.getText(), pass.getText(), 0, "", 0);
 		try {
@@ -83,7 +101,14 @@ public class Login {
 
 	}
 
-	// VALIDACION DE LOGIN
+	/**
+	 * Metodo para validar la entrada en el formulario de login en mainView
+	 * 
+	 * @param comboTipoUsuario tipo de usuario a logear
+	 * @param txtEmail email del usuario a logear
+	 * @param txtPassword pass del usuario a logear
+	 * @throws Exception Exception lanza excepcion
+	 */
 	public void validacionLogin(final JComboBox<String> comboTipoUsuario, final JTextField txtEmail,
 			final JTextField txtPassword) throws Exception {
 

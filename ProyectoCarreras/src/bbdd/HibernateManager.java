@@ -20,12 +20,18 @@ public class HibernateManager extends MainDBManager {
 
 	private Session sesion;
 
+	/**
+	 * Metodo para obtener una sessionFactory y comenzar una transaccion
+	 */
 	private void iniciaOperacion() {
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		sesion = sessionFactory.openSession();
 		sesion.getTransaction().begin();
 	}
 
+	/**
+	 * Metodo para comitear y cerrar la sesion abierta
+	 */
 	private void terminaOperacion() {
 		sesion.getTransaction().commit();
 		sesion.close();

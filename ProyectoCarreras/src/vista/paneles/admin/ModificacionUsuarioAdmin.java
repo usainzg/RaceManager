@@ -4,6 +4,8 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -11,7 +13,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import utilidades.Utilidades;
+
 public class ModificacionUsuarioAdmin extends JPanel {
+	
+	private Utilidades util = new Utilidades();
 
 	private static final long serialVersionUID = 1L;
 	private JTextField txtNombre;
@@ -264,6 +270,15 @@ public class ModificacionUsuarioAdmin extends JPanel {
 		gbc_btnLimpiar.gridx = 5;
 		gbc_btnLimpiar.gridy = 12;
 		add(btnLimpiar, gbc_btnLimpiar);
+		
+		btnLimpiar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				util.resetJTextField(txtNombre, txtClub, txtDir, txtPass, txtTelf, txtApellidos);
+			}
+		});
 
 	}
 
