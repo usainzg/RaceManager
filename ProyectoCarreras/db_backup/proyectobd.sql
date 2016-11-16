@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
+-- version 4.5.2
 -- http://www.phpmyadmin.net
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 17-10-2016 a las 17:17:47
--- Versión del servidor: 10.1.16-MariaDB
--- Versión de PHP: 5.6.24
+-- Servidor: localhost
+-- Tiempo de generación: 16-11-2016 a las 15:56:55
+-- Versión del servidor: 10.1.13-MariaDB
+-- Versión de PHP: 5.6.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -41,10 +41,16 @@ CREATE TABLE `carrera` (
 --
 
 INSERT INTO `carrera` (`nombre`, `organizador`, `distancia`, `desnivel`, `precio`, `fecha`, `lugar`) VALUES
-('Apuko Igoera', 1, 21, 2111, 21, '2005-10-02', 'Usan'),
-('Gorbeia Suzien', 3, 34, 2500, 34, '2016-10-11', 'Zeanuri'),
+('Apuko Igoera', 1, 24, 2300, 12, '2000-10-08', 'Galda'),
+('Gorbeia Suzien', 3, 40, 2500, 50, '2000-10-01', 'Zeanuri'),
+('Gran Trail del Aneto', 5, 108, 7500, 90, '2016-08-24', 'Benasque'),
+('Karraderan', 6, 31, 2000, 25, '2016-04-12', 'Larrabetzu'),
+('Laudio Trail', 6, 24, 1300, 34, '2016-05-05', 'Laudio'),
+('Lemoatx', 4, 16, 700, 30, '2016-11-08', 'Lemoa'),
+('Maraton de las tucas', 5, 42, 2600, 40, '2016-08-24', 'Benasque'),
 ('Upo Igoera', 2, 12, 1222, 23, '2016-10-04', 'Usansolo'),
-('Vuelta al Aneto', 4, 58, 5600, 80, '2016-10-04', 'Benasque');
+('Vuelta al aneto', 5, 58, 4000, 70, '2016-08-24', 'Benasque'),
+('Vuelta al pico cerler', 5, 21, 1200, 20, '2016-08-24', 'Benasque');
 
 -- --------------------------------------------------------
 
@@ -90,10 +96,10 @@ CREATE TABLE `usuarionormal` (
 --
 
 INSERT INTO `usuarionormal` (`nombre`, `apellidos`, `email`, `password`, `direccion`, `telefono`, `club`) VALUES
-('aitor', 'barrena', 'aitor@aitor.com', 'Aitor1234', 'igorre', 946006265, 'Araiamendi'),
-('asier', 'arrese', 'arres@arres.com', 'Arres1234', 'galdakao', 956008668, 'ttb'),
-('unai', 'saisnazs ', 'un@unan.com', 'Unai1234', 'uansdu', 123456789, 'ttb'),
-('unai', 'sainz', 'unaisa@unai.com', 'Unai1808', 'unai', 123456789, 'unai');
+('Anartz', 'Mugika', 'anartz@an.com', 'Anartz1234', 'Bergara 13', 946002818, 'Trail Team Bizkaia'),
+('fernando', 'lopez', 'fer@fer.com', 'Fer1234', 'Goikoetxea', 946002111, 'Trail Team Gipuzkoa'),
+('unaiN', 'unaiNa', 'unai@un.com', 'Nunai123', 'unaiNN', 946002912, 'TTB'),
+('unai', 'sainz', 'unai@unai.com', 'Unai1808', 'unai', 123456789, 'unai');
 
 -- --------------------------------------------------------
 
@@ -120,7 +126,9 @@ INSERT INTO `usuarioorganizador` (`id`, `nombre`, `apellidos`, `email`, `passwor
 (1, 'unai', 'sainz', 'unai@unai.com', 'Unai1234', 'unaisainz', 123456789, 'ttb'),
 (2, 'sendoa', 'santiago', 'sen@sen.com', 'Sen1234', 'barakaldo', 956006565, 'TTB'),
 (3, 'Hanot', 'Echevarria', 'hanot@hanot.com', 'Hanot1234', 'Galdakao', 946002958, 'TTB'),
-(4, 'David', 'Martin', 'david@david.com', 'David1234', 'Sestao', 946002965, 'TTB');
+(4, 'alex', 'alex', 'david@david.com', 'Alex1234', 'alexdir', 946002941, 'AlexClub'),
+(5, 'esti', 'gamboa', 'esti@esti.com', 'Esti1234', 'Usansolo 13', 946003030, 'Trail Team Gipuzkoa'),
+(6, 'Aitor', 'Sanchez', 'sanchez@aitor.com', 'Aitor1234', 'Pertxin bidea', 691536098, 'Athletic');
 
 --
 -- Índices para tablas volcadas
@@ -160,7 +168,7 @@ ALTER TABLE `usuarioorganizador`
 -- AUTO_INCREMENT de la tabla `usuarioorganizador`
 --
 ALTER TABLE `usuarioorganizador`
-  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- Restricciones para tablas volcadas
 --
