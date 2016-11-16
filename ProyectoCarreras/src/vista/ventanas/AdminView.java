@@ -340,7 +340,7 @@ public class AdminView extends JFrame implements ActionListener, ViewUtil {
 				u.setClubUsuario(modUsuarioClub.getText());
 
 				try {
-					int filas = manager.updateUsuarioNormal(uViejo, u);
+					int filas = manager.updateUsuarioNormal(u);
 					util.createInfobox("Se han modificado " + filas + " correctamente.", "Modificacion correcta");
 				} catch (Exception e1) {
 					e1.printStackTrace();

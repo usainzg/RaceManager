@@ -83,8 +83,8 @@ public class ManagerBd implements InterfazBD {
 	}
 
 	@Override
-	public int updateUsuarioNormal(UsuarioNormal uStd, UsuarioNormal datos) throws Exception {
-		return dbm.updateUsuarioNormal(uStd, datos);
+	public int updateUsuarioNormal(UsuarioNormal datos) throws Exception {
+		return dbm.updateUsuarioNormal(datos);
 	}
 
 	@Override

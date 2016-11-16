@@ -48,7 +48,7 @@ public abstract interface InterfazBD {
 
 	abstract int updateUsuarioOrganizador(UsuarioOrganizador uOrg, UsuarioOrganizador datos) throws Exception;
 
-	abstract int updateUsuarioNormal(UsuarioNormal uStd, UsuarioNormal datos) throws Exception;
+	abstract int updateUsuarioNormal(UsuarioNormal datos) throws Exception;
 
 	// sistema login
 	abstract boolean loginAdmin(UsuarioAdmin admin) throws Exception;

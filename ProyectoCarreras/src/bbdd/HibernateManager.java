@@ -304,7 +304,7 @@ public class HibernateManager extends MainDBManager {
 		try{
 			iniciaOperacion();
 			
-			Query q = sesion.createQuery(hql);
+			Query<?> q = sesion.createQuery(hql);
 			
 			q.setParameter("nombre", datos.getNbUsuario());
 			q.setParameter("apellidos", datos.getApellidosUsuario());
@@ -326,9 +326,31 @@ public class HibernateManager extends MainDBManager {
 	}
 
 	@Override
-	public int updateUsuarioNormal(UsuarioNormal uStd, UsuarioNormal datos) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public int updateUsuarioNormal(UsuarioNormal datos) throws Exception {
+		String hql = "UPDATE Usuarionormal SET nombre= :nombre, apellidos= :apellidos, direccion= :direccion ,password= :password, telefono= :telf, club= :club WHERE email= :email";
+		
+		try{
+			iniciaOperacion();
+			
+			Query<?> q = sesion.createQuery(hql);
+			
+			q.setParameter("nombre", datos.getNbUsuario());
+			q.setParameter("apellidos", datos.getApellidosUsuario());
+			q.setParameter("direccion", datos.getDirUsuario());
+			q.setParameter("password", datos.getPassUsuario());
+			q.setParameter("telf", datos.getTelfUsuario());
+			q.setParameter("club", datos.getClubUsuario());
+			
+			q.setParameter("email", datos.getEmailUsuario());
+			
+			int filas = q.executeUpdate();
+			
+			terminaOperacion();
+			return filas;
+		}catch(Exception e){
+			return 0;
+		}
+		
 	}
 
 	@Override

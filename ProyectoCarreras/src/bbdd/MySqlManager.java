@@ -325,7 +325,7 @@ public class MySqlManager extends MainDBManager {
 	}
 
 	@Override
-	public int updateUsuarioNormal(UsuarioNormal uStd, UsuarioNormal datos) throws Exception {
+	public int updateUsuarioNormal(UsuarioNormal datos) throws Exception {
 		Connection cn = conectarBD();
 		if (cn == null) {
 			return -1;
