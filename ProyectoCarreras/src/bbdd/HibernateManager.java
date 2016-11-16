@@ -238,7 +238,7 @@ public class HibernateManager extends MainDBManager {
 		try {
 			String hql = "DELETE Usuarioorganizador WHERE email= :email";
 			iniciaOperacion();
-			Query q = sesion.createQuery(hql);
+			Query<?> q = sesion.createQuery(hql);
 			q.setParameter("email", uOrg.getEmailUsuario());
 			int filas = q.executeUpdate();
 			terminaOperacion();
@@ -253,7 +253,7 @@ public class HibernateManager extends MainDBManager {
 		try {
 			String hql = "DELETE Usuarionormal WHERE email= :email";
 			iniciaOperacion();
-			Query q = sesion.createQuery(hql);
+			Query<?> q = sesion.createQuery(hql);
 			q.setParameter("email", uStd.getEmailUsuario());
 			int filas = q.executeUpdate();
 			terminaOperacion();
@@ -298,8 +298,31 @@ public class HibernateManager extends MainDBManager {
 
 	@Override
 	public int updateUsuarioOrganizador(UsuarioOrganizador uOrg, UsuarioOrganizador datos) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		String hql = "UPDATE Usuarioorganizador SET nombre= :nombre, apellidos= :apellidos, direccion= :direccion ,password= :password, telefono= :telf, club= :club WHERE email= :email";
+		
+		try{
+			iniciaOperacion();
+			
+			Query q = sesion.createQuery(hql);
+			
+			q.setParameter("nombre", datos.getNbUsuario());
+			q.setParameter("apellidos", datos.getApellidosUsuario());
+			q.setParameter("direccion", datos.getDirUsuario());
+			q.setParameter("password", datos.getPassUsuario());
+			q.setParameter("telf", datos.getTelfUsuario());
+			q.setParameter("club", datos.getClubUsuario());
+			
+			q.setParameter("email", uOrg.getEmailUsuario());
+			
+			int filas = q.executeUpdate();
+			
+			terminaOperacion();
+			return filas;
+		}catch(Exception e){
+			return 0;
+		}
+		
 	}
 
 	@Override
