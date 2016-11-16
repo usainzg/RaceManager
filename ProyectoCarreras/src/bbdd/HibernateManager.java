@@ -373,7 +373,7 @@ public class HibernateManager extends MainDBManager {
 	@Override
 	public boolean loginNormal(UsuarioNormal uStd) throws Exception {
 		iniciaOperacion();
-		Query<?> query = sesion.createQuery("FROM Usuarioadmin WHERE email='" + uStd.getEmailUsuario()
+		Query<?> query = sesion.createQuery("FROM Usuarionormal WHERE email='" + uStd.getEmailUsuario()
 				+ "' AND password='" + uStd.getPassUsuario() + "'");
 		if (query.getSingleResult() != null) {
 			terminaOperacion();
