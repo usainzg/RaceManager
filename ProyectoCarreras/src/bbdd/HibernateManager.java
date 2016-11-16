@@ -234,7 +234,20 @@ public class HibernateManager extends MainDBManager {
 
 	@Override
 	public int deleteUsuarioOrganizador(UsuarioOrganizador uOrg) throws Exception {
-		clasesHibernate.Usuarioorganizador org = new clasesHibernate.Usuarioorganizador();
+		
+		try {
+			String hql = "DELETE Usuarioorganizador WHERE email= :email";
+			iniciaOperacion();
+			Query q = sesion.createQuery(hql);
+			q.setParameter("email", uOrg.getEmailUsuario());
+			int filas = q.executeUpdate();
+			terminaOperacion();
+			return filas;
+		}catch(Exception e){
+			return 0;
+		}
+		
+		/*clasesHibernate.Usuarioorganizador org = new clasesHibernate.Usuarioorganizador();
 		org.setNombre(uOrg.getNbUsuario());
 		org.setApellidos(uOrg.getApellidosUsuario());
 		org.setEmail(uOrg.getEmailUsuario());
@@ -246,7 +259,7 @@ public class HibernateManager extends MainDBManager {
 		
 		try{
 			iniciaOperacion();
-			
+			//org = (clasesHibernate.Usuarioorganizador) sesion.get(clasesHibernate.Usuarioorganizador.class, );
 			sesion.delete(org);
 			
 			terminaOperacion();
@@ -254,7 +267,7 @@ public class HibernateManager extends MainDBManager {
 			return 1;
 		}catch(Exception e){
 			return 0;
-		}
+		}*/
 	}
 
 	@Override
