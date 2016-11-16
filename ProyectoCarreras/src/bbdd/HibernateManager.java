@@ -246,50 +246,18 @@ public class HibernateManager extends MainDBManager {
 		}catch(Exception e){
 			return 0;
 		}
-		
-		/*clasesHibernate.Usuarioorganizador org = new clasesHibernate.Usuarioorganizador();
-		org.setNombre(uOrg.getNbUsuario());
-		org.setApellidos(uOrg.getApellidosUsuario());
-		org.setEmail(uOrg.getEmailUsuario());
-		org.setPassword(uOrg.getPassUsuario());
-		org.setDireccion(uOrg.getDirUsuario());
-		org.setTelefono(uOrg.getTelfUsuario());
-		org.setClub(uOrg.getClubUsuario());
-		
-		
-		try{
-			iniciaOperacion();
-			//org = (clasesHibernate.Usuarioorganizador) sesion.get(clasesHibernate.Usuarioorganizador.class, );
-			sesion.delete(org);
-			
-			terminaOperacion();
-			
-			return 1;
-		}catch(Exception e){
-			return 0;
-		}*/
 	}
 
 	@Override
 	public int deleteUsuarioNormal(UsuarioNormal uStd) throws Exception {
-		clasesHibernate.Usuarionormal u = new clasesHibernate.Usuarionormal();
-		u.setNombre(uStd.getNbUsuario());
-		u.setApellidos(uStd.getApellidosUsuario());
-		u.setEmail(uStd.getEmailUsuario());
-		u.setPassword(uStd.getPassUsuario());
-		u.setDireccion(uStd.getDirUsuario());
-		u.setTelefono(uStd.getTelfUsuario());
-		u.setClub(uStd.getClubUsuario());
-		
-		
-		try{
+		try {
+			String hql = "DELETE Usuarionormal WHERE email= :email";
 			iniciaOperacion();
-			
-			sesion.delete(u);
-			
+			Query q = sesion.createQuery(hql);
+			q.setParameter("email", uStd.getEmailUsuario());
+			int filas = q.executeUpdate();
 			terminaOperacion();
-			
-			return 1;
+			return filas;
 		}catch(Exception e){
 			return 0;
 		}
