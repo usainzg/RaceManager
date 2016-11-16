@@ -22,6 +22,7 @@ public class VisualizacionCarrerasPanel extends JPanel {
 
 	/**
 	 * Create the panel.
+	 * @param manager objeto manager para saber que base de datos esta elegida
 	 */
 	public VisualizacionCarrerasPanel(ManagerBd manager) {
 
