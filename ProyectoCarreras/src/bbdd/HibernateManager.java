@@ -1,9 +1,9 @@
 package bbdd;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -170,7 +170,7 @@ public class HibernateManager extends MainDBManager {
 
 	@Override
 	public int altaOrganizador(UsuarioOrganizador uOrg) throws Exception {
-		// nombre, apellidos, email, password, direccion, telefono, club
+		
 		clasesHibernate.Usuarioorganizador org = new clasesHibernate.Usuarioorganizador();
 		org.setNombre(uOrg.getNbUsuario());
 		org.setApellidos(uOrg.getApellidosUsuario());
@@ -214,25 +214,76 @@ public class HibernateManager extends MainDBManager {
 
 	@Override
 	public int deleteCarrera(Carrera c) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+
+		clasesHibernate.Carrera ca = new clasesHibernate.Carrera();
+		
+		try{
+			iniciaOperacion();
+			
+			ca = (clasesHibernate.Carrera) sesion.get(clasesHibernate.Carrera.class, c.getNbCarrera());
+			
+			sesion.delete(ca);
+			
+			terminaOperacion();
+			
+			return 1;
+		}catch(Exception e){
+			return 0;
+		}
 	}
 
 	@Override
 	public int deleteUsuarioOrganizador(UsuarioOrganizador uOrg) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		clasesHibernate.Usuarioorganizador org = new clasesHibernate.Usuarioorganizador();
+		org.setNombre(uOrg.getNbUsuario());
+		org.setApellidos(uOrg.getApellidosUsuario());
+		org.setEmail(uOrg.getEmailUsuario());
+		org.setPassword(uOrg.getPassUsuario());
+		org.setDireccion(uOrg.getDirUsuario());
+		org.setTelefono(uOrg.getTelfUsuario());
+		org.setClub(uOrg.getClubUsuario());
+		
+		
+		try{
+			iniciaOperacion();
+			
+			sesion.delete(org);
+			
+			terminaOperacion();
+			
+			return 1;
+		}catch(Exception e){
+			return 0;
+		}
 	}
 
 	@Override
 	public int deleteUsuarioNormal(UsuarioNormal uStd) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		clasesHibernate.Usuarionormal u = new clasesHibernate.Usuarionormal();
+		u.setNombre(uStd.getNbUsuario());
+		u.setApellidos(uStd.getApellidosUsuario());
+		u.setEmail(uStd.getEmailUsuario());
+		u.setPassword(uStd.getPassUsuario());
+		u.setDireccion(uStd.getDirUsuario());
+		u.setTelefono(uStd.getTelfUsuario());
+		u.setClub(uStd.getClubUsuario());
+		
+		
+		try{
+			iniciaOperacion();
+			
+			sesion.delete(u);
+			
+			terminaOperacion();
+			
+			return 1;
+		}catch(Exception e){
+			return 0;
+		}
 	}
 
 	@Override
 	public int updateCarreraAdmin(Carrera cViejo, Carrera c) throws Exception {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
