@@ -196,7 +196,7 @@ public class OrgView extends JFrame implements ActionListener, ViewUtil {
 
 				cNueva.setLugarCarrera(txtLugar.getText());
 
-				int filas = manager.updateCarreraAdmin(cNueva);
+				int filas = manager.updateCarrera(cNueva);
 				util.createInfobox("Se han modificado " + filas + " filas de la base de datos.",
 						"Modificacion no completada.");
 

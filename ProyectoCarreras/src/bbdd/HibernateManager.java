@@ -265,7 +265,7 @@ public class HibernateManager extends MainDBManager {
 	}
 
 	@Override
-	public int updateCarreraAdmin(Carrera c) throws Exception {
+	public int updateCarrera(Carrera c) throws Exception {
 
 		clasesHibernate.Carrera ca = new clasesHibernate.Carrera();
 
@@ -289,12 +289,6 @@ public class HibernateManager extends MainDBManager {
 		} catch (Exception e) {
 			return 0;
 		}
-	}
-
-	@Override
-	public int updateCarreraOrg(Carrera cViejo, Carrera c) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 	@Override
