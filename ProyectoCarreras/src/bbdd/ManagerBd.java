@@ -113,8 +113,8 @@ public class ManagerBd implements InterfazBD {
 	}
 
 	@Override
-	public int updateCarreraAdmin(Carrera cViejo, Carrera c) throws Exception {
-		return dbm.updateCarreraAdmin(cViejo, c);
+	public int updateCarreraAdmin(Carrera c) throws Exception {
+		return dbm.updateCarreraAdmin(c);
 	}
 
 	@Override

@@ -275,7 +275,7 @@ public class MySqlManager extends MainDBManager {
 
 	// UPDATE�s
 	@Override
-	public int updateCarreraAdmin(Carrera cViejo, Carrera c) throws Exception {
+	public int updateCarreraAdmin(Carrera c) throws Exception {
 		Connection cn = conectarBD();
 		if (cn == null) {
 			return -1;

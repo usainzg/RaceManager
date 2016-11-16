@@ -264,8 +264,30 @@ public class HibernateManager extends MainDBManager {
 	}
 
 	@Override
-	public int updateCarreraAdmin(Carrera cViejo, Carrera c) throws Exception {
-		return 0;
+	public int updateCarreraAdmin(Carrera c) throws Exception {
+		
+		clasesHibernate.Carrera ca = new clasesHibernate.Carrera();
+		
+		try{
+			iniciaOperacion();
+			
+			ca = (clasesHibernate.Carrera) sesion.get(clasesHibernate.Carrera.class, c.getNbCarrera());
+			ca.setDistancia(c.getDistanciaCarrera());
+			ca.setDesnivel(c.getDesnivelCarrera());
+			ca.setPrecio(c.getPrecioCarrera());
+			
+			SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
+			Date date = formatoDelTexto.parse(c.getFechaCarrera());
+			ca.setFecha(date);
+			ca.setLugar(c.getLugarCarrera());
+			sesion.update(ca);
+			
+			terminaOperacion();
+			
+			return 1;
+		}catch(Exception e){
+			return 0;
+		}
 	}
 
 	@Override

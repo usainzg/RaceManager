@@ -42,7 +42,7 @@ public abstract interface InterfazBD {
 	abstract int deleteUsuarioNormal(UsuarioNormal uStd) throws Exception;
 
 	// updates
-	abstract int updateCarreraAdmin(Carrera cViejo, Carrera c) throws Exception;
+	abstract int updateCarreraAdmin(Carrera c) throws Exception;
 
 	abstract int updateCarreraOrg(Carrera cViejo, Carrera c) throws Exception;
 

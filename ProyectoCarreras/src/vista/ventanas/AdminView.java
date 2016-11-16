@@ -167,8 +167,8 @@ public class AdminView extends JFrame implements ActionListener, ViewUtil {
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource() == mnVisualizarCarreras) {
-
-			changePanel(panelVisualizacion);
+			VisualizacionCarrerasPanel panel = new VisualizacionCarrerasPanel(manager);
+			changePanel(panel);
 
 		} else if (e.getSource() == mnModificarCarreras) {
 
@@ -449,7 +449,6 @@ public class AdminView extends JFrame implements ActionListener, ViewUtil {
 		if (util.isValidDate(modFecha)) {
 			try {
 
-				Carrera c = new Carrera(modCombo.getSelectedItem().toString(), null, 0, 0, 0, "", "");
 				Carrera cNueva = new Carrera();
 				cNueva.setNbCarrera(modCombo.getSelectedItem().toString());
 				cNueva.setOrgCarrera(null);
@@ -470,9 +469,9 @@ public class AdminView extends JFrame implements ActionListener, ViewUtil {
 
 				cNueva.setLugarCarrera(modLugar.getText());
 
-				int filas = manager.updateCarreraAdmin(c, cNueva);
+				int filas = manager.updateCarreraAdmin(cNueva);
 				util.createInfobox("Se han modificado " + filas + " filas de la base de datos.",
-						"Modificacion no completada.");
+						"Modificacion completada.");
 
 			} catch (Exception ex) {
 				ex.printStackTrace();

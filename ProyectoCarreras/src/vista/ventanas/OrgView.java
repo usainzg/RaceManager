@@ -102,8 +102,9 @@ public class OrgView extends JFrame implements ActionListener, ViewUtil {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == mnVisualizacionCarreras) {
-
-			changePanel(panelVisualizacion);
+			
+			VisualizacionCarrerasPanel panel = new VisualizacionCarrerasPanel(manager);
+			changePanel(panel);
 
 		} else if (e.getSource() == mnModificacionCarreras) {
 
@@ -173,7 +174,6 @@ public class OrgView extends JFrame implements ActionListener, ViewUtil {
 		if (util.isValidDate(txtFecha)) {
 			try {
 
-				Carrera c = new Carrera(comboCarreraModificar.getSelectedItem().toString(), null, 0, 0, 0, "", "");
 				Carrera cNueva = new Carrera();
 				cNueva.setNbCarrera(comboCarreraModificar.getSelectedItem().toString());
 				cNueva.setOrgCarrera(null);
@@ -194,7 +194,7 @@ public class OrgView extends JFrame implements ActionListener, ViewUtil {
 
 				cNueva.setLugarCarrera(txtLugar.getText());
 
-				int filas = manager.updateCarreraAdmin(c, cNueva);
+				int filas = manager.updateCarreraAdmin(cNueva);
 				util.createInfobox("Se han modificado " + filas + " filas de la base de datos.",
 						"Modificacion no completada.");
 
