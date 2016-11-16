@@ -7,10 +7,12 @@ public class UsuarioNormal extends Usuario {
 		super(nombre, apellidos, direccion, email, pass, telf, club);
 	}
 
-	public UsuarioNormal() {}
-	
-	public UsuarioNormal(clasesHibernate.Usuarionormal u){
-		super(u.getNombre(), u.getApellidos(), u.getDireccion(), u.getEmail(), u.getPassword(), u.getTelefono(), u.getClub());
+	public UsuarioNormal() {
+	}
+
+	public UsuarioNormal(clasesHibernate.Usuarionormal u) {
+		super(u.getNombre(), u.getApellidos(), u.getDireccion(), u.getEmail(), u.getPassword(), u.getTelefono(),
+				u.getClub());
 	}
 
 }

@@ -148,9 +148,8 @@ public class MainView extends JFrame implements ActionListener, ViewUtil {
 			// NORMAL USER REGISTER
 			if (reComboUsuario.getSelectedItem().toString().equals("Normal")) {
 
-				UsuarioNormal uToInsert = new UsuarioNormal(reNombre.getText(), reApellidos.getText(),
-						reDir.getText(), reEmail.getText(), rePass.getText(), Integer.parseInt(reTelf.getText()),
-						reClub.getText());
+				UsuarioNormal uToInsert = new UsuarioNormal(reNombre.getText(), reApellidos.getText(), reDir.getText(),
+						reEmail.getText(), rePass.getText(), Integer.parseInt(reTelf.getText()), reClub.getText());
 				try {
 
 					int filas = ma.altaUsuarioNormal(uToInsert);

@@ -327,8 +327,6 @@ public class AdminView extends JFrame implements ActionListener, ViewUtil {
 		if (validarEntradaModificacionUsuario() == true) {
 
 			if (modUsuarioComboTipo.getSelectedItem().equals("Normal")) {
-				UsuarioNormal uViejo = new UsuarioNormal("", "", modUsuarioComboEmail.getSelectedItem().toString(),
-						"", "", 0, "");
 				UsuarioNormal u = new UsuarioNormal();
 
 				u.setNbUsuario(modUsuarioNombre.getText());

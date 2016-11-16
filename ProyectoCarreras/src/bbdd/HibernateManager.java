@@ -105,7 +105,8 @@ public class HibernateManager extends MainDBManager {
 
 		ArrayList<Carrera> carreras = new ArrayList<>();
 
-		Query<clasesHibernate.Carrera> query = sesion.createQuery("FROM Carrera WHERE usuarioorganizador.email = '" + org.getEmailUsuario() + "'");
+		Query<clasesHibernate.Carrera> query = sesion
+				.createQuery("FROM Carrera WHERE usuarioorganizador.email = '" + org.getEmailUsuario() + "'");
 
 		if (query != null) {
 			List<clasesHibernate.Carrera> lista = query.getResultList();
@@ -170,7 +171,7 @@ public class HibernateManager extends MainDBManager {
 
 	@Override
 	public int altaOrganizador(UsuarioOrganizador uOrg) throws Exception {
-		
+
 		clasesHibernate.Usuarioorganizador org = new clasesHibernate.Usuarioorganizador();
 		org.setNombre(uOrg.getNbUsuario());
 		org.setApellidos(uOrg.getApellidosUsuario());
@@ -216,25 +217,25 @@ public class HibernateManager extends MainDBManager {
 	public int deleteCarrera(Carrera c) throws Exception {
 
 		clasesHibernate.Carrera ca = new clasesHibernate.Carrera();
-		
-		try{
+
+		try {
 			iniciaOperacion();
-			
+
 			ca = (clasesHibernate.Carrera) sesion.get(clasesHibernate.Carrera.class, c.getNbCarrera());
-			
+
 			sesion.delete(ca);
-			
+
 			terminaOperacion();
-			
+
 			return 1;
-		}catch(Exception e){
+		} catch (Exception e) {
 			return 0;
 		}
 	}
 
 	@Override
 	public int deleteUsuarioOrganizador(UsuarioOrganizador uOrg) throws Exception {
-		
+
 		try {
 			String hql = "DELETE Usuarioorganizador WHERE email= :email";
 			iniciaOperacion();
@@ -243,7 +244,7 @@ public class HibernateManager extends MainDBManager {
 			int filas = q.executeUpdate();
 			terminaOperacion();
 			return filas;
-		}catch(Exception e){
+		} catch (Exception e) {
 			return 0;
 		}
 	}
@@ -258,34 +259,34 @@ public class HibernateManager extends MainDBManager {
 			int filas = q.executeUpdate();
 			terminaOperacion();
 			return filas;
-		}catch(Exception e){
+		} catch (Exception e) {
 			return 0;
 		}
 	}
 
 	@Override
 	public int updateCarreraAdmin(Carrera c) throws Exception {
-		
+
 		clasesHibernate.Carrera ca = new clasesHibernate.Carrera();
-		
-		try{
+
+		try {
 			iniciaOperacion();
-			
+
 			ca = (clasesHibernate.Carrera) sesion.get(clasesHibernate.Carrera.class, c.getNbCarrera());
 			ca.setDistancia(c.getDistanciaCarrera());
 			ca.setDesnivel(c.getDesnivelCarrera());
 			ca.setPrecio(c.getPrecioCarrera());
-			
+
 			SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
 			Date date = formatoDelTexto.parse(c.getFechaCarrera());
 			ca.setFecha(date);
 			ca.setLugar(c.getLugarCarrera());
 			sesion.update(ca);
-			
+
 			terminaOperacion();
-			
+
 			return 1;
-		}catch(Exception e){
+		} catch (Exception e) {
 			return 0;
 		}
 	}
@@ -298,59 +299,59 @@ public class HibernateManager extends MainDBManager {
 
 	@Override
 	public int updateUsuarioOrganizador(UsuarioOrganizador uOrg, UsuarioOrganizador datos) throws Exception {
-		
+
 		String hql = "UPDATE Usuarioorganizador SET nombre= :nombre, apellidos= :apellidos, direccion= :direccion ,password= :password, telefono= :telf, club= :club WHERE email= :email";
-		
-		try{
+
+		try {
 			iniciaOperacion();
-			
+
 			Query<?> q = sesion.createQuery(hql);
-			
+
 			q.setParameter("nombre", datos.getNbUsuario());
 			q.setParameter("apellidos", datos.getApellidosUsuario());
 			q.setParameter("direccion", datos.getDirUsuario());
 			q.setParameter("password", datos.getPassUsuario());
 			q.setParameter("telf", datos.getTelfUsuario());
 			q.setParameter("club", datos.getClubUsuario());
-			
+
 			q.setParameter("email", uOrg.getEmailUsuario());
-			
+
 			int filas = q.executeUpdate();
-			
+
 			terminaOperacion();
 			return filas;
-		}catch(Exception e){
+		} catch (Exception e) {
 			return 0;
 		}
-		
+
 	}
 
 	@Override
 	public int updateUsuarioNormal(UsuarioNormal datos) throws Exception {
 		String hql = "UPDATE Usuarionormal SET nombre= :nombre, apellidos= :apellidos, direccion= :direccion ,password= :password, telefono= :telf, club= :club WHERE email= :email";
-		
-		try{
+
+		try {
 			iniciaOperacion();
-			
+
 			Query<?> q = sesion.createQuery(hql);
-			
+
 			q.setParameter("nombre", datos.getNbUsuario());
 			q.setParameter("apellidos", datos.getApellidosUsuario());
 			q.setParameter("direccion", datos.getDirUsuario());
 			q.setParameter("password", datos.getPassUsuario());
 			q.setParameter("telf", datos.getTelfUsuario());
 			q.setParameter("club", datos.getClubUsuario());
-			
+
 			q.setParameter("email", datos.getEmailUsuario());
-			
+
 			int filas = q.executeUpdate();
-			
+
 			terminaOperacion();
 			return filas;
-		}catch(Exception e){
+		} catch (Exception e) {
 			return 0;
 		}
-		
+
 	}
 
 	@Override

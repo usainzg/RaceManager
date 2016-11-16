@@ -102,7 +102,7 @@ public class OrgView extends JFrame implements ActionListener, ViewUtil {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == mnVisualizacionCarreras) {
-			
+
 			VisualizacionCarrerasPanel panel = new VisualizacionCarrerasPanel(manager);
 			changePanel(panel);
 
@@ -110,7 +110,7 @@ public class OrgView extends JFrame implements ActionListener, ViewUtil {
 
 			changePanel(panelModificacionCarreraOrg);
 			initComboModificar();
-			
+
 		} else if (e.getSource() == mnBorrarCarrera) {
 
 			changePanel(panelBorradoCarreraOrg);
@@ -121,13 +121,13 @@ public class OrgView extends JFrame implements ActionListener, ViewUtil {
 		if (e.getSource() == btnBorrarPanelBorrado) {
 
 			borrarCarreraOrg();
-			
+
 		}
 
 		if (e.getSource() == btnModificar) {
-			
+
 			modificarCarreraOrg();
-			
+
 		} else if (e.getSource() == btnLimpiar) {
 			util.resetJTextField(txtDesnivel, txtDistancia, txtFecha, txtLugar, txtPrecio);
 		}
@@ -145,8 +145,9 @@ public class OrgView extends JFrame implements ActionListener, ViewUtil {
 		}
 
 	}
-	private void borrarCarreraOrg(){
-		
+
+	private void borrarCarreraOrg() {
+
 		try {
 			Carrera c = new Carrera(comboPanelBorrado.getSelectedItem().toString(), null, 0, 0, 0, "", "");
 			int filas = manager.deleteCarrera(c);
@@ -158,8 +159,8 @@ public class OrgView extends JFrame implements ActionListener, ViewUtil {
 			util.createErrorbox("No se ha podido borrar la carrera", "Borrado no completado");
 		}
 	}
-	
-	private void initComboModificar(){
+
+	private void initComboModificar() {
 		try {
 			ArrayList<Carrera> carreras = manager.consultarCarrerasOrg(orgLogeado);
 			for (Carrera c : carreras) {
@@ -169,8 +170,9 @@ public class OrgView extends JFrame implements ActionListener, ViewUtil {
 			util.createErrorbox("Error al recoger datos de la base de datos", "Error conexion base de datos");
 		}
 	}
-	private void modificarCarreraOrg(){
-		
+
+	private void modificarCarreraOrg() {
+
 		if (util.isValidDate(txtFecha)) {
 			try {
 
@@ -205,9 +207,9 @@ public class OrgView extends JFrame implements ActionListener, ViewUtil {
 		} else {
 			util.createErrorbox("Revise los campos", "Fallo de formato");
 		}
-		
+
 	}
-	
+
 	@Override
 	public void changePanel(final JPanel panel) {
 

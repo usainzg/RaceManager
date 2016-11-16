@@ -62,7 +62,6 @@ public class VisualizacionCarrerasPanel extends JPanel {
 
 		rellenarTabla();
 	}
-	
 
 	private void rellenarTabla() {
 		ArrayList<Carrera> carreras;
