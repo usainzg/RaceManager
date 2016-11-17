@@ -89,7 +89,7 @@ public class AdminView extends JFrame implements ActionListener, ViewUtil {
 
 	private void initialize() {
 		setTitle("Admin");
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 512, 500);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		getContentPane().add(panelVisualizacion, BorderLayout.CENTER);

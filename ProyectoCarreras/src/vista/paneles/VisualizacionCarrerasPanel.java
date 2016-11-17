@@ -37,9 +37,9 @@ public class VisualizacionCarrerasPanel extends JPanel {
 		modelo.addColumn("FECHA");
 		modelo.addColumn("LUGAR");
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[] { 460, 0 };
-		gridBagLayout.rowHeights = new int[] { 413, 0 };
-		gridBagLayout.columnWeights = new double[] { 0.0, Double.MIN_VALUE };
+		gridBagLayout.columnWidths = new int[] { 800, 0 };
+		gridBagLayout.rowHeights = new int[] { 600, 0 };
+		gridBagLayout.columnWeights = new double[] { 0.0, Double.MAX_VALUE };
 		gridBagLayout.rowWeights = new double[] { 0.0, Double.MIN_VALUE };
 		setLayout(gridBagLayout);
 
