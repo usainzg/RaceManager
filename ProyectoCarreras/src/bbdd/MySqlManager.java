@@ -17,14 +17,18 @@ public class MySqlManager extends MainDBManager {
 
 	private final String MYSQL_DRIVER = "com.mysql.jdbc.Driver";
 	private final String URL_DB = "jdbc:mysql://localhost/proyectobd";
+	private final String DB_USER_MYSQL = "root";
+	private final String DB_PASS_MYSQL = "";
+	
 	private final Utilidades util = new Utilidades();
+	
 
 	@Override
 	public Connection conectarBD() throws Exception {
 		try {
 			Class.forName(MYSQL_DRIVER != null ? MYSQL_DRIVER : "com.mysql.jdbc.Driver");
 			Connection conexion = DriverManager
-					.getConnection(URL_DB != null ? URL_DB : "jdbc:mysql://localhost/proyectobd", "root", "");
+					.getConnection(URL_DB != null ? URL_DB : "jdbc:mysql://localhost/proyectobd", DB_USER_MYSQL, DB_PASS_MYSQL);
 			return conexion;
 		} catch (ClassNotFoundException cnE) {
 			cnE.printStackTrace();
