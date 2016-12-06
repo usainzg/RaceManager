@@ -27,6 +27,7 @@ public class MainView extends JFrame implements ActionListener, ViewUtil {
 
 	private final String OPTION_MYSQL = "mysql";
 	private final String OPTION_HIBERNATE = "hibernate";
+	private final String OPTION_ORACLE = "oracle";
 
 	private Login loginSystem = null;
 	private ManagerBd ma;
@@ -72,14 +73,14 @@ public class MainView extends JFrame implements ActionListener, ViewUtil {
 		String db = "";
 		while (true) {
 
-			db = JOptionPane.showInputDialog("Introduce la base de datos que desees usar: (mysql o hibernate)");
+			db = JOptionPane.showInputDialog("Introduce la base de datos que desees usar: (mysql, hibernate u oracle)");
 			
 			if (db == null) {
 				util.createInfobox("Has cancelado el inicio de la aplicacion...", "Inicio aplicacion cancelada.");
 				System.exit(0);
 			}
 
-			if (db.equalsIgnoreCase(OPTION_MYSQL) || db.equalsIgnoreCase(OPTION_HIBERNATE)) {
+			if (db.equalsIgnoreCase(OPTION_MYSQL) || db.equalsIgnoreCase(OPTION_HIBERNATE) || db.equalsIgnoreCase(OPTION_ORACLE)) {
 				ma = new ManagerBd();
 				ma.setDb(db);
 				break;

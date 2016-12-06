@@ -13,6 +13,7 @@ public class ManagerBd implements InterfazBD {
 	private MainDBManager dbm = null;
 	private final String MYSQL = "mysql";
 	private final String HIBERNATE = "hibernate";
+	private final String ORACLE = "oracle";
 
 	public void setDb(final String db) {
 		switch (db) {
@@ -22,6 +23,8 @@ public class ManagerBd implements InterfazBD {
 		case HIBERNATE:
 			dbm = new HibernateManager();
 			break;
+		case ORACLE:
+			dbm = new OracleManager();
 		default:
 			break;
 		}
