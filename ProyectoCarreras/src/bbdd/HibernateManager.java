@@ -227,7 +227,7 @@ public class HibernateManager extends MainDBManager {
 		try {
 			iniciaOperacion();
 
-			ca = (clasesHibernate.Carrera) sesion.get(clasesHibernate.Carrera.class, c.getNbCarrera());
+			ca = sesion.get(clasesHibernate.Carrera.class, c.getNbCarrera());
 
 			sesion.delete(ca);
 
@@ -278,7 +278,7 @@ public class HibernateManager extends MainDBManager {
 		try {
 			iniciaOperacion();
 
-			ca = (clasesHibernate.Carrera) sesion.get(clasesHibernate.Carrera.class, c.getNbCarrera());
+			ca = sesion.get(clasesHibernate.Carrera.class, c.getNbCarrera());
 			ca.setDistancia(c.getDistanciaCarrera());
 			ca.setDesnivel(c.getDesnivelCarrera());
 			ca.setPrecio(c.getPrecioCarrera());

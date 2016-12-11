@@ -298,6 +298,7 @@ public class RegistroPanel extends JPanel {
 			JTextField[] arrJ = { registroNombre, registroApellidos, registroClub, registroDireccion, registroEmail,
 					registroPassword, registroTelf };
 
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				for (JTextField j : arrJ) {
 					util.resetJTextField(j);

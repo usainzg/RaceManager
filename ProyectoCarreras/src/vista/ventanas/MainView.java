@@ -76,7 +76,7 @@ public class MainView extends JFrame implements ActionListener, ViewUtil {
 			db = JOptionPane.showInputDialog("Introduce la base de datos que desees usar: (mysql, hibernate u oracle)");
 			
 			if (db == null) {
-				util.createInfobox("Has cancelado el inicio de la aplicacion...", "Inicio aplicacion cancelada.");
+				util.createInfobox("Has cancelado el inicio de la aplicacion, adios.", "Inicio aplicación cancelada.");
 				System.exit(0);
 			}
 
