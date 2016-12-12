@@ -1,6 +1,7 @@
 package vista.ventanas;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
@@ -24,6 +25,7 @@ import utilidades.ViewUtil;
 import vista.paneles.VisualizacionCarrerasPanel;
 import vista.paneles.org.BorradoCarreraOrg;
 import vista.paneles.org.ModificacionCarreraOrg;
+import java.awt.Point;
 
 public class OrgView extends JFrame implements ActionListener, ViewUtil {
 
@@ -59,6 +61,9 @@ public class OrgView extends JFrame implements ActionListener, ViewUtil {
 	private static final long serialVersionUID = 1L;
 
 	public OrgView(ManagerBd manager, UsuarioOrganizador orgLogeado) {
+		setLocation(new Point(0, 0));
+		setMinimumSize(new Dimension(800, 600));
+		setMaximumSize(new Dimension(800, 600));
 		this.orgLogeado = orgLogeado;
 		setResizable(false);
 		this.manager = manager;

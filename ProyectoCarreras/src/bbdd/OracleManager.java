@@ -154,8 +154,9 @@ public class OracleManager extends MainDBManager{
 		}
 		try {
 			String sql = "SELECT c.* FROM CARRERAS c "
-					+ "WHERE organizador.id= (SELECT id FROM USUARIOS_ORGANIZADOR WHERE email= '" + org.getEmailUsuario()
+					+ "WHERE c.organizador.id= (SELECT id FROM USUARIOS_ORGANIZADOR WHERE email= '" + org.getEmailUsuario()
 					+ "')";
+			
 			Statement sentencia = cn.createStatement();
 			ResultSet rs = sentencia.executeQuery(sql);
 			ArrayList<Carrera> arr = new ArrayList<Carrera>();
@@ -253,6 +254,7 @@ public class OracleManager extends MainDBManager{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
 	@Override
 	public int altaOrganizador(UsuarioOrganizador uOrg) throws Exception {
 		Connection cn = conectarBD();
@@ -262,13 +264,15 @@ public class OracleManager extends MainDBManager{
 		}
 
 		try {
-			String sql = "INSERT INTO USUARIOS_ORGANIZADOR (nombre, apellidos, email, password, direccion, telefono, club) VALUES ('"
-					+ uOrg.getNbUsuario() + "','" + uOrg.getApellidosUsuario() + "','" + uOrg.getEmailUsuario() + "','"
-					+ uOrg.getPassUsuario() + "','" + uOrg.getDirUsuario() + "','" + uOrg.getTelfUsuario() + "','"
-					+ uOrg.getClubUsuario() + "')";
+			
+			String sql = "INSERT INTO USUARIOS_ORGANIZADOR VALUES (USUARIO_ORGANIZADOR (id_org.nextval, '" + uOrg.getNbUsuario() +
+					"','" + uOrg.getApellidosUsuario() + "','" + uOrg.getEmailUsuario() + "','" + uOrg.getPassUsuario() + "','" +
+					uOrg.getDirUsuario() + "','" + uOrg.getTelfUsuario() + "','" + uOrg.getClubUsuario() + "'))";
+			
 			Statement sentencia = cn.createStatement();
 			return sentencia.executeUpdate(sql);
 		} catch (Exception e) {
+			e.printStackTrace();
 			return -1;
 		} finally {
 			if (cn != null)
@@ -284,10 +288,105 @@ public class OracleManager extends MainDBManager{
 		}
 
 		try {
-			String sql = "INSERT INTO USUARIOS_NORMAL (nombre, apellidos, email, password, direccion, telefono, club) VALUES ('"
-					+ uStd.getNbUsuario() + "','" + uStd.getApellidosUsuario() + "','" + uStd.getEmailUsuario() + "','"
-					+ uStd.getPassUsuario() + "','" + uStd.getDirUsuario() + "','" + uStd.getTelfUsuario() + "','"
-					+ uStd.getClubUsuario() + "')";
+			String sql = "INSERT INTO USUARIOS_NORMAL VALUES (USUARIO_NORMAL ('" + uStd.getNbUsuario() +
+					"','" + uStd.getApellidosUsuario() + "','" + uStd.getEmailUsuario() + "','" + uStd.getPassUsuario() + "','" +
+					uStd.getDirUsuario() + "','" + uStd.getTelfUsuario() + "','" + uStd.getClubUsuario() + "'))";
+			
+			Statement sentencia = cn.createStatement();
+			return sentencia.executeUpdate(sql);
+		} catch (Exception e) {
+			return -1;
+		} finally {
+			if (cn != null)
+				cn.close();
+		}
+	}
+	@Override
+	public int deleteCarrera(Carrera c) throws Exception {
+		Connection cn = conectarBD();
+		if (cn == null) {
+			return -1;
+		}
+		try {
+			String sql = "DELETE FROM CARRERAS WHERE nombre='" + c.getNbCarrera() + "'";
+			Statement sentencia = cn.createStatement();
+			return sentencia.executeUpdate(sql);
+		} catch (Exception e) {
+			return -1;
+		} finally {
+			if (cn != null)
+				cn.close();
+		}
+	}
+	@Override
+	public int deleteUsuarioOrganizador(UsuarioOrganizador uOrg) throws Exception {
+		Connection cn = conectarBD();
+		if (cn == null) {
+			util.createErrorbox("No se ha podido establecer conexion con la base de datos.",
+					"Error al conectar base de datos.");
+		}
+		try {
+			String sql = "DELETE FROM USUARIOS_ORGANIZADOR WHERE email='" + uOrg.getEmailUsuario() + "'";
+			Statement sentencia = cn.createStatement();
+			return sentencia.executeUpdate(sql);
+		} catch (Exception e) {
+			return -1;
+		} finally {
+			if (cn != null)
+				cn.close();
+		}
+	}
+	@Override
+	public int deleteUsuarioNormal(UsuarioNormal uStd) throws Exception {
+		Connection cn = conectarBD();
+		if (cn == null) {
+			util.createErrorbox("No se ha podido establecer conexion con la base de datos.",
+					"Error al conectar base de datos.");
+		}
+		try {
+			String sql = "DELETE FROM USUARIOS_NORMAL WHERE email='" + uStd.getEmailUsuario() + "'";
+			Statement sentencia = cn.createStatement();
+			return sentencia.executeUpdate(sql);
+		} catch (Exception e) {
+			return -1;
+		} finally {
+			if (cn != null)
+				cn.close();
+		}
+	}
+	@Override
+	public int updateCarrera(Carrera c) throws Exception {
+		Connection cn = conectarBD();
+		if (cn == null) {
+			return -1;
+		}
+		try {
+			String sql = "UPDATE CARRERAS SET distancia='" + c.getDistanciaCarrera() + "',desnivel='"
+					+ c.getDesnivelCarrera() + "',precio='" + c.getPrecioCarrera() + "',fecha=TO_DATE('"
+					+ c.getFechaCarrera() + "','YYYY-MM-DD'),lugar='" + c.getLugarCarrera() + "' WHERE nombre='" + c.getNbCarrera()
+					+ "'";
+			Statement sentencia = cn.createStatement();
+			return sentencia.executeUpdate(sql);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		} finally {
+			if (cn != null)
+				cn.close();
+		}
+	}
+	@Override
+	public int updateUsuarioOrganizador(UsuarioOrganizador uOrg, UsuarioOrganizador datos) throws Exception {
+		Connection cn = conectarBD();
+		if (cn == null) {
+			return -1;
+		}
+		try {
+			String sql = "UPDATE USUARIOS_ORGANIZADOR SET nombre='" + datos.getNbUsuario() + "',apellidos='"
+					+ datos.getApellidosUsuario() + "',direccion='" + datos.getDirUsuario() + "',password='"
+					+ datos.getPassUsuario() + "',telefono='" + datos.getTelfUsuario() + "',club='"
+					+ datos.getClubUsuario() + "' WHERE email='" + uOrg.getEmailUsuario() + "'";
+
 			Statement sentencia = cn.createStatement();
 
 			return sentencia.executeUpdate(sql);
@@ -299,34 +398,26 @@ public class OracleManager extends MainDBManager{
 		}
 	}
 	@Override
-	public int deleteCarrera(Carrera c) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	@Override
-	public int deleteUsuarioOrganizador(UsuarioOrganizador uOrg) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	@Override
-	public int deleteUsuarioNormal(UsuarioNormal uStd) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	@Override
-	public int updateCarrera(Carrera c) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	@Override
-	public int updateUsuarioOrganizador(UsuarioOrganizador uOrg, UsuarioOrganizador datos) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	@Override
 	public int updateUsuarioNormal(UsuarioNormal datos) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		Connection cn = conectarBD();
+		if (cn == null) {
+			return -1;
+		}
+
+		try {
+			String sql = "UPDATE USUARIOS_NORMAL SET nombre='" + datos.getNbUsuario() + "',apellidos='"
+					+ datos.getApellidosUsuario() + "',direccion='" + datos.getDirUsuario() + "',password='"
+					+ datos.getPassUsuario() + "',telefono='" + datos.getTelfUsuario() + "',club='"
+					+ datos.getClubUsuario() + "' WHERE email='" + datos.getEmailUsuario() + "'";
+			Statement sentencia = cn.createStatement();
+
+			return sentencia.executeUpdate(sql);
+		} catch (Exception e) {
+			return -1;
+		} finally {
+			if (cn != null)
+				cn.close();
+		}
 	}
 	
 	@Override

@@ -1,6 +1,7 @@
 package vista.ventanas;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -29,6 +30,7 @@ import vista.paneles.admin.BorradoUsuario;
 import vista.paneles.admin.DeleteCarreraAdminPanel;
 import vista.paneles.admin.ModificacionCarreraAdmin;
 import vista.paneles.admin.ModificacionUsuarioAdmin;
+import java.awt.Point;
 
 public class AdminView extends JFrame implements ActionListener, ViewUtil {
 
@@ -81,6 +83,9 @@ public class AdminView extends JFrame implements ActionListener, ViewUtil {
 	private static final long serialVersionUID = 1L;
 
 	public AdminView(final ManagerBd manager) {
+		setLocation(new Point(0, 0));
+		setMinimumSize(new Dimension(800, 600));
+		setMaximumSize(new Dimension(800, 600));
 		setResizable(false);
 		this.manager = manager;
 		this.panelVisualizacion = new VisualizacionCarrerasPanel(manager);

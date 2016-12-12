@@ -1,5 +1,6 @@
 package vista.paneles;
 
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.util.ArrayList;
@@ -25,6 +26,8 @@ public class VisualizacionCarrerasPanel extends JPanel {
 	 * @param manager objeto manager para saber que base de datos esta elegida
 	 */
 	public VisualizacionCarrerasPanel(ManagerBd manager) {
+		setMinimumSize(new Dimension(800, 600));
+		setMaximumSize(new Dimension(800, 600));
 
 		this.manager = manager;
 		modelo = new DefaultTableModel();

@@ -29,7 +29,8 @@ public class LoginPanel extends JPanel {
 	private final String[] USERTYPES = { "Normal", "Admin", "Organizador" };
 
 	public LoginPanel() {
-		setMaximumSize(new Dimension(0, 0));
+		setMinimumSize(new Dimension(800, 600));
+		setMaximumSize(new Dimension(800, 600));
 		setLayoutView();
 	}
 

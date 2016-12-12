@@ -1,5 +1,6 @@
 package vista.paneles;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -87,6 +88,8 @@ public class RegistroPanel extends JPanel {
 	private final String[] USERTYPES = { "Normal", "Organizacion" };
 
 	public RegistroPanel() {
+		setMinimumSize(new Dimension(800, 600));
+		setMaximumSize(new Dimension(800, 600));
 		setLayoutView();
 	}
 

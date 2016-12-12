@@ -1,5 +1,6 @@
 package vista.paneles.org;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -56,6 +57,8 @@ public class ModificacionCarreraOrg extends JPanel {
 	}
 
 	public ModificacionCarreraOrg() {
+		setMinimumSize(new Dimension(800, 600));
+		setMaximumSize(new Dimension(800, 600));
 		setBounds(100, 100, 582, 351);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 65, 86, 134, 65, 0 };

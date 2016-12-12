@@ -1,6 +1,7 @@
 package vista.ventanas;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -52,6 +53,9 @@ public class MainView extends JFrame implements ActionListener, ViewUtil {
 	private JComboBox<String> reComboUsuario = panelRegistro.getComboTipoUsuario();
 
 	public MainView() {
+		panelRegistro.setPreferredSize(new Dimension(800, 600));
+		panelRegistro.setMinimumSize(new Dimension(800, 600));
+		panelRegistro.setMaximumSize(new Dimension(800, 600));
 
 		// mantener una referencia a los botones de los diferentes paneles
 		// BOTONES PANEL REGISTRO
@@ -91,6 +95,7 @@ public class MainView extends JFrame implements ActionListener, ViewUtil {
 		loginSystem = new Login(ma);
 
 		setBounds(500, 300, 523, 403);
+		setLocation(0, 0);
 		setTitle("Proyecto Unai");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		GridBagLayout gridBagLayout = (GridBagLayout) panelLogin.getLayout();

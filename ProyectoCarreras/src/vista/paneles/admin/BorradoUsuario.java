@@ -1,5 +1,6 @@
 package vista.paneles.admin;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -31,6 +32,8 @@ public class BorradoUsuario extends JPanel {
 	}
 
 	public BorradoUsuario() {
+		setMinimumSize(new Dimension(800, 600));
+		setMaximumSize(new Dimension(800, 600));
 		setLayoutView();
 	}
 

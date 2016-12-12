@@ -1,5 +1,6 @@
 package vista.paneles.admin;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -26,6 +27,8 @@ public class DeleteCarreraAdminPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	public DeleteCarreraAdminPanel() {
+		setMinimumSize(new Dimension(800, 600));
+		setMaximumSize(new Dimension(800, 600));
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 101, 91, 108, 101, 0 };
 		gridBagLayout.rowHeights = new int[] { 60, 47, 0, 60, 0 };
