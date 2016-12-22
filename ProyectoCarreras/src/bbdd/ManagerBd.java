@@ -11,9 +11,10 @@ import clases.UsuarioOrganizador;
 public class ManagerBd implements InterfazBD {
 
 	private MainDBManager dbm = null;
-	private final String MYSQL = "mysql";
-	private final String HIBERNATE = "hibernate";
-	private final String ORACLE = "oracle";
+	private final String MYSQL = "Mysql";
+	private final String HIBERNATE = "Hibernate";
+	private final String ORACLE = "Oracle";
+	private final String MONGO = "Mongo";
 
 	public void setDb(final String db) {
 		switch (db) {
@@ -25,6 +26,9 @@ public class ManagerBd implements InterfazBD {
 			break;
 		case ORACLE:
 			dbm = new OracleManager();
+		case MONGO:
+			dbm = new MongoManager();
+			break;
 		default:
 			break;
 		}

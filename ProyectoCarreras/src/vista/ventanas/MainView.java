@@ -25,11 +25,16 @@ import vista.paneles.RegistroPanel;
 public class MainView extends JFrame implements ActionListener, ViewUtil {
 
 	private static final long serialVersionUID = 1L;
+	
+	
 
-	private final String OPTION_MYSQL = "mysql";
-	private final String OPTION_HIBERNATE = "hibernate";
-	private final String OPTION_ORACLE = "oracle";
+	private final String OPTION_MYSQL = "Mysql";
+	private final String OPTION_HIBERNATE = "Hibernate";
+	private final String OPTION_ORACLE = "Oracle";
+	private final String OPTION_MONGO = "Mongo";
 
+	private final Object[] dbOptions = { OPTION_MYSQL, OPTION_HIBERNATE, OPTION_ORACLE, OPTION_MONGO };
+	
 	private Login loginSystem = null;
 	private ManagerBd ma;
 	private Utilidades util = new Utilidades();
@@ -73,23 +78,18 @@ public class MainView extends JFrame implements ActionListener, ViewUtil {
 		setResizable(false);
 
 		getContentPane().setLayout(new BorderLayout());
-
-		String db = "";
-		while (true) {
-
-			db = JOptionPane.showInputDialog("Introduce la base de datos que desees usar: (mysql, hibernate u oracle)");
-			
-			if (db == null) {
-				util.createInfobox("Has cancelado el inicio de la aplicacion, adios.", "Inicio aplicación cancelada.");
-				System.exit(0);
-			}
-
-			if (db.equalsIgnoreCase(OPTION_MYSQL) || db.equalsIgnoreCase(OPTION_HIBERNATE) || db.equalsIgnoreCase(OPTION_ORACLE)) {
-				ma = new ManagerBd();
-				ma.setDb(db);
-				break;
-			}
-
+		
+		Object db = JOptionPane.showInputDialog(null,"Seleccione la base de datos",
+				   "Selección base de datos", JOptionPane.QUESTION_MESSAGE, null,
+				  dbOptions,"Seleccione");
+		
+		if(db == null){
+			util.createInfobox("Has cancelado el inicio de la aplicacion, adios.", "Inicio aplicación cancelada.");
+			System.exit(0);
+		}else{
+			System.out.println(db);
+			ma = new ManagerBd();
+			ma.setDb(db.toString());
 		}
 
 		loginSystem = new Login(ma);
