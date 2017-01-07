@@ -5,6 +5,10 @@ import java.util.ArrayList;
 
 import org.bson.Document;
 
+import com.mongodb.BasicDBList;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -17,10 +21,6 @@ import clases.UsuarioOrganizador;
 public class MongoManager extends MainDBManager{
 	
 	public final String MONGO_DB_NAME = "proyectobd";
-
-	public MongoDatabase obtenerMongoDb(MongoClient client){
-		return client.getDatabase("proyectobd");
-	}
 	
 	@Override
 	public Connection conectarBD() throws Exception {
@@ -30,24 +30,74 @@ public class MongoManager extends MainDBManager{
 
 	@Override
 	public ArrayList<Carrera> consultarCarreras() throws Exception {
-		
-		// FIXME
 		MongoClient client = new MongoClient();
 		MongoDatabase db = client.getDatabase(MONGO_DB_NAME);
 		MongoCollection<Document> coleccion = db.getCollection("carreras");
-		ArrayList<Document> consulta = coleccion.find().into(new ArrayList<Document>());
+		
+		ArrayList<Document> carrerasDocument = coleccion.find().into(new ArrayList<>());
+		
+		ArrayList<Carrera> carreras = new ArrayList<>();
+		
+		for(Document d: carrerasDocument){
+			
+			String nombre = (String) d.get("_id");
+	        double distancia = (double) d.get("distancia");
+	        double desnivel = (double) d.get("desnivel");
+	        double precio = (double) d.get("precio");
+	        String fecha = d.getDate("fecha").toString();
+	        String lugar = d.getString("lugar");
+	        
+	        Carrera c = new Carrera();
+	        c.setNbCarrera(nombre);
+			c.setDistanciaCarrera((int) distancia);
+			c.setDesnivelCarrera((int) desnivel);
+			c.setPrecioCarrera((int) precio);
+			c.setLugarCarrera(lugar);
+			c.setFechaCarrera(fecha);
+			carreras.add(c);
+	        
+		}
 		
 		client.close();
-		
-		return null;
+		return carreras;
 	}
 
 	@Override
 	public ArrayList<UsuarioNormal> consultarUsuariosEstandar() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		MongoClient client = new MongoClient();
+		MongoDatabase db = client.getDatabase(MONGO_DB_NAME);
+		MongoCollection<Document> coleccion = db.getCollection("usuariosNormal");
+		
+		ArrayList<Document> usuariosDocument = coleccion.find().into(new ArrayList<>());
+		
+		ArrayList<UsuarioNormal> usuarios = new ArrayList<>();
+		
+		for(Document d: usuariosDocument){
+			
+			String nombre = (String) d.get("nombre");
+			String apellidos = (String) d.get("apellidos");
+			String club = (String) d.get("club");
+			String dir = (String) d.get("direccion");
+			String email = (String) d.get("email");
+			String pass = (String) d.get("password");
+			double telf = (double) d.get("telefono");
+	       
+	        UsuarioNormal u = new UsuarioNormal();
+	        u.setNbUsuario(nombre);
+	        u.setApellidosUsuario(apellidos);
+	        u.setClubUsuario(club);
+	        u.setDirUsuario(dir);
+	        u.setEmailUsuario(email);
+	        u.setPassUsuario(pass);
+	        u.setTelfUsuario((int) telf);
+	        
+	        usuarios.add(u);
+		}
+		
+		client.close();
+		return usuarios;
 	}
-
+	
 	@Override
 	public ArrayList<UsuarioOrganizador> consultarUsuariosOrganizador() throws Exception {
 		// TODO Auto-generated method stub
@@ -142,19 +192,6 @@ public class MongoManager extends MainDBManager{
 	public boolean loginOrganizador(UsuarioOrganizador uOrg) throws Exception {
 		// TODO Auto-generated method stub
 		return false;
-	}
-	
-	public static Object getNextSequence(String name) throws Exception{
-	    MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
-	    // Now connect to your databases
-	    DB db = mongoClient.getDB("demo");
-	    DBCollection collection = db.getCollection("counters");
-	    BasicDBObject find = new BasicDBObject();
-	    find.put("_id", name);
-	    BasicDBObject update = new BasicDBObject();
-	    update.put("$inc", new BasicDBObject("seq", 1));
-	    DBObject obj =  collection.findAndModify(find, update);
-	    return obj.get("seq");
 	}
 
 }
