@@ -30,9 +30,14 @@ public class MongoManager extends MainDBManager{
 
 	@Override
 	public ArrayList<Carrera> consultarCarreras() throws Exception {
+		
+		// FIXME
 		MongoClient client = new MongoClient();
 		MongoDatabase db = client.getDatabase(MONGO_DB_NAME);
 		MongoCollection<Document> coleccion = db.getCollection("carreras");
+		ArrayList<Document> consulta = coleccion.find().into(new ArrayList<Document>());
+		
+		client.close();
 		
 		return null;
 	}
