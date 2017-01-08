@@ -10,6 +10,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import static com.mongodb.client.model.Projections.*;
+import static com.mongodb.client.model.Filters.*;
 
 import clases.Carrera;
 import clases.UsuarioAdmin;
@@ -248,20 +249,66 @@ public class MongoManager extends MainDBManager{
 
 	@Override
 	public boolean loginAdmin(UsuarioAdmin admin) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+		MongoClient client = new MongoClient();
+		try{
+			MongoDatabase db = client.getDatabase(MONGO_DB_NAME);
+			MongoCollection<Document> coleccion = db.getCollection("usuariosAdmin");
+			MongoCursor<Document> doc = coleccion.find( and(eq("email", admin.getEmailUsuario()), eq("password", admin.getPassUsuario()))).iterator();
+			
+			if(doc.hasNext()){
+				return true;
+			}else{
+				return false;
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}finally{
+			if(client != null) client.close();
+		}
+		
 	}
 
 	@Override
 	public boolean loginNormal(UsuarioNormal uStd) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+		MongoClient client = new MongoClient();
+		try{
+			MongoDatabase db = client.getDatabase(MONGO_DB_NAME);
+			MongoCollection<Document> coleccion = db.getCollection("usuariosNormal");
+			MongoCursor<Document> doc = coleccion.find( and(eq("email", uStd.getEmailUsuario()), eq("password", uStd.getPassUsuario()))).iterator();
+			
+			if(doc.hasNext()){
+				return true;
+			}else{
+				return false;
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}finally{
+			if(client != null) client.close();
+		}
 	}
 
 	@Override
 	public boolean loginOrganizador(UsuarioOrganizador uOrg) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+		MongoClient client = new MongoClient();
+		try{
+			MongoDatabase db = client.getDatabase(MONGO_DB_NAME);
+			MongoCollection<Document> coleccion = db.getCollection("usuariosOrg");
+			MongoCursor<Document> doc = coleccion.find( and(eq("email", uOrg.getEmailUsuario()), eq("password", uOrg.getPassUsuario()))).iterator();
+			
+			if(doc.hasNext()){
+				return true;
+			}else{
+				return false;
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}finally{
+			if(client != null) client.close();
+		}
 	}
 
 }
