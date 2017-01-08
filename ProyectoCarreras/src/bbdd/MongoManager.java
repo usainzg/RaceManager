@@ -2,6 +2,7 @@ package bbdd;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.bson.Document;
 
@@ -197,20 +198,75 @@ public class MongoManager extends MainDBManager{
 
 	@Override
 	public int altaCarrera(Carrera c) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		MongoClient client = new MongoClient();
+		try{
+			MongoDatabase db = client.getDatabase(MONGO_DB_NAME);
+			MongoCollection<Document> coleccion = db.getCollection("carreras");
+			
+			Document carr = new Document();
+			carr.put("_id", c.getNbCarrera());
+			carr.put("distancia", c.getDistanciaCarrera());
+			carr.put("desnivel", c.getDesnivelCarrera());
+			carr.put("precio", c.getPrecioCarrera());
+			
+			// FIXME arreglar fecha deprecated
+			carr.put("fecha", new Date(c.getFechaCarrera()));
+			carr.put("lugar", c.getLugarCarrera());
+			coleccion.insertOne(carr);
+			return 1;
+		}catch(Exception e){
+			return -1;
+		}finally{
+			if(client != null) client.close();
+		}
 	}
 
 	@Override
 	public int altaOrganizador(UsuarioOrganizador uOrg) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		MongoClient client = new MongoClient();
+		try{
+			MongoDatabase db = client.getDatabase(MONGO_DB_NAME);
+			MongoCollection<Document> coleccion = db.getCollection("usuariosOrg");
+			
+			Document org = new Document();
+			
+			// FIXME arreglar tema ID
+			org.put("nombre", uOrg.getNbUsuario());
+			org.put("apellidos", uOrg.getApellidosUsuario());
+			org.put("email", uOrg.getEmailUsuario());
+			org.put("password", uOrg.getPassUsuario());
+			org.put("direccion", uOrg.getDirUsuario());
+			org.put("telefono", uOrg.getTelfUsuario());
+			coleccion.insertOne(org);
+			return 1;
+		}catch(Exception e){
+			return -1;
+		}finally{
+			if(client != null) client.close();
+		}
 	}
 
 	@Override
 	public int altaUsuarioNormal(UsuarioNormal uStd) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		MongoClient client = new MongoClient();
+		try{
+			MongoDatabase db = client.getDatabase(MONGO_DB_NAME);
+			MongoCollection<Document> coleccion = db.getCollection("usuariosNormal");
+			
+			Document std = new Document();
+			std.put("nombre", uStd.getNbUsuario());
+			std.put("apellidos", uStd.getApellidosUsuario());
+			std.put("email", uStd.getEmailUsuario());
+			std.put("password", uStd.getPassUsuario());
+			std.put("direccion", uStd.getDirUsuario());
+			std.put("telefono", uStd.getTelfUsuario());
+			coleccion.insertOne(std);
+			return 1;
+		}catch(Exception e){
+			return -1;
+		}finally{
+			if(client != null) client.close();
+		}
 	}
 
 	@Override
