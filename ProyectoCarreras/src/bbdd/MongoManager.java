@@ -1,5 +1,9 @@
 package bbdd;
 
+import static com.mongodb.client.model.Filters.and;
+import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Projections.include;
+
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,9 +15,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.result.DeleteResult;
-
-import static com.mongodb.client.model.Projections.*;
-import static com.mongodb.client.model.Filters.*;
+import com.mongodb.client.result.UpdateResult;
 
 import clases.Carrera;
 import clases.UsuarioAdmin;
@@ -316,20 +318,75 @@ public class MongoManager extends MainDBManager{
 
 	@Override
 	public int updateCarrera(Carrera c) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		MongoClient client = new MongoClient();
+		try{
+			MongoDatabase db = client.getDatabase(MONGO_DB_NAME);
+			MongoCollection<Document> coleccion = db.getCollection("carreras");
+			Document carr = new Document();
+			carr.put("distancia", c.getDistanciaCarrera());
+			carr.put("desnivel", c.getDesnivelCarrera());
+			carr.put("precio", c.getPrecioCarrera());
+			
+			// FIXME arreglar fecha deprecated
+			carr.put("fecha", new Date(c.getFechaCarrera()));
+			carr.put("lugar", c.getLugarCarrera());
+			
+			UpdateResult res = coleccion.updateOne( eq("_id", c.getNbCarrera()), carr);
+			return (int) res.getModifiedCount();
+
+		}catch(Exception e){
+			return -1;
+		}finally{
+			if(client != null) client.close();
+		}
 	}
 
 	@Override
 	public int updateUsuarioOrganizador(UsuarioOrganizador uOrg, UsuarioOrganizador datos) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		MongoClient client = new MongoClient();
+		try{
+			MongoDatabase db = client.getDatabase(MONGO_DB_NAME);
+			MongoCollection<Document> coleccion = db.getCollection("usuariosOrg");
+			Document org = new Document();
+			
+			// FIXME arreglar tema ID
+			org.put("nombre", datos.getNbUsuario());
+			org.put("apellidos", datos.getApellidosUsuario());
+			org.put("password", datos.getPassUsuario());
+			org.put("direccion", datos.getDirUsuario());
+			org.put("telefono", datos.getTelfUsuario());
+			
+			UpdateResult res = coleccion.updateOne( eq("email", uOrg.getEmailUsuario()), org);
+			return (int) res.getModifiedCount();
+
+		}catch(Exception e){
+			return -1;
+		}finally{
+			if(client != null) client.close();
+		}
 	}
 
 	@Override
-	public int updateUsuarioNormal(UsuarioNormal datos) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public int updateUsuarioNormal(UsuarioNormal uStd) throws Exception {
+		MongoClient client = new MongoClient();
+		try{
+			MongoDatabase db = client.getDatabase(MONGO_DB_NAME);
+			MongoCollection<Document> coleccion = db.getCollection("usuariosNormal");
+			Document std = new Document();
+			std.put("nombre", uStd.getNbUsuario());
+			std.put("apellidos", uStd.getApellidosUsuario());
+			std.put("password", uStd.getPassUsuario());
+			std.put("direccion", uStd.getDirUsuario());
+			std.put("telefono", uStd.getTelfUsuario());
+			
+			UpdateResult res = coleccion.updateOne( eq("email", uStd.getEmailUsuario()), std);
+			return (int) res.getModifiedCount();
+
+		}catch(Exception e){
+			return -1;
+		}finally{
+			if(client != null) client.close();
+		}
 	}
 
 	@Override
