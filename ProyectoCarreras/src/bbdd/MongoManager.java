@@ -5,13 +5,11 @@ import java.util.ArrayList;
 
 import org.bson.Document;
 
-import com.mongodb.BasicDBList;
-import com.mongodb.BasicDBObject;
-import com.mongodb.DBCursor;
-import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import static com.mongodb.client.model.Projections.*;
 
 import clases.Carrera;
 import clases.UsuarioAdmin;
@@ -100,8 +98,38 @@ public class MongoManager extends MainDBManager{
 	
 	@Override
 	public ArrayList<UsuarioOrganizador> consultarUsuariosOrganizador() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		MongoClient client = new MongoClient();
+		MongoDatabase db = client.getDatabase(MONGO_DB_NAME);
+		MongoCollection<Document> coleccion = db.getCollection("usuariosNormal");
+		
+		ArrayList<Document> usuariosDocument = coleccion.find().into(new ArrayList<>());
+		
+		ArrayList<UsuarioOrganizador> usuarios = new ArrayList<>();
+		
+		for(Document d: usuariosDocument){
+			
+			String nombre = (String) d.get("nombre");
+			String apellidos = (String) d.get("apellidos");
+			String club = (String) d.get("club");
+			String dir = (String) d.get("direccion");
+			String email = (String) d.get("email");
+			String pass = (String) d.get("password");
+			double telf = (double) d.get("telefono");
+	       
+	        UsuarioOrganizador u = new UsuarioOrganizador();
+	        u.setNbUsuario(nombre);
+	        u.setApellidosUsuario(apellidos);
+	        u.setClubUsuario(club);
+	        u.setDirUsuario(dir);
+	        u.setEmailUsuario(email);
+	        u.setPassUsuario(pass);
+	        u.setTelfUsuario((int) telf);
+	        
+	        usuarios.add(u);
+		}
+		
+		client.close();
+		return usuarios;
 	}
 
 	@Override
@@ -112,14 +140,56 @@ public class MongoManager extends MainDBManager{
 
 	@Override
 	public ArrayList<UsuarioNormal> consultarEmailNormal() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		MongoClient client = new MongoClient();
+		MongoDatabase db = client.getDatabase(MONGO_DB_NAME);
+		MongoCollection<Document> coleccion = db.getCollection("usuariosNormal");
+		MongoCursor<Document> doc = coleccion.find()
+				.projection(include("email")).iterator();
+		
+		ArrayList<UsuarioNormal> usuarios = new ArrayList<>();
+		while(doc.hasNext()){
+			
+			Document docu = doc.next();
+			UsuarioNormal uStd = new UsuarioNormal();
+			uStd.setNbUsuario("");
+			uStd.setApellidosUsuario("");
+			uStd.setEmailUsuario(docu.getString("email"));
+			uStd.setPassUsuario("");
+			uStd.setDirUsuario("");
+			uStd.setTelfUsuario(0);
+			uStd.setClubUsuario("");
+			usuarios.add(uStd);
+		}
+		
+		client.close();
+		return usuarios;
 	}
 
 	@Override
 	public ArrayList<UsuarioOrganizador> consultarEmailOrg() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		MongoClient client = new MongoClient();
+		MongoDatabase db = client.getDatabase(MONGO_DB_NAME);
+		MongoCollection<Document> coleccion = db.getCollection("usuariosOrganizador");
+		MongoCursor<Document> doc = coleccion.find()
+				.projection(include("email")).iterator();
+		
+		ArrayList<UsuarioOrganizador> usuarios = new ArrayList<>();
+		while(doc.hasNext()){
+			
+			Document docu = doc.next();
+			UsuarioOrganizador uStd = new UsuarioOrganizador();
+			uStd.setNbUsuario("");
+			uStd.setApellidosUsuario("");
+			uStd.setEmailUsuario(docu.getString("email"));
+			uStd.setPassUsuario("");
+			uStd.setDirUsuario("");
+			uStd.setTelfUsuario(0);
+			uStd.setClubUsuario("");
+			usuarios.add(uStd);
+		}
+		
+		client.close();
+		return usuarios;
 	}
 
 	@Override

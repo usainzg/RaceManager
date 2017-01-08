@@ -13,6 +13,8 @@ import clases.UsuarioNormal;
 import clases.UsuarioOrganizador;
 import utilidades.Utilidades;
 
+
+
 public class MySqlManager extends MainDBManager {
 
 	private final String MYSQL_DRIVER = "com.mysql.jdbc.Driver";
