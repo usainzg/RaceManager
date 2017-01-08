@@ -9,6 +9,8 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.result.DeleteResult;
+
 import static com.mongodb.client.model.Projections.*;
 import static com.mongodb.client.model.Filters.*;
 
@@ -213,20 +215,47 @@ public class MongoManager extends MainDBManager{
 
 	@Override
 	public int deleteCarrera(Carrera c) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		MongoClient client = new MongoClient();
+		try{
+			MongoDatabase db = client.getDatabase(MONGO_DB_NAME);
+			MongoCollection<Document> coleccion = db.getCollection("carreras");
+			DeleteResult res = coleccion.deleteOne(eq("nombre", c.getNbCarrera()));
+			return (int) res.getDeletedCount();
+		}catch(Exception e){
+			return -1;
+		}finally{
+			if(client != null) client.close();
+		}
 	}
 
 	@Override
 	public int deleteUsuarioOrganizador(UsuarioOrganizador uOrg) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		MongoClient client = new MongoClient();
+		try{
+			MongoDatabase db = client.getDatabase(MONGO_DB_NAME);
+			MongoCollection<Document> coleccion = db.getCollection("usuariosOrg");
+			DeleteResult res = coleccion.deleteOne(eq("email", uOrg.getEmailUsuario()));
+			return (int) res.getDeletedCount();
+		}catch(Exception e){
+			return -1;
+		}finally{
+			if(client != null) client.close();
+		}
 	}
 
 	@Override
 	public int deleteUsuarioNormal(UsuarioNormal uStd) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		MongoClient client = new MongoClient();
+		try{
+			MongoDatabase db = client.getDatabase(MONGO_DB_NAME);
+			MongoCollection<Document> coleccion = db.getCollection("usuariosNormal");
+			DeleteResult res = coleccion.deleteOne(eq("email", uStd.getEmailUsuario()));
+			return (int) res.getDeletedCount();
+		}catch(Exception e){
+			return -1;
+		}finally{
+			if(client != null) client.close();
+		}
 	}
 
 	@Override
