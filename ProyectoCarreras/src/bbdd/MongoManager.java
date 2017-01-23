@@ -7,10 +7,16 @@ import static com.mongodb.client.model.Projections.include;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.bson.Document;
 
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
@@ -50,10 +56,27 @@ public class MongoManager extends MainDBManager{
 	        double precio = (double) d.get("precio");
 	        String fecha = d.getDate("fecha").toString();
 	        String lugar = d.getString("lugar");
+	        String nombreOrg = "";
+	        
+	        MongoCollection<Document> orgsColeccion = db.getCollection("usuariosOrg");
+	        ArrayList<Document> orgDocumentList = orgsColeccion.find().into(new ArrayList<>());
+	        
+	        for(Document dOrg: orgDocumentList){
+	        	
+	        	ArrayList<String> carrerasOrg = (ArrayList<String>) dOrg.get("carreras");
+	        	if(carrerasOrg.contains(nombre)){
+	        		nombreOrg = dOrg.getString("nombre");
+	        	}
+	        }
 	        
 	        Carrera c = new Carrera();
 	        c.setNbCarrera(nombre);
-			c.setDistanciaCarrera((int) distancia);
+	        
+	        UsuarioOrganizador uOrg = new UsuarioOrganizador();
+	        uOrg.setNb(nombreOrg);
+	        
+	        c.setOrgCarrera(uOrg);
+	        c.setDistanciaCarrera((int) distancia);
 			c.setDesnivelCarrera((int) desnivel);
 			c.setPrecioCarrera((int) precio);
 			c.setLugarCarrera(lugar);
@@ -140,7 +163,15 @@ public class MongoManager extends MainDBManager{
 
 	@Override
 	public ArrayList<Carrera> consultarCarrerasOrg(UsuarioOrganizador org) throws Exception {
-		// TODO Auto-generated method stub
+		MongoClient client = new MongoClient();
+		MongoDatabase db = client.getDatabase(MONGO_DB_NAME);
+		DBCollection collOrg = (DBCollection) db.getCollection("usuariosOrg");
+		DBCollection collCarreras = (DBCollection) db.getCollection("carreras");
+		
+		DBObject query = new BasicDBObject("email", org.getEmailUsuario());
+		DBObject result = collOrg.findOne(query);
+	
+		client.close();
 		return null;
 	}
 
@@ -175,7 +206,7 @@ public class MongoManager extends MainDBManager{
 	public ArrayList<UsuarioOrganizador> consultarEmailOrg() throws Exception {
 		MongoClient client = new MongoClient();
 		MongoDatabase db = client.getDatabase(MONGO_DB_NAME);
-		MongoCollection<Document> coleccion = db.getCollection("usuariosOrganizador");
+		MongoCollection<Document> coleccion = db.getCollection("usuariosOrg");
 		MongoCursor<Document> doc = coleccion.find()
 				.projection(include("email")).iterator();
 		

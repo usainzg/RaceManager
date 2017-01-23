@@ -1,6 +1,7 @@
 package clases;
 
 public class UsuarioOrganizador extends Usuario {
+	
 	private int id;
 
 	public UsuarioOrganizador(String nombre, String apellidos, String direccion, String email, String pass, int telf,
@@ -30,6 +31,10 @@ public class UsuarioOrganizador extends Usuario {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public void setNb(String name){
+		this.nbUsuario = name;
 	}
 
 }

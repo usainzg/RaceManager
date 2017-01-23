@@ -75,8 +75,7 @@ public class VisualizacionCarrerasPanel extends JPanel {
 			for (Carrera c : carreras) {
 				Object[] fila = new Object[7];
 				fila[0] = c.getNbCarrera();
-				// FIXME
-				//if(c.getOrgCarrera().getNbUsuario() != null) fila[1] = c.getOrgCarrera().getNbUsuario();
+				if(c.getOrgCarrera().getNbUsuario() != null) fila[1] = c.getOrgCarrera().getNbUsuario();
 				fila[2] = c.getDistanciaCarrera();
 				fila[3] = c.getDesnivelCarrera();
 				fila[4] = c.getPrecioCarrera();

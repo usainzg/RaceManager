@@ -3,13 +3,13 @@ package clases;
 public abstract class Usuario {
 
 	// Usuario class attributes
-	private String nbUsuario;
-	private String apellidosUsuario;
-	private String dirUsuario;
-	private String emailUsuario;
-	private String passUsuario;
-	private int telfUsuario;
-	private String clubUsuario;
+	protected String nbUsuario;
+	protected String apellidosUsuario;
+	protected String dirUsuario;
+	protected String emailUsuario;
+	protected String passUsuario;
+	protected int telfUsuario;
+	protected String clubUsuario;
 
 	public Usuario(String nombre, String apellidos, String direccion, String email, String pass, int telefono,
 			String club) {
