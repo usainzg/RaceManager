@@ -2,6 +2,7 @@ package bbdd;
 
 import static com.mongodb.client.model.Filters.and;
 import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Filters.in;
 import static com.mongodb.client.model.Projections.include;
 
 import java.sql.Connection;
@@ -11,12 +12,7 @@ import java.util.List;
 
 import org.bson.Document;
 
-import com.mongodb.BasicDBObject;
-import com.mongodb.DBCollection;
-import com.mongodb.DBCursor;
-import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
-import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
@@ -51,10 +47,10 @@ public class MongoManager extends MainDBManager{
 		for(Document d: carrerasDocument){
 			
 			String nombre = (String) d.get("_id");
-	        double distancia = (double) d.get("distancia");
-	        double desnivel = (double) d.get("desnivel");
-	        double precio = (double) d.get("precio");
-	        String fecha = d.getDate("fecha").toString();
+	        double distancia = d.getDouble("distancia");
+	        double desnivel = d.getDouble("desnivel");
+	        double precio = d.getDouble("precio");
+	        String fecha = d.get("fecha").toString();
 	        String lugar = d.getString("lugar");
 	        String nombreOrg = "";
 	        
@@ -64,7 +60,7 @@ public class MongoManager extends MainDBManager{
 	        for(Document dOrg: orgDocumentList){
 	        	
 	        	ArrayList<String> carrerasOrg = (ArrayList<String>) dOrg.get("carreras");
-	        	if(carrerasOrg.contains(nombre)){
+	        	if(carrerasOrg != null && carrerasOrg.contains(nombre)){
 	        		nombreOrg = dOrg.getString("nombre");
 	        	}
 	        }
@@ -165,14 +161,49 @@ public class MongoManager extends MainDBManager{
 	public ArrayList<Carrera> consultarCarrerasOrg(UsuarioOrganizador org) throws Exception {
 		MongoClient client = new MongoClient();
 		MongoDatabase db = client.getDatabase(MONGO_DB_NAME);
-		DBCollection collOrg = (DBCollection) db.getCollection("usuariosOrg");
-		DBCollection collCarreras = (DBCollection) db.getCollection("carreras");
+		MongoCollection<Document> col = db.getCollection("usuariosOrg");
 		
-		DBObject query = new BasicDBObject("email", org.getEmailUsuario());
-		DBObject result = collOrg.findOne(query);
-	
+		ArrayList<Carrera> carreras = new ArrayList<>();
+		List<Document> docCarreras;
+		Document docOrg;
+		
+		try{
+			docOrg = col.find( eq("email", org.getEmailUsuario()) ).first();
+			
+			col = db.getCollection("carreras");
+			
+			docCarreras = col.find( in("_id", docOrg.get("carreras", ArrayList.class)) ).into(new ArrayList<>());
+		
+			for(Document d: docCarreras){
+				Carrera c = new Carrera();
+				
+				String nombre = (String) d.get("_id");
+		        double distancia = (double) d.get("distancia");
+		        double desnivel = (double) d.get("desnivel");
+		        double precio = (double) d.get("precio");
+		        String fecha = d.getString("fecha");
+		        String lugar = d.getString("lugar");
+		        String nombreOrg = docOrg.getString("nombre");
+		        
+		        UsuarioOrganizador uOrg = new UsuarioOrganizador();
+		        uOrg.setNb(nombreOrg);
+		        
+		        c.setNbCarrera(nombre);
+		        c.setOrgCarrera(uOrg);
+		        c.setDistanciaCarrera((int) distancia);
+				c.setDesnivelCarrera((int) desnivel);
+				c.setPrecioCarrera((int) precio);
+				c.setLugarCarrera(lugar);
+				c.setFechaCarrera(fecha);
+				carreras.add(c);
+		        
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
 		client.close();
-		return null;
+		return carreras;
 	}
 
 	@Override
@@ -262,8 +293,6 @@ public class MongoManager extends MainDBManager{
 			MongoCollection<Document> coleccion = db.getCollection("usuariosOrg");
 			
 			Document org = new Document();
-			
-			// FIXME arreglar tema ID
 			org.put("nombre", uOrg.getNbUsuario());
 			org.put("apellidos", uOrg.getApellidosUsuario());
 			org.put("email", uOrg.getEmailUsuario());
@@ -353,19 +382,20 @@ public class MongoManager extends MainDBManager{
 		try{
 			MongoDatabase db = client.getDatabase(MONGO_DB_NAME);
 			MongoCollection<Document> coleccion = db.getCollection("carreras");
-			Document carr = new Document();
-			carr.put("distancia", c.getDistanciaCarrera());
-			carr.put("desnivel", c.getDesnivelCarrera());
-			carr.put("precio", c.getPrecioCarrera());
 			
-			// FIXME arreglar fecha deprecated
-			carr.put("fecha", new Date(c.getFechaCarrera()));
-			carr.put("lugar", c.getLugarCarrera());
-			
-			UpdateResult res = coleccion.updateOne( eq("_id", c.getNbCarrera()), carr);
+			// FIXME
+			UpdateResult res = coleccion.updateOne( eq("_id", c.getNbCarrera()), 
+					new Document("$set", 
+							new Document("distancia", (double) c.getDistanciaCarrera())
+							.append("desnivel", (double) c.getDesnivelCarrera())
+							.append("precio", (double) c.getPrecioCarrera())
+							.append("fecha", c.getFechaCarrera())
+							.append("lugar", c.getLugarCarrera())
+					));
 			return (int) res.getModifiedCount();
 
 		}catch(Exception e){
+			e.printStackTrace();
 			return -1;
 		}finally{
 			if(client != null) client.close();
@@ -378,16 +408,16 @@ public class MongoManager extends MainDBManager{
 		try{
 			MongoDatabase db = client.getDatabase(MONGO_DB_NAME);
 			MongoCollection<Document> coleccion = db.getCollection("usuariosOrg");
-			Document org = new Document();
 			
-			// FIXME arreglar tema ID
-			org.put("nombre", datos.getNbUsuario());
-			org.put("apellidos", datos.getApellidosUsuario());
-			org.put("password", datos.getPassUsuario());
-			org.put("direccion", datos.getDirUsuario());
-			org.put("telefono", datos.getTelfUsuario());
-			
-			UpdateResult res = coleccion.updateOne( eq("email", uOrg.getEmailUsuario()), org);
+			UpdateResult res = coleccion.updateOne( eq("email", uOrg.getEmailUsuario() ), 
+					new Document("$set", 
+							new Document("nombre", datos.getNbUsuario())
+							.append("apellidos", datos.getApellidosUsuario())
+							.append("password", datos.getPassUsuario())
+							.append("direccion", datos.getDirUsuario())
+							.append("telefono", datos.getTelfUsuario())
+							.append("club", datos.getClubUsuario())
+					));
 			return (int) res.getModifiedCount();
 
 		}catch(Exception e){
@@ -403,17 +433,21 @@ public class MongoManager extends MainDBManager{
 		try{
 			MongoDatabase db = client.getDatabase(MONGO_DB_NAME);
 			MongoCollection<Document> coleccion = db.getCollection("usuariosNormal");
-			Document std = new Document();
-			std.put("nombre", uStd.getNbUsuario());
-			std.put("apellidos", uStd.getApellidosUsuario());
-			std.put("password", uStd.getPassUsuario());
-			std.put("direccion", uStd.getDirUsuario());
-			std.put("telefono", uStd.getTelfUsuario());
 			
-			UpdateResult res = coleccion.updateOne( eq("email", uStd.getEmailUsuario()), std);
+			UpdateResult res = coleccion.updateOne( eq("email", uStd.getEmailUsuario() ), 
+					new Document("$set", 
+							new Document("nombre", uStd.getNbUsuario())
+							.append("apellidos", uStd.getApellidosUsuario())
+							.append("password", uStd.getPassUsuario())
+							.append("direccion", uStd.getDirUsuario())
+							.append("telefono", uStd.getTelfUsuario())
+							.append("club", uStd.getClubUsuario())
+					));
+			
 			return (int) res.getModifiedCount();
 
 		}catch(Exception e){
+			e.printStackTrace();
 			return -1;
 		}finally{
 			if(client != null) client.close();

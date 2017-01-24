@@ -12,7 +12,7 @@ public class UsuarioOrganizador extends Usuario {
 
 	public UsuarioOrganizador() {
 	}
-
+	
 	public UsuarioOrganizador(String nombre, String apellidos, String direccion, String email, String pass, int telf,
 			String club) {
 		super(nombre, apellidos, direccion, email, pass, telf, club);
