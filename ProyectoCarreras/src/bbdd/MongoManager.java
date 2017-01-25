@@ -12,6 +12,7 @@ import java.util.List;
 
 import org.bson.Document;
 
+import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
@@ -272,9 +273,7 @@ public class MongoManager extends MainDBManager{
 			carr.put("distancia", c.getDistanciaCarrera());
 			carr.put("desnivel", c.getDesnivelCarrera());
 			carr.put("precio", c.getPrecioCarrera());
-			
-			// FIXME arreglar fecha deprecated
-			carr.put("fecha", new Date(c.getFechaCarrera()));
+			carr.put("fecha", c.getFechaCarrera());
 			carr.put("lugar", c.getLugarCarrera());
 			coleccion.insertOne(carr);
 			return 1;
@@ -333,13 +332,42 @@ public class MongoManager extends MainDBManager{
 
 	@Override
 	public int deleteCarrera(Carrera c) throws Exception {
+		String nombreCarrera = c.getNbCarrera();
 		MongoClient client = new MongoClient();
 		try{
 			MongoDatabase db = client.getDatabase(MONGO_DB_NAME);
 			MongoCollection<Document> coleccion = db.getCollection("carreras");
-			DeleteResult res = coleccion.deleteOne(eq("nombre", c.getNbCarrera()));
+			DeleteResult res = coleccion.deleteOne(eq("_id", nombreCarrera));
+			
+			if(res.getDeletedCount() == 1){
+				
+				coleccion = db.getCollection("usuariosOrg");
+				
+				ArrayList<Document> orgs = coleccion.find().into(new ArrayList<>());
+				
+				for(Document d: orgs){
+					
+					ArrayList<String> carreras = (ArrayList<String>) d.get("carreras");
+					boolean tieneLaCarrera = false;
+					
+					for(String s: carreras){
+						if(s.equals(nombreCarrera)) tieneLaCarrera = true;
+					}
+					
+					if(tieneLaCarrera){
+						
+						BasicDBObject match = new BasicDBObject("email", d.getString("email")); 
+						BasicDBObject update = new BasicDBObject("carreras", c.getNbCarrera());
+						coleccion = db.getCollection("usuariosOrg");
+						coleccion.updateOne(match, new BasicDBObject("$pull", update));
+					}
+				}
+				
+			}
+			
 			return (int) res.getDeletedCount();
 		}catch(Exception e){
+			e.printStackTrace();
 			return -1;
 		}finally{
 			if(client != null) client.close();

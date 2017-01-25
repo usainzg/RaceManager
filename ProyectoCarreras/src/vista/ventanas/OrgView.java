@@ -2,6 +2,7 @@ package vista.ventanas;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
@@ -25,7 +26,6 @@ import utilidades.ViewUtil;
 import vista.paneles.VisualizacionCarrerasPanel;
 import vista.paneles.org.BorradoCarreraOrg;
 import vista.paneles.org.ModificacionCarreraOrg;
-import java.awt.Point;
 
 public class OrgView extends JFrame implements ActionListener, ViewUtil {
 

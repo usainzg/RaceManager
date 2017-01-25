@@ -2,12 +2,12 @@ package vista.ventanas;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Point;
 
 import javax.swing.JFrame;
 
 import bbdd.ManagerBd;
 import vista.paneles.VisualizacionCarrerasPanel;
-import java.awt.Point;
 
 public class NormalView extends JFrame {
 

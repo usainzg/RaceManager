@@ -12,7 +12,6 @@ public class LanzadorGui {
 
 		main.setVisible(true);
 		main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
 	}
 
 }
